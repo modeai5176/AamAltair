@@ -16,6 +16,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://aamaltair.com'),
   title: "Aam Altair - Unplug. Unwind. Reconnect with Nature.",
   description:
     "A place where you wake up to mango orchards, the Milky Way, and the River Galana. Luxury retreat in Tsavo, Kenya.",
@@ -105,7 +106,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://api.fontshare.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" href="/hero.mp4" as="video" type="video/mp4" />
       </head>
       <body className="font-sans antialiased">
         <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-pulse text-foreground/60">Loading...</div></div>}>

@@ -2,101 +2,14 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
 
 export function HeroSection() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [isVideoReady, setIsVideoReady] = useState(false)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    let playAttempted = false
-
-    const attemptPlay = async () => {
-      if (playAttempted) return
-      playAttempted = true
-
-      try {
-        await video.play()
-        setIsVideoReady(true)
-      } catch (error) {
-        console.log('Autoplay failed, video will play on user interaction:', error)
-        // Reset the flag so we can try again
-        playAttempted = false
-      }
-    }
-
-    const handleCanPlay = () => {
-      attemptPlay()
-    }
-
-    const handleLoadedData = () => {
-      attemptPlay()
-    }
-
-    const handleError = (e: Event) => {
-      console.error('Video error:', e)
-      setIsVideoReady(true) // Show content even if video fails
-    }
-
-    // Add event listeners
-    video.addEventListener('canplay', handleCanPlay)
-    video.addEventListener('loadeddata', handleLoadedData)
-    video.addEventListener('error', handleError)
-
-    // Set video properties for better playback
-    video.muted = true // Ensure muted for autoplay
-    video.loop = true
-    video.playsInline = true
-
-    // Force load the video
-    video.load()
-
-    // Try to play after a short delay
-    const timeoutId = setTimeout(() => {
-      attemptPlay()
-    }, 100)
-
-    return () => {
-      clearTimeout(timeoutId)
-      video.removeEventListener('canplay', handleCanPlay)
-      video.removeEventListener('loadeddata', handleLoadedData)
-      video.removeEventListener('error', handleError)
-    }
-  }, [])
-
-  // Global click handler to trigger video playback
-  useEffect(() => {
-    const handleUserInteraction = async () => {
-      const video = videoRef.current
-      if (!video || isVideoReady) return
-
-      try {
-        await video.play()
-        setIsVideoReady(true)
-      } catch (error) {
-        console.log('Video play failed on user interaction:', error)
-      }
-    }
-
-    // Add click and touch listeners
-    document.addEventListener('click', handleUserInteraction, { once: true })
-    document.addEventListener('touchstart', handleUserInteraction, { once: true })
-
-    return () => {
-      document.removeEventListener('click', handleUserInteraction)
-      document.removeEventListener('touchstart', handleUserInteraction)
-    }
-  }, [isVideoReady])
 
   return (
     <section className="relative h-screen flex items-end justify-center overflow-hidden pt-header pb-20">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 bg-background">
         <video 
-          ref={videoRef}
           autoPlay
           loop 
           playsInline 
@@ -107,10 +20,6 @@ export function HeroSection() {
           x5-playsinline="true"
           controls={false}
           disablePictureInPicture
-          style={{ 
-            opacity: isVideoReady ? 1 : 0,
-            transition: 'opacity 0.5s ease-in-out'
-          }}
         >
           <source
             src="/hero.mp4"
@@ -121,16 +30,6 @@ export function HeroSection() {
             type="video/webm"
           />
         </video>
-
-        {/* Loading state */}
-        {!isVideoReady && (
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-background flex items-center justify-center">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
-              <p className="text-foreground/60 text-sm">Loading video...</p>
-            </div>
-          </div>
-        )}
 
         <div className="absolute inset-0 hero-overlay" />
       </div>
