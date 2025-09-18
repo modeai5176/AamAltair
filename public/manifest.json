@@ -1,0 +1,35 @@
+{
+  "name": "Aam Altair - Unplug. Unwind. Reconnect with Nature.",
+  "short_name": "Aam Altair",
+  "description": "A place where you wake up to mango orchards, the Milky Way, and the River Galana. Luxury retreat in Tsavo, Kenya.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0e10",
+  "theme_color": "#0d0e10",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["travel", "lifestyle", "nature"],
+  "icons": [
+    {
+      "src": "/aamaltair_logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/aamaltair_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/carousel/Dome2.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide"
+    }
+  ]
+}

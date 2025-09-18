@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap&text=AamAltairRiverfrontDomesPureStillnessSolar-poweredFarm-to-tablePrivate decksTsavoKenya') layer(fonts);
+
+@custom-variant dark (&:is(.dark *));
+
+/* Updated color tokens to match Aam Altair brand specifications */
+:root {
+  /* Aam Altair Brand Colors */
+  --bg-primary: #0d0e10;
+  --bg-elevated: #121418;
+  --fg-primary: #e8dab8;
+  --fg-secondary: #c8b37a;
+  --fg-body: #d9d7d2;
+  --accent-1: #203127;
+  --accent-2: #2e3c31;
+  --surface-sand: #e6e0d4;
+
+  /* Semantic Design Tokens */
+  --background: var(--bg-primary);
+  --foreground: var(--fg-body);
+  --card: var(--bg-elevated);
+  --card-foreground: var(--fg-body);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--fg-body);
+  --primary: var(--fg-primary);
+  --primary-foreground: var(--bg-primary);
+  --secondary: var(--accent-2);
+  --secondary-foreground: var(--fg-body);
+  --muted: var(--bg-elevated);
+  --muted-foreground: var(--fg-secondary);
+  --accent: var(--fg-secondary);
+  --accent-foreground: var(--bg-primary);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: var(--accent-2);
+  --input: var(--bg-elevated);
+  --ring: var(--fg-secondary);
+  --chart-1: var(--fg-primary);
+  --chart-2: var(--fg-secondary);
+  --chart-3: var(--accent-1);
+  --chart-4: var(--accent-2);
+  --chart-5: var(--surface-sand);
+  --radius: 1rem;
+  --sidebar: var(--bg-elevated);
+  --sidebar-foreground: var(--fg-body);
+  --sidebar-primary: var(--fg-primary);
+  --sidebar-primary-foreground: var(--bg-primary);
+  --sidebar-accent: var(--accent-2);
+  --sidebar-accent-foreground: var(--fg-body);
+  --sidebar-border: var(--accent-2);
+  --sidebar-ring: var(--fg-secondary);
+}
+
+/* Added custom font variables for Satoshi and Inter */
+@theme inline {
+  --font-serif: "Satoshi", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Added typography styles for Aam Altair brand */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-primary;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl font-medium leading-tight tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-medium leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-medium leading-snug;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Header spacing utilities */
+  .pt-header {
+    padding-top: 5rem; /* 80px - matches h-20 */
+  }
+  
+  .pt-header-md {
+    padding-top: 6rem; /* 96px - for larger screens */
+  }
+}
+
+/* Added custom overlay gradient for hero sections */
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(13, 14, 16, 0.3) 0%, rgba(13, 14, 16, 0.7) 60%, rgba(13, 14, 16, 0.95) 100%);
+}
+
+/* Added smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
