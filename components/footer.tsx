@@ -25,23 +25,20 @@ export function Footer() {
           {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="font-serif text-lg font-medium text-primary">Quick Links</h3>
-            <div className="grid grid-cols-2 gap-2">
-              <Link href="/stays" className="text-sm text-foreground hover:text-primary transition-colors">
+            <div className="space-y-2">
+              <Link href="/stays" className="text-sm text-foreground hover:text-primary transition-colors block">
                 Stays
               </Link>
-              <Link href="/experiences" className="text-sm text-foreground hover:text-primary transition-colors">
+              <Link href="/experiences" className="text-sm text-foreground hover:text-primary transition-colors block">
                 Experiences
               </Link>
-              <Link href="/sustainability" className="text-sm text-foreground hover:text-primary transition-colors">
-                Sustainability
-              </Link>
-              <Link href="/getting-here" className="text-sm text-foreground hover:text-primary transition-colors">
-                Getting Here
-              </Link>
-              <Link href="/gallery" className="text-sm text-foreground hover:text-primary transition-colors">
+              <Link href="/gallery" className="text-sm text-foreground hover:text-primary transition-colors block">
                 Gallery
               </Link>
-              <Link href="/contact" className="text-sm text-foreground hover:text-primary transition-colors">
+              <Link href="/about" className="text-sm text-foreground hover:text-primary transition-colors block">
+                About
+              </Link>
+              <Link href="/contact" className="text-sm text-foreground hover:text-primary transition-colors block">
                 Contact
               </Link>
             </div>
@@ -70,6 +67,17 @@ export function Footer() {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">© 2024 Aam Altair. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground mt-2">
+            Powered by{" "}
+            <a 
+              href="https://www.mode-ai.co" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:text-accent transition-colors"
+            >
+              ModeAI
+            </a>
+          </p>
         </div>
       </div>
     </footer>
