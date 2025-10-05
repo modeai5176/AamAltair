@@ -67,10 +67,10 @@ export default function AboutPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center pt-header">
+      <section className="relative pt-header pb-10 md:h-screen md:flex md:items-center">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 text-balance">
                 Aam Altair: The Domestead
               </h1>
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 </Link> */}
               </div>
             </div>
-            <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
+            <div className="order-1 md:order-2 aspect-[4/3] relative rounded-2xl overflow-hidden">
               <Image
                 src="/carousel/Dome2.webp"
                 alt="Aam Altair: The Domestead - luxury dome accommodation"
