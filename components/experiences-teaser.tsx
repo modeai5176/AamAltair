@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Sunrise, TreePine, Wine, Apple } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Sunrise, TreePine, Wine, Apple } from "lucide-react";
+import Link from "next/link";
 
 // Icon mapping object
 const iconMap = {
@@ -9,7 +10,7 @@ const iconMap = {
   TreePine,
   Wine,
   Apple,
-}
+};
 
 const experiences = [
   {
@@ -48,7 +49,7 @@ const experiences = [
     time: "flexible",
     price: "KSh 3,000 pp",
   },
-]
+];
 
 export function ExperiencesTeaser() {
   return (
@@ -59,14 +60,16 @@ export function ExperiencesTeaser() {
             Slow Mornings. Golden Evenings.
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto text-pretty">
-            Immerse yourself in the rhythm of nature with carefully curated experiences that celebrate the beauty of our
-            mango orchard and riverside setting.
+            Immerse yourself in the rhythm of nature with carefully curated
+            experiences that celebrate the beauty of our mango orchard and
+            riverside setting.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {experiences.map((experience) => {
-            const IconComponent = iconMap[experience.iconName as keyof typeof iconMap]
+            const IconComponent =
+              iconMap[experience.iconName as keyof typeof iconMap];
             return (
               <Card
                 key={experience.title}
@@ -77,14 +80,21 @@ export function ExperiencesTeaser() {
                     <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
                       <IconComponent className="w-6 h-6 text-accent" />
                     </div>
-                    <Badge variant="outline" className="text-xs border-accent/50 text-accent">
+                    <Badge
+                      variant="outline"
+                      className="text-xs border-accent/50 text-accent"
+                    >
                       {experience.season}
                     </Badge>
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="font-serif text-lg font-semibold text-primary">{experience.title}</h3>
-                    <p className="text-sm text-foreground/80 text-pretty">{experience.description}</p>
+                    <h3 className="font-serif text-lg font-semibold text-primary">
+                      {experience.title}
+                    </h3>
+                    <p className="text-sm text-foreground/80 text-pretty">
+                      {experience.description}
+                    </p>
                   </div>
 
                   <div className="space-y-1 text-xs text-muted-foreground">
@@ -103,26 +113,30 @@ export function ExperiencesTeaser() {
                   </div>
                 </CardContent>
               </Card>
-            )
+            );
           })}
         </div>
 
         <div className="text-center">
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-accent text-accent hover:bg-accent/10 font-semibold px-8 py-3 rounded-full bg-transparent"
-            style={{
-              fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
-              fontWeight: 400,
-              letterSpacing: "0.01em",
-              lineHeight: 1.45,
-            }}
-          >
-            See all Experiences
-          </Button>
+          {/* Button to Experiences Page */}
+          <Link href="/experiences">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-accent text-accent hover:bg-accent/10 font-semibold px-8 py-3 rounded-full bg-transparent"
+              style={{
+                fontFamily:
+                  'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                fontWeight: 400,
+                letterSpacing: "0.01em",
+                lineHeight: 1.45,
+              }}
+            >
+              See all Experiences
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
-  )
+  );
 }
