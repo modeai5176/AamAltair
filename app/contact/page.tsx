@@ -26,7 +26,7 @@ export default function ContactPage() {
       </section>
 
       {/* Ready to Book Section - reduced gap below hero */}
-      <div className="mt-2">
+      <div id="booking" className="mt-2">
         <div className="max-w-2xl mx-auto">
           <Card className="bg-accent/5 border-accent/20">
             <CardContent className="p-4 text-center space-y-4">
