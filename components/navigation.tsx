@@ -69,18 +69,19 @@ export function Navigation() {
 
           {/* Right Section - CTA Button */}
           <div className="hidden lg:block">
-            <Button
-              asChild
-              className="bg-primary text-primary-foreground hover:bg-accent font-medium px-8 py-3 rounded-full text-base"
-              style={{
-                fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
-                fontWeight: 400,
-                letterSpacing: "0.01em",
-                lineHeight: 1.45,
-              }}
-            >
-              <Link href="/contact#booking">Book Now</Link>
-            </Button>
+            <Link href="/contact">
+              <Button
+                className="bg-primary text-primary-foreground hover:bg-accent font-medium px-8 py-3 rounded-full text-base"
+                style={{
+                  fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                  fontWeight: 400,
+                  letterSpacing: "0.01em",
+                  lineHeight: 1.45,
+                }}
+              >
+                Book Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,18 +110,19 @@ export function Navigation() {
                 </Link>
               ))}
               <div className="px-3 py-2">
-                <Button
-                  asChild
-                  className="w-full bg-primary text-primary-foreground hover:bg-accent font-medium py-3 rounded-full"
-                  style={{
-                    fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
-                    fontWeight: 400,
-                    letterSpacing: "0.01em",
-                    lineHeight: 1.45,
-                  }}
-                >
-                  <Link href="/contact#booking">Book Now</Link>
-                </Button>
+                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button
+                    className="w-full bg-primary text-primary-foreground hover:bg-accent font-medium py-3 rounded-full"
+                    style={{
+                      fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                      fontWeight: 400,
+                      letterSpacing: "0.01em",
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    Book Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
