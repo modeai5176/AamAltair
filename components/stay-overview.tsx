@@ -46,8 +46,8 @@ export function StayOverview() {
                 <h4 className="font-semibold text-primary text-center md:text-left">
                   Sleeping Arrangements
                 </h4>
-                <div className="space-y-2 text-center md:text-left">
-                  <div className="flex items-center space-x-3 justify-center md:justify-start">
+                <div className="space-y-2 text-center md:text-left w-fit mx-auto md:w-auto md:mx-0">
+                  <div className="flex items-center space-x-3 justify-start">
                     <Badge
                       variant="outline"
                       className="border-accent/50 text-accent"
@@ -56,7 +56,7 @@ export function StayOverview() {
                     </Badge>
                     <span className="text-sm text-foreground">1 King bed</span>
                   </div>
-                  <div className="flex items-center space-x-3 justify-center md:justify-start">
+                  <div className="flex items-center space-x-3 justify-start">
                     <Badge
                       variant="outline"
                       className="border-accent/50 text-accent"
@@ -67,7 +67,7 @@ export function StayOverview() {
                       1 Japanese King
                     </span>
                   </div>
-                  <div className="flex items-center space-x-3 justify-center md:justify-start">
+                  <div className="flex items-center space-x-3 justify-start">
                     <Badge
                       variant="outline"
                       className="border-accent/50 text-accent"
@@ -85,7 +85,7 @@ export function StayOverview() {
                 <h4 className="font-semibold text-primary text-center md:text-left">
                   Living Spaces
                 </h4>
-                <div className="space-y-2 text-sm text-foreground text-center md:">
+                <div className="space-y-2 text-sm text-foreground text-center md:text-left w-fit mx-auto md:w-auto md:mx-0">
                   <div className="flex items-start gap-2 justify-start">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-1" />
                     <span>Ensuite bathrooms</span>
