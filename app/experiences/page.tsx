@@ -1,7 +1,7 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { ExperienceCard } from "@/components/experience-card"
-import { NatureCTA } from "@/components/nature-cta"
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { ExperienceCard } from "@/components/experience-card";
+import { NatureCTA } from "@/components/nature-cta";
 
 const experiences = [
   {
@@ -33,7 +33,7 @@ const experiences = [
   {
     iconName: "Wine",
     title: "Sundowner Picnic",
-    description: "River light, curated snacks, and a bottle of your choice.",
+    description: "River lights, fine snacks, and your drink of choice.",
     longDescription:
       "Experience the magic of African sunsets with our carefully curated sundowner picnic. Enjoy artisanal snacks, local delicacies, and your choice of wine or beer as you watch the sun set over the River Galana. This intimate experience captures the essence of safari luxury in our peaceful orchard setting.",
     duration: "1.5 hrs",
@@ -56,7 +56,47 @@ const experiences = [
     bookingRequired: true,
     image: "/mango-orchard-kenya-landscape.jpg",
   },
-]
+  // Duplicated cards (you can update contents later)
+  {
+    iconName: "Sunrise",
+    title: "Waterfall Island Hike & Tour",
+    description: "Available only in dry season",
+    longDescription:
+      "Available only in dry season, costs Ksh 1500 per person (includes small picnic meal)",
+    duration: "40 min",
+    bestTime: "Best in dry season",
+    schedule: "Start 6:00 AM",
+    price: "Ksh 1500 pp",
+    bookingRequired: true,
+    image: "/rivergalana.webp",
+  },
+  {
+    iconName: "TreePine",
+    title: "Indigenous African Silk Farm Tour",
+    description: "Gonometa Silkworm Farm",
+    longDescription:
+      "Discover the secrets of our 150-acre mango orchard with our knowledgeable guides. Learn about the different mango varieties we cultivate, sustainable farming practices, and the history of the land. This immersive tour includes tastings of seasonal fruits and insights into our partnership with nature.",
+    duration: "1.5 hrs",
+    bestTime: "Year-round",
+    schedule: "7:30–9:00 AM",
+    price: "Included",
+    bookingRequired: true,
+    image: "/mango-orchard-kenya-landscape.jpg",
+  },
+  {
+    iconName: "Wine",
+    title: "Tsavo West / Tsavo East Game Drive",
+    description: "Plentiful game drives - guides available.",
+    longDescription:
+      "There are plentiful (Self drive) game drive through the park - Guides available - Tsavo East 1hour 35min away, Tsavo West 40min away ",
+    duration: "1.5 hrs",
+    bestTime: "Dry season",
+    schedule: "5:30–7:00 PM",
+    price: "KSh 5,000 pp",
+    bookingRequired: true,
+    image: "/river-galana-kenya-nature.jpg",
+  },
+];
 
 export default function ExperiencesPage() {
   return (
@@ -71,31 +111,48 @@ export default function ExperiencesPage() {
               Slow Mornings. Golden Evenings.
             </h1>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto text-pretty">
-              Immerse yourself in carefully curated experiences that celebrate the natural rhythms of our mango orchard
-              and the gentle flow of the River Galana.
+              Immerse yourself in carefully curated experiences that celebrate
+              the natural rhythms of our mango orchard and the gentle flow of
+              the River Galana.
             </p>
           </div>
 
-          {/* Experiences Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {experiences.map((experience) => (
-              <ExperienceCard key={experience.title} experience={experience} />
+          {/* Experiences Grid: 3 columns on lg; items-stretch keeps equal card heights */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg: gap-8 items-stretch">
+            {experiences.map((experience, idx) => (
+              <div
+                key={idx}
+                /* Center the last single card when total % 3 === 1 */
+                className={
+                  experiences.length % 3 === 1 && idx === experiences.length - 1
+                    ? "lg:col-start-2"
+                    : ""
+                }
+              >
+                {/* Ensure each grid item can stretch and match heights */}
+                <ExperienceCard experience={experience} />
+              </div>
             ))}
           </div>
 
           {/* Additional Info */}
           <div className="mt-16 p-8 bg-card rounded-2xl border border-border text-center">
-            <h3 className="text-xl font-serif font-medium text-primary mb-4">Booking Your Experiences</h3>
+            <h3 className="text-xl font-serif font-medium text-primary mb-4">
+              Booking Your Experiences
+            </h3>
             <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-              All experiences require advance booking and are subject to weather conditions and seasonal availability.
-              We recommend booking experiences when you reserve your stay to ensure availability.
+              All experiences require advance booking and are subject to weather
+              conditions and seasonal availability. We recommend booking
+              experiences when you reserve your stay to ensure availability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <div className="text-sm text-muted-foreground">
-                <strong className="text-accent">Included experiences:</strong> Sunrise Meditation, Orchard Tour
+                <strong className="text-accent">Included experiences:</strong>{" "}
+                Sunrise Meditation, Orchard Tour
               </div>
               <div className="text-sm text-muted-foreground">
-                <strong className="text-accent">Premium experiences:</strong> Sundowner Picnic, Mango Tasting
+                <strong className="text-accent">Premium experiences:</strong>{" "}
+                Sundowner Picnic, Mango Tasting
               </div>
             </div>
           </div>
@@ -105,5 +162,5 @@ export default function ExperiencesPage() {
       <NatureCTA />
       <Footer />
     </main>
-  )
+  );
 }
