@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 interface StayCardProps {
-  title: string
-  description: string
-  images: string[]
-  badges: string[]
-  features: string[]
-  href: string
-  featured?: boolean
-  comingSoon?: boolean
+  title: string;
+  description: string;
+  images: string[];
+  badges: string[];
+  features: string[];
+  href: string;
+  featured?: boolean;
+  comingSoon?: boolean;
 }
 
 export function StayCard({
@@ -29,22 +29,22 @@ export function StayCard({
   featured = false,
   comingSoon = false,
 }: StayCardProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length)
-  }
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
-  }
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
-    <Card className="overflow-hidden bg-card border-border">
+    <Card className="overflow-hidden bg-card border-border w-full max-w-6xl md:max-w-5xl lg:max-w-6xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
         {/* Image Gallery */}
         <div className="relative">
-          <div className="aspect-[4/3] relative overflow-hidden">
+          <div className="aspect-[16/10] lg:aspect-[4/3] relative overflow-hidden">
             <Image
               src={images[currentImageIndex] || "/placeholder.svg"}
               alt={`${title} - Image ${currentImageIndex + 1}`}
@@ -78,7 +78,9 @@ export function StayCard({
                     <button
                       key={index}
                       className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                        index === currentImageIndex ? "bg-primary" : "bg-white/50"
+                        index === currentImageIndex
+                          ? "bg-primary"
+                          : "bg-white/50"
                       }`}
                       onClick={() => setCurrentImageIndex(index)}
                     />
@@ -90,39 +92,53 @@ export function StayCard({
             {/* Featured Badge */}
             {featured && (
               <div className="absolute top-4 left-4">
-                <Badge className="bg-accent/20 text-accent border-accent">Featured</Badge>
+                <Badge className="bg-accent/20 text-accent border-accent">
+                  Featured
+                </Badge>
               </div>
             )}
           </div>
         </div>
 
         {/* Content */}
-        <CardContent className="p-8 lg:p-12 flex flex-col justify-between">
+        <CardContent className="p-10 lg:p-14 flex flex-col justify-between">
           <div className="space-y-6">
             {/* Header */}
             <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-serif font-medium text-primary">{title}</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary">
+                {title}
+              </h2>
 
               {/* Badges */}
               <div className="flex flex-wrap gap-2">
                 {badges.map((badge) => (
-                  <Badge key={badge} variant="outline" className="border-accent/50 text-accent">
+                  <Badge
+                    key={badge}
+                    variant="outline"
+                    className="border-accent/50 text-accent"
+                  >
                     {badge}
                   </Badge>
                 ))}
               </div>
 
-              <p className="text-foreground/80 leading-relaxed text-pretty">{description}</p>
+              <p className="text-foreground/80 leading-relaxed text-pretty">
+                {description}
+              </p>
             </div>
 
             {/* Features */}
             <div className="space-y-3">
-              <h3 className="font-serif text-lg font-semibold text-primary">Features & Amenities</h3>
+              <h3 className="font-serif text-xl font-semibold text-primary">
+                Features & Amenities
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {features.map((feature) => (
                   <div key={feature} className="flex items-center space-x-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                    <span className="text-sm text-foreground/80">{feature}</span>
+                    <span className="text-sm text-foreground/80">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -130,13 +146,14 @@ export function StayCard({
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-8">
+          <div className="flex flex-col sm:flex-row gap-3 pt-10">
             <Button
               asChild
-              className="bg-primary text-primary-foreground hover:bg-accent font-semibold px-6 py-3 rounded-full flex-1"
+              className="bg-primary text-primary-foreground hover:bg-accent font-semibold px-7 py-4 rounded-full flex-1"
               disabled={comingSoon}
               style={{
-                fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                fontFamily:
+                  'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
                 fontWeight: 400,
                 letterSpacing: "0.01em",
                 lineHeight: 1.45,
@@ -149,10 +166,11 @@ export function StayCard({
             </Button>
             <Button
               variant="outline"
-              className="border-accent text-accent hover:bg-accent/10 font-semibold px-6 py-3 rounded-full flex-1 bg-transparent"
+              className="border-accent text-accent hover:bg-accent/10 font-semibold px-7 py-4 rounded-full flex-1 bg-transparent"
               disabled={comingSoon}
               style={{
-                fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                fontFamily:
+                  'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
                 fontWeight: 400,
                 letterSpacing: "0.01em",
                 lineHeight: 1.45,
@@ -164,5 +182,5 @@ export function StayCard({
         </CardContent>
       </div>
     </Card>
-  )
+  );
 }
