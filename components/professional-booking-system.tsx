@@ -214,12 +214,6 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Luxury dome with river views
                     </p>
-                    <div className="text-2xl font-bold text-primary">
-                      KSh 180
-                      <span className="text-sm font-normal text-muted-foreground">
-                        /night
-                      </span>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -243,12 +237,6 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Intimate dome by the water
                     </p>
-                    <div className="text-2xl font-bold text-primary">
-                      KSh 150
-                      <span className="text-sm font-normal text-muted-foreground">
-                        /night
-                      </span>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -272,12 +260,6 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Intimate dome by the water
                     </p>
-                    <div className="text-2xl font-bold text-primary">
-                      KSh 170
-                      <span className="text-sm font-normal text-muted-foreground">
-                        /night
-                      </span>
-                    </div>
                   </div>
                 </CardContent>
               </Card>

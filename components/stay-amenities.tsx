@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import SpotlightCard from "@/components/SpotlightCard";
+// import SpotlightCard from "@/components/SpotlightCard"; // Temporarily disabled: spotlight effect removed
 
 const amenities = [
   "Spices & seasonings",
@@ -27,18 +27,14 @@ export function StayAmenities() {
             </h2>
           </div>
 
-          {/* Per-item glow wrapper applied to each amenity card */}
+          {/* Spotlight disabled: reverting to standard cards matching design */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {amenities.map((amenity) => (
-              <SpotlightCard
-                key={amenity}
-                className="p-0 bg-neutral-950 border-neutral-800" /* Dark black card background */
-                spotlightColor="rgba(232, 218, 184, 1)" /* Spotlight color per request */
-              >
-                <div className="p-4 text-center">
+              <Card key={amenity} className="bg-neutral-950 border-neutral-800">
+                <CardContent className="p-4 text-center">
                   <span className="text-sm text-foreground">{amenity}</span>
-                </div>
-              </SpotlightCard>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
