@@ -3,14 +3,16 @@ import { Card, CardContent } from "@/components/ui/card";
 // import SpotlightCard from "@/components/SpotlightCard"; // Temporarily disabled: spotlight effect removed
 
 const amenities = [
-  "Spices & seasonings",
-  "Premium tea & coffee",
+  "Premium tea & coffee station",
+  "Spices & artisanal seasonings",
   "Luxury towels & linens",
   "Private riverfront deck",
-  "Self-catering kitchen",
+  "Outdoor self-catering kitchen",
   "Optional private chef",
   "Solar & wind power",
-  "Organic toiletries",
+  "Eco-friendly organic toiletries",
+  "Filtered drinking water",
+  "In-room fan & mosquito net",
 ];
 
 export function StayAmenities() {
@@ -46,16 +48,18 @@ export function StayAmenities() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="md:col-span-2 space-y-4">
                 <p className="text-foreground/80 leading-relaxed">
-                  Experience the ultimate farm-to-table lifestyle at The
-                  Domestead. Our 150-acre mango orchard provides fresh, organic
-                  produce that you can literally hand-pick for your meals. Walk
-                  through the orchard in the morning, select your ingredients,
-                  and prepare them in your fully equipped outdoor kitchen.
+                  Experience an authentic farm-to-table lifestyle at The
+                  Domestead. Our working mango orchard provides fresh, seasonal
+                  produce you can hand-pick for your meals. Start your day with
+                  a stroll through the trees, gather herbs and fruit, and cook
+                  in your fully equipped outdoor kitchen overlooking the river.
                 </p>
                 <p className="text-foreground/80 leading-relaxed">
-                  Whether you choose to cook for yourself or opt for our private
-                  chef service, every meal becomes a celebration of the land's
-                  abundance and the connection between nature and nourishment.
+                  Prefer to be hosted? Our optional private chef can craft
+                  simple, seasonal menus—think mango salsa, grilled vegetables,
+                  wood-fired chapati, and slow-cooked stews—rooted in coastal
+                  and upcountry Kenyan flavors. Every meal celebrates place,
+                  season, and connection to the land.
                 </p>
               </div>
               <div className="space-y-3">
@@ -63,10 +67,10 @@ export function StayAmenities() {
                   Fresh Daily
                 </Badge>
                 <div className="text-sm text-foreground space-y-1">
-                  <div>• Organic mangoes</div>
-                  <div>• Seasonal vegetables</div>
-                  <div>• Fresh herbs</div>
-                  <div>• Local honey</div>
+                  <div>• Orchard mangoes (in season)</div>
+                  <div>• Seasonal vegetables & herbs</div>
+                  <div>• Free-range eggs (on request)</div>
+                  <div>• Local honey & condiments</div>
                 </div>
               </div>
             </div>

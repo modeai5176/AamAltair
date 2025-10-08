@@ -1,7 +1,7 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { StayCard } from "@/components/stay-card"
-import { NatureCTA } from "@/components/nature-cta"
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { StayCard } from "@/components/stay-card";
+import { NatureCTA } from "@/components/nature-cta";
 
 export default function StaysPage() {
   return (
@@ -16,8 +16,9 @@ export default function StaysPage() {
               Your Retreats in Tsavo
             </h1>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto text-pretty">
-              Choose from our carefully curated accommodations, each designed to offer a unique connection with the
-              natural beauty of the River Galana and our mango orchard.
+              Choose from our carefully curated accommodations, each designed to
+              offer a unique connection with the natural beauty of the River
+              Galana and our mango orchard.
             </p>
           </div>
 
@@ -48,32 +49,67 @@ export default function StaysPage() {
 
             {/* Second Property */}
             <StayCard
-              title="Property Two"
-              description="Coming soon - another unique retreat experience that will complement The Domestead, offering guests additional options for their perfect getaway in Tsavo."
+              title="Hercules"
+              description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
               images={[
                 "/second-luxury-property-kenya-retreat.jpg",
                 "/mango-orchard-kenya-landscape.jpg",
                 "/riverfront-deck-sunset-kenya.jpg",
               ]}
-              badges={["Coming Soon", "Unique Design", "Nature Immersion"]}
-              features={[
-                "Details coming soon",
-                "Unique architectural design",
-                "Immersive nature experience",
-                "Sustainable construction",
-                "Modern amenities",
-                "Orchard views",
-                "Private outdoor spaces",
+              badges={[
+                "Mezzanine floor",
+                "Riverfront deck",
+                "Farm to table meals",
               ]}
-              href="/stays/property-two"
-              comingSoon
+              features={[
+                "2 King sized beds",
+                "Capacity 5 pax",
+                "1 shared bathroom",
+                "Riverfront deck",
+                "Private outdoor area",
+                "Kitchenette + coffee bar",
+                "Farm to table meals",
+                "Mezzanine floor for your stargazing experience",
+              ]}
+              href="/stays/hercules"
+              featured
+            />
+
+            {/* Third Property */}
+            <StayCard
+              title="Andromeda"
+              description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
+              images={[
+                "/second-luxury-property-kenya-retreat.jpg",
+                "/outdoor-kitchen-kenya-retreat.jpg",
+                "/nature-experiences-mango-orchard-kenya.jpg",
+              ]}
+              badges={[
+                "Mezzanine floor",
+                "Riverfront deck",
+                "Farm to table meals",
+              ]}
+              features={[
+                "2 King sized beds",
+                "1 shared bathroom",
+                "4 pax capacity",
+                "Riverfront deck",
+                "Private outdoor area",
+                "Kitchenette + coffee bar",
+                "Farm to table meals",
+                "Mezzanine floor for your stargazing experience",
+              ]}
+              href="/stays/andromeda"
+              featured
             />
           </div>
 
           {/* Additional Info */}
           <div className="mt-16 p-8 bg-card rounded-2xl border border-border">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-serif font-medium text-primary">What Makes Our Stays Special</h3>
+              <h3 className="text-xl font-serif font-medium text-primary">
+                What Makes Our Stays Special
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm text-foreground/80">
                 <div className="flex items-center justify-center space-x-2">
                   <div className="w-2 h-2 rounded-full bg-accent" />
@@ -100,5 +136,5 @@ export default function StaysPage() {
       <NatureCTA />
       <Footer />
     </main>
-  )
+  );
 }

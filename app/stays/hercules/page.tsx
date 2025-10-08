@@ -1,26 +1,24 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StayDetailHero } from "@/components/stay-detail-hero";
-import { StayOverview } from "@/components/stay-overview";
-import { StayAmenities } from "@/components/stay-amenities";
-import { StayInclusions } from "@/components/stay-inclusions";
-import { StayRules } from "@/components/stay-rules";
+import { StayOverview } from "@/components/stay-overview-hercules";
+import { StayAmenities } from "@/components/stay-amenities-hercules";
+import { StayInclusions } from "@/components/stay-inclusions-hercules";
+import { StayRules } from "@/components/stay-rules-hercules";
 import { BookingWidget } from "@/components/booking-widget";
 import { RelatedExperiences } from "@/components/related-experiences";
 import Link from "next/link";
 
-export default function TheDomesteadPage() {
+export default function HeraclesPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
       <StayDetailHero
-        title="The Domestead"
+        title="Hercules"
         images={[
-          "/luxury-dome-accommodation-riverfront-kenya.jpg",
-          "/dome-accommodation-with-river-view-kenya-luxury-re.jpg",
-          "/luxury-dome-interior-kenya-retreat.jpg",
+          "/second-luxury-property-kenya-retreat.jpg",
+          "/mango-orchard-kenya-landscape.jpg",
           "/riverfront-deck-sunset-kenya.jpg",
-          "/outdoor-kitchen-kenya-retreat.jpg",
         ]}
       />
       <StayOverview />

@@ -1,25 +1,25 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StayDetailHero } from "@/components/stay-detail-hero";
-import { StayOverview } from "@/components/stay-overview";
-import { StayAmenities } from "@/components/stay-amenities";
-import { StayInclusions } from "@/components/stay-inclusions";
-import { StayRules } from "@/components/stay-rules";
+import { StayOverview } from "@/components/stay-overview-andromeda";
+import { StayAmenities } from "@/components/stay-amenities-andromeda";
+import { StayInclusions } from "@/components/stay-inclusions-andromeda";
+import { StayRules } from "@/components/stay-rules-andromeda";
 import { BookingWidget } from "@/components/booking-widget";
 import { RelatedExperiences } from "@/components/related-experiences";
 import Link from "next/link";
 
-export default function TheDomesteadPage() {
+export default function AndromedaPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
       <StayDetailHero
-        title="The Domestead"
+        title="Andromeda"
         images={[
-          "/luxury-dome-accommodation-riverfront-kenya.jpg",
-          "/dome-accommodation-with-river-view-kenya-luxury-re.jpg",
-          "/luxury-dome-interior-kenya-retreat.jpg",
-          "/riverfront-deck-sunset-kenya.jpg",
+          "/second-luxury-property-kenya-retreat.jpg",
+          "/night-sky-milky-way-kenya.jpg",
+          "/river-galana-kenya-nature.jpg",
+          "/mango-orchard-kenya-landscape.jpg",
           "/outdoor-kitchen-kenya-retreat.jpg",
         ]}
       />
@@ -38,6 +38,9 @@ export default function TheDomesteadPage() {
                 Luxe Packages
               </h2>
             </div>
+            <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+              Introductory offer • Sundowner included
+            </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -46,7 +49,7 @@ export default function TheDomesteadPage() {
                 Bed & Breakfast
               </h3>
               <p className="mt-3 text-4xl font-semibold text-primary">
-                KSh 13,000
+                KSh 10,000
               </p>
               <p className="text-sm text-foreground/70">
                 per night • 2 pax sharing
@@ -57,8 +60,8 @@ export default function TheDomesteadPage() {
                   light breakfast
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Tea &
-                  coffee setup
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Herbal
+                  tea & coffee setup
                 </li>
               </ul>
             </div>
@@ -71,7 +74,7 @@ export default function TheDomesteadPage() {
                 Half Board
               </h3>
               <p className="mt-3 text-4xl font-semibold text-primary">
-                KSh 18,000
+                KSh 16,000
               </p>
               <p className="text-sm text-foreground/70">
                 per night • 2 pax sharing
@@ -80,6 +83,10 @@ export default function TheDomesteadPage() {
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent" />{" "}
                   Breakfast + dinner
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />{" "}
+                  Sundowner experience included
                 </li>
               </ul>
             </div>

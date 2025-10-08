@@ -18,7 +18,11 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Three-tile strip */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-          <div className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer">
+          <Link
+            href="/stays/the-domestead"
+            className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer"
+            aria-label="View The Domestead"
+          >
             <Image
               src="/luxury-dome-accommodation-riverfront-kenya.jpg"
               alt="The Domestead"
@@ -37,12 +41,16 @@ export function AboutSection() {
                 The Domestead
               </h3>
             </div>
-          </div>
+          </Link>
 
-          <div className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer">
+          <Link
+            href="/stays/hercules"
+            className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer"
+            aria-label="View Hercules"
+          >
             <Image
               src="/second-luxury-property-kenya-retreat.jpg"
-              alt="Property Two"
+              alt="Hercules"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               quality={85}
@@ -51,18 +59,22 @@ export function AboutSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
               <Badge className="bg-accent/20 text-accent border-accent mb-2">
-                Coming Soon
+                Featured
               </Badge>
               <h3 className="text-xl font-serif font-medium text-primary">
-                Property Two
+                Hercules
               </h3>
             </div>
-          </div>
+          </Link>
 
-          <div className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer">
+          <Link
+            href="/stays/andromeda"
+            className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer"
+            aria-label="View Andromeda"
+          >
             <Image
-              src="/nature-experiences-mango-orchard-kenya.jpg"
-              alt="Experiences"
+              src="/outdoor-kitchen-kenya-retreat.jpg"
+              alt="Andromeda"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               quality={85}
@@ -71,30 +83,32 @@ export function AboutSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
               <Badge className="bg-accent/20 text-accent border-accent mb-2">
-                Activities
+                Featured
               </Badge>
               <h3 className="text-xl font-serif font-medium text-primary">
-                Experiences
+                Andromeda
               </h3>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* About Editorial Split */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Image */}
           <div className="relative">
-            <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
-              <Image
-                src="/carousel/Dome2.webp"
-                alt="Aam Altair: The Domestead"
-                fill
-                className="object-cover"
-                priority
-                quality={85}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+            <Link href="/about" aria-label="Read the full Aam Altair story">
+              <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
+                <Image
+                  src="/carousel/Dome2.webp"
+                  alt="Aam Altair: The Domestead"
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </Link>
           </div>
 
           {/* Content */}
