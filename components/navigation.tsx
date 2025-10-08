@@ -27,16 +27,30 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent body scroll when mobile menu is open and store scroll position
   useEffect(() => {
     if (isMobileMenuOpen) {
+      // Store current scroll position
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      // Restore scroll position
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
     }
     
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
     }
   }, [isMobileMenuOpen])
 
@@ -113,19 +127,21 @@ export function Navigation() {
           <div className="lg:hidden fixed inset-0 z-50">
             {/* Dark Overlay */}
             <div 
-              className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+              className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ease-in-out ${
                 isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
             {/* Menu Panel */}
-            <div className={`absolute right-0 top-0 h-full w-4/5 bg-card border-l border-border shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            <div className={`absolute right-0 top-0 h-full w-4/5 border-l border-accent-2/50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
               isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}>
+            }`} style={{
+              background: '#0d0e10'
+            }}>
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-border">
+                <div className="flex items-center justify-between p-6 border-b border-accent-2/30">
                   <h2 className="text-xl font-semibold text-foreground">Menu</h2>
                   <button
                     className="p-2 text-foreground hover:text-primary hover:bg-accent/10 rounded-full transition-all duration-200"
