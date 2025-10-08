@@ -237,7 +237,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
           <div className="p-4 pb-2 flex-shrink-0">
             <div className="text-center mb-6">
               <h2 className="text-xl font-serif">
-                Book Your Stay at Aam Altair
+            Book Your Stay at Aam Altair
               </h2>
             </div>
           </div>
@@ -455,10 +455,10 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
               <div className="space-y-2">
                 <Label htmlFor="checkin" className="text-sm font-medium">Check-in Date</Label>
                 <div className="relative">
-                  <Input
-                    id="checkin"
-                    type="date"
-                    value={bookingData.checkIn}
+                <Input
+                  id="checkin"
+                  type="date"
+                  value={bookingData.checkIn}
                     min={today}
                     onChange={(e) => {
                       const selectedDate = e.target.value;
@@ -481,8 +481,8 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                             checkOut: nextDayString, // Auto-set check-out to next day
                           }));
                         } else {
-                          setBookingData((prev) => ({
-                            ...prev,
+                    setBookingData((prev) => ({
+                      ...prev,
                             checkIn: selectedDate,
                             checkOut: "", // Clear check-out if no check-in
                           }));
@@ -502,13 +502,13 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
               </div>
               <div className="space-y-2">
                 <Label htmlFor="checkout" className="text-sm font-medium">
-                  Check-out Date
-                </Label>
+                    Check-out Date
+                  </Label>
                 <div className="relative">
-                  <Input
-                    id="checkout"
-                    type="date"
-                    value={bookingData.checkOut}
+                <Input
+                  id="checkout"
+                  type="date"
+                  value={bookingData.checkOut}
                     min={bookingData.checkIn ? (() => {
                       const checkInDate = new Date(bookingData.checkIn);
                       checkInDate.setDate(checkInDate.getDate() + 1);
@@ -531,8 +531,8 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                           checkOut: minCheckoutString,
                         }));
                       } else {
-                        setBookingData((prev) => ({
-                          ...prev,
+                    setBookingData((prev) => ({
+                      ...prev,
                           checkOut: selectedDate,
                         }));
                       }
@@ -578,7 +578,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                     <SelectItem value="4">4 Guests</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+                </div>
               </div>
             </div>
 
