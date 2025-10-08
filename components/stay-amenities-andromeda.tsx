@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const amenities = [
   "Stargazing deck with reclining loungers",
@@ -29,13 +30,18 @@ export function StayAmenities() {
             </h2>
           </div>
 
+          {/* Per-item glow wrapper applied to each amenity card */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {amenities.map((amenity) => (
-              <Card key={amenity} className="bg-background border-border">
-                <CardContent className="p-4 text-center">
+              <SpotlightCard
+                key={amenity}
+                className="p-0 bg-neutral-950 border-neutral-800" /* Dark black card background */
+                spotlightColor="rgba(232, 218, 184, 1)" /* Spotlight color per request */
+              >
+                <div className="p-4 text-center">
                   <span className="text-sm text-foreground">{amenity}</span>
-                </CardContent>
-              </Card>
+                </div>
+              </SpotlightCard>
             ))}
           </div>
 
