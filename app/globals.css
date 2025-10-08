@@ -152,3 +152,17 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Force wide booking modal */
+[data-radix-dialog-content] {
+  width: 95vw !important;
+  max-width: 800px !important;
+  min-width: 320px !important;
+}
+
+@media (min-width: 1024px) {
+  [data-radix-dialog-content] {
+    width: 80vw !important;
+    min-width: 600px !important;
+  }
+}

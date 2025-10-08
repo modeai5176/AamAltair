@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Smartphone } from "lucide-react";
+import { Mail, Smartphone, Calendar } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -53,6 +53,29 @@ const addOns = [
 
 export function ProfessionalBookingSystem() {
   const [step, setStep] = useState(1);
+  
+  // Get today's date in YYYY-MM-DD format, ensuring it's always today
+  const getToday = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  // Get tomorrow's date (one day after today)
+  const getTomorrow = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const year = tomorrow.getFullYear();
+    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const day = String(tomorrow.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const today = getToday();
+  const tomorrow = getTomorrow();
+  
   const [bookingData, setBookingData] = useState({
     property: "",
     checkIn: "",
@@ -70,6 +93,28 @@ export function ProfessionalBookingSystem() {
       specialRequests: "",
     },
   });
+
+  // Validate dates on component mount and when today changes
+  useEffect(() => {
+    const currentToday = getToday();
+    const currentTomorrow = getTomorrow();
+    setBookingData((prev) => {
+      let updated = { ...prev };
+      
+      // If check-in is in the past, reset to today
+      if (prev.checkIn && prev.checkIn < currentToday) {
+        updated.checkIn = currentToday;
+      }
+      
+      // If check-out is before check-in or tomorrow, reset
+      const minCheckout = updated.checkIn || currentTomorrow;
+      if (prev.checkOut && prev.checkOut < minCheckout) {
+        updated.checkOut = minCheckout;
+      }
+      
+      return updated;
+    });
+  }, []);
 
   const PRICES = {
     domestead: { bb: 13000, hb: 18000 },
@@ -180,16 +225,24 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
           Book Your Stay
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-serif">
+      <DialogContent 
+        className="max-w-[800px] w-[95vw] lg:w-[80vw] max-h-[90vh] overflow-y-auto p-0 rounded-2xl bg-background border-2 border-border shadow-2xl"
+        style={{ 
+          width: '95vw', 
+          maxWidth: '800px',
+          minWidth: '320px'
+        }}
+      >
+        <div className="p-4">
+        <div className="text-center mb-6">
+          <h2 className="text-xl font-serif">
             Book Your Stay at Aam Altair
-          </DialogTitle>
-        </DialogHeader>
+          </h2>
+        </div>
 
         {step === 1 && (
-          <div className="space-y-10 ">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <div className="space-y-3 lg:space-y-4 ">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {/* Property Selection */}
               <Card
                 className={`cursor-pointer transition-all rounded-lg ${
@@ -201,17 +254,17 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                   setBookingData((prev) => ({ ...prev, property: "domestead" }))
                 }
               >
-                <CardContent className="p-6">
-                  <div className="space-y-4">
+                <CardContent className="p-4">
+                  <div className="space-y-2">
                     <div className="flex justify-between items-start">
-                      <h3 className="font-serif text-xl font-bold text-primary">
+                      <h3 className="font-serif text-lg font-bold text-primary">
                         The Domestead
                       </h3>
-                      <Badge className="bg-accent/20 text-accent border-accent text-xs px-2 py-1">
+                      <Badge className="bg-accent/20 text-accent border-accent text-xs px-2 py-0.5">
                         Popular
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground">
                       Luxury dome with river views
                     </p>
                   </div>
@@ -229,12 +282,12 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                   setBookingData((prev) => ({ ...prev, property: "hercules" }))
                 }
               >
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-xl font-bold text-primary">
+                <CardContent className="p-4">
+                  <div className="space-y-2">
+                    <h3 className="font-serif text-lg font-bold text-primary">
                       Hercules
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground">
                       Intimate dome by the water
                     </p>
                   </div>
@@ -252,12 +305,12 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                   setBookingData((prev) => ({ ...prev, property: "andromeda" }))
                 }
               >
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-xl font-bold text-primary">
+                <CardContent className="p-4">
+                  <div className="space-y-2">
+                    <h3 className="font-serif text-lg font-bold text-primary">
                       Andromeda
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground">
                       Intimate dome by the water
                     </p>
                   </div>
@@ -282,15 +335,15 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                       setBookingData((prev) => ({ ...prev, board: "bb" }))
                     }
                   >
-                    <CardContent className="p-4">
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-lg font-semibold text-primary">
+                    <CardContent className="p-3">
+                      <div className="space-y-1">
+                        <h5 className="font-serif text-sm font-semibold text-primary">
                           Bed & Breakfast
                         </h5>
-                        <div className="text-2xl font-bold text-primary">
+                        <div className="text-lg font-bold text-primary">
                           KSh{" "}
                           {bookingData.property === "andromeda" ? 10000 : 13000}
-                          <span className="text-sm font-normal text-muted-foreground">
+                          <span className="text-xs font-normal text-muted-foreground">
                             {" "}
                             /night (2 pax)
                           </span>
@@ -309,22 +362,22 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                       setBookingData((prev) => ({ ...prev, board: "hb" }))
                     }
                   >
-                    <CardContent className="p-4">
-                      <div className="space-y-2">
+                    <CardContent className="p-3">
+                      <div className="space-y-1">
                         <div className="flex items-center justify-between">
-                          <h5 className="font-serif text-lg font-semibold text-primary">
+                          <h5 className="font-serif text-sm font-semibold text-primary">
                             Half Board
                           </h5>
                           {bookingData.property === "andromeda" && (
-                            <Badge className="bg-accent/20 text-accent border-accent text-xs px-2 py-0.5">
+                            <Badge className="bg-accent/20 text-accent border-accent text-xs px-1.5 py-0.5">
                               Intro offer
                             </Badge>
                           )}
                         </div>
-                        <div className="text-2xl font-bold text-primary">
+                        <div className="text-lg font-bold text-primary">
                           KSh{" "}
                           {bookingData.property === "andromeda" ? 16000 : 18000}
-                          <span className="text-sm font-normal text-muted-foreground">
+                          <span className="text-xs font-normal text-muted-foreground">
                             {" "}
                             /night (2 pax)
                           </span>
@@ -334,19 +387,19 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                   </Card>
 
                   <Card className="rounded-lg border-border">
-                    <CardContent className="p-6">
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-lg font-semibold text-primary">
+                    <CardContent className="p-3">
+                      <div className="space-y-1">
+                        <h5 className="font-serif text-sm font-semibold text-primary">
                           Additional Adult
                         </h5>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-xs text-muted-foreground">
                           Applied per extra adult (above 2 guests)
                         </div>
-                        <div className="space-y-3 pt-2">
+                        <div className="space-y-2 pt-1">
                           <label className="flex items-center justify-between cursor-pointer">
-                            <span className="text-sm">B&B</span>
-                            <div className="flex items-center gap-3">
-                              <span className="text-lg font-semibold text-primary">
+                            <span className="text-xs">B&B</span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-primary">
                                 KSh 2,500
                               </span>
                               <Checkbox
@@ -365,9 +418,9 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                             </div>
                           </label>
                           <label className="flex items-center justify-between cursor-pointer">
-                            <span className="text-sm">Half Board</span>
-                            <div className="flex items-center gap-3">
-                              <span className="text-lg font-semibold text-primary">
+                            <span className="text-xs">Half Board</span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-primary">
                                 KSh 5,000
                               </span>
                               <Checkbox
@@ -394,37 +447,115 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
             )}
 
             {/* Date Selection */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-2xl">
               <div className="space-y-2">
-                <Label htmlFor="checkin">Check-in Date</Label>
-                <Input
-                  id="checkin"
-                  type="date"
-                  value={bookingData.checkIn}
-                  onChange={(e) =>
-                    setBookingData((prev) => ({
-                      ...prev,
-                      checkIn: e.target.value,
-                    }))
-                  }
-                />
+                <Label htmlFor="checkin" className="text-sm font-medium">Check-in Date</Label>
+                <div className="relative">
+                  <Input
+                    id="checkin"
+                    type="date"
+                    value={bookingData.checkIn}
+                    min={today}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      if (selectedDate && selectedDate < today) {
+                        // Reset to today if past date is selected
+                        setBookingData((prev) => ({
+                          ...prev,
+                          checkIn: today,
+                          checkOut: "", // Clear check-out when check-in changes
+                        }));
+                      } else {
+                        // Calculate next day for check-out
+                        const nextDay = selectedDate ? new Date(selectedDate) : null;
+                        if (nextDay) {
+                          nextDay.setDate(nextDay.getDate() + 1);
+                          const nextDayString = nextDay.toISOString().split('T')[0];
+                          setBookingData((prev) => ({
+                            ...prev,
+                            checkIn: selectedDate,
+                            checkOut: nextDayString, // Auto-set check-out to next day
+                          }));
+                        } else {
+                          setBookingData((prev) => ({
+                            ...prev,
+                            checkIn: selectedDate,
+                            checkOut: "", // Clear check-out if no check-in
+                          }));
+                        }
+                      }
+                    }}
+                    className="border-2 border-accent/50 focus:border-accent focus:ring-2 focus:ring-accent/20 bg-background hover:border-accent/70 transition-colors pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => (document.getElementById('checkin') as HTMLInputElement)?.showPicker()}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-accent hover:text-accent/80 transition-colors cursor-pointer"
+                  >
+                    <Calendar className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="checkout">Check-out Date</Label>
-                <Input
-                  id="checkout"
-                  type="date"
-                  value={bookingData.checkOut}
-                  onChange={(e) =>
-                    setBookingData((prev) => ({
-                      ...prev,
-                      checkOut: e.target.value,
-                    }))
-                  }
-                />
+                <Label htmlFor="checkout" className="text-sm font-medium">
+                  Check-out Date {!bookingData.checkIn && "(Select check-in first)"}
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="checkout"
+                    type="date"
+                    value={bookingData.checkOut}
+                    min={bookingData.checkIn ? (() => {
+                      const checkInDate = new Date(bookingData.checkIn);
+                      checkInDate.setDate(checkInDate.getDate() + 1);
+                      return checkInDate.toISOString().split('T')[0];
+                    })() : tomorrow}
+                    disabled={!bookingData.checkIn}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      if (!bookingData.checkIn) return; // Don't allow changes if no check-in
+                      
+                      const checkInDate = new Date(bookingData.checkIn);
+                      const minCheckout = new Date(checkInDate);
+                      minCheckout.setDate(minCheckout.getDate() + 1);
+                      const minCheckoutString = minCheckout.toISOString().split('T')[0];
+                      
+                      if (selectedDate && selectedDate < minCheckoutString) {
+                        // Reset to minimum date if before check-in + 1 day
+                        setBookingData((prev) => ({
+                          ...prev,
+                          checkOut: minCheckoutString,
+                        }));
+                      } else {
+                        setBookingData((prev) => ({
+                          ...prev,
+                          checkOut: selectedDate,
+                        }));
+                      }
+                    }}
+                    className={`border-2 focus:ring-2 transition-colors pr-10 ${
+                      !bookingData.checkIn 
+                        ? 'border-muted/50 bg-muted/20 text-muted-foreground cursor-not-allowed' 
+                        : 'border-accent/50 focus:border-accent focus:ring-accent/20 bg-background hover:border-accent/70'
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => bookingData.checkIn && (document.getElementById('checkout') as HTMLInputElement)?.showPicker()}
+                    disabled={!bookingData.checkIn}
+                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 transition-colors ${
+                      !bookingData.checkIn 
+                        ? 'text-muted-foreground cursor-not-allowed' 
+                        : 'text-accent hover:text-accent/80 cursor-pointer'
+                    }`}
+                  >
+                    <Calendar className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="guests">Guests</Label>
+                <Label htmlFor="guests" className="text-sm font-medium">Guests</Label>
                 <Select
                   value={bookingData.guests.toString()}
                   onValueChange={(value) =>
@@ -434,7 +565,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                     }))
                   }
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="border-2 border-accent/50 focus:border-accent focus:ring-2 focus:ring-accent/20 bg-background hover:border-accent/70 transition-colors">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -444,6 +575,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                     <SelectItem value="4">4 Guests</SelectItem>
                   </SelectContent>
                 </Select>
+              </div>
               </div>
             </div>
 
@@ -739,6 +871,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
             </div>
           </div>
         )}
+        </div>
       </DialogContent>
     </Dialog>
   );
