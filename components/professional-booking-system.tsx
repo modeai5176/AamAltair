@@ -226,19 +226,22 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
         </Button>
       </DialogTrigger>
       <DialogContent 
-        className="max-w-[800px] w-[95vw] lg:w-[80vw] max-h-[90vh] overflow-y-auto p-0 rounded-2xl bg-background border-2 border-border shadow-2xl"
+        className="max-w-[800px] w-[95vw] lg:w-[80vw] h-[72vh] lg:h-auto max-h-[72vh] lg:max-h-none overflow-hidden lg:overflow-y-auto p-0 rounded-2xl bg-background border-2 border-border shadow-2xl my-4 lg:my-0"
         style={{ 
           width: '95vw', 
           maxWidth: '800px',
           minWidth: '320px'
         }}
       >
-        <div className="p-4">
-        <div className="text-center mb-6">
-          <h2 className="text-xl font-serif">
-            Book Your Stay at Aam Altair
-          </h2>
-        </div>
+        <div className="flex flex-col h-full lg:h-auto">
+          <div className="p-4 pb-2 flex-shrink-0">
+            <div className="text-center mb-6">
+              <h2 className="text-xl font-serif">
+                Book Your Stay at Aam Altair
+              </h2>
+            </div>
+          </div>
+          <div className="flex-1 lg:flex-none overflow-y-auto lg:overflow-visible px-4 pb-4 min-h-0" style={{ maxHeight: 'calc(72vh - 120px)', WebkitOverflowScrolling: 'touch' }}>
 
         {step === 1 && (
           <div className="space-y-3 lg:space-y-4 ">
@@ -499,7 +502,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
               </div>
               <div className="space-y-2">
                 <Label htmlFor="checkout" className="text-sm font-medium">
-                  Check-out Date {!bookingData.checkIn && "(Select check-in first)"}
+                  Check-out Date
                 </Label>
                 <div className="relative">
                   <Input
@@ -871,6 +874,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
             </div>
           </div>
         )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>

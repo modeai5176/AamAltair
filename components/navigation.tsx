@@ -27,6 +27,19 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -95,34 +108,63 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-card border-t border-border">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="px-3 py-2">
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button
-                    className="w-full bg-primary text-primary-foreground hover:bg-accent font-medium py-3 rounded-full"
-                    style={{
-                      fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
-                      fontWeight: 400,
-                      letterSpacing: "0.01em",
-                      lineHeight: 1.45,
-                    }}
+          <div className="lg:hidden fixed inset-0 z-50">
+            {/* Dark Overlay */}
+            <div 
+              className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+                isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            
+            {/* Menu Panel */}
+            <div className={`absolute right-0 top-0 h-full w-4/5 bg-card border-l border-border shadow-2xl transform transition-transform duration-300 ease-in-out ${
+              isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}>
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-center justify-between p-6 border-b border-border">
+                  <h2 className="text-xl font-semibold text-foreground">Menu</h2>
+                  <button
+                    className="p-2 text-foreground hover:text-primary hover:bg-accent/10 rounded-full transition-all duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Book Now
-                  </Button>
-                </Link>
+                    <X size={24} />
+                  </button>
+                </div>
+                
+                {/* Navigation Items */}
+                <div className="flex-1 px-6 py-4 space-y-2">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block px-4 py-3 text-lg font-medium text-foreground hover:text-primary hover:bg-accent/10 rounded-lg transition-all duration-200"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  
+                  {/* Book Now Button - Centered below Contact */}
+                  <div className="pt-4">
+                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button
+                        className="w-full bg-primary text-primary-foreground hover:bg-accent font-medium py-3 rounded-full text-base"
+                        style={{
+                          fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                          fontWeight: 400,
+                          letterSpacing: "0.01em",
+                          lineHeight: 1.45,
+                        }}
+                      >
+                        Book Now
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
