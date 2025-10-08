@@ -2,22 +2,23 @@ import { Check, Plus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const included = [
-  "Luxury accommodation",
-  "Daily breakfast",
-  "Guided farm tour",
-  "Wi-Fi at main house",
-  "Solar power",
-  "Organic toiletries",
-  "Parking",
+  "Luxury accommodation (linen & towels)",
+  "Welcome tea & coffee setup",
+  "Daily light breakfast hamper",
+  "Self-guided orchard walk",
+  "Wi‑Fi at main house",
+  "All-clean solar & wind power",
+  "Eco toiletries & filtered water",
+  "Secure on-site parking",
 ];
 
 const addOns = [
-  { name: "Private Chef", price: "Quote on request" },
-  { name: "Bush Breakfasts", price: "KSh 2,500 pp" },
-  { name: "Celebration Packages", price: "Quote on request" },
-  { name: "Pickup from SGR", price: "$20 per ride" },
-  { name: "Sundowner Picnic", price: "KSh 5,000 pp" },
-  { name: "Mango Tasting", price: "KSh 3,000 pp" },
+  { name: "Private chef", price: "Quote on request" },
+  { name: "Breakfasts by the river", price: "KSh 2,500 pp" },
+  { name: "Complete Decor Setups.", price: "Quote on request" },
+  { name: "Pickup from SGR (Kibwezi)", price: "$20 per ride" },
+  { name: "Guided sundowner picnic", price: "KSh 5,000 pp" },
+  { name: "Orchard mango tasting (in season)", price: "KSh 3,000 pp" },
 ];
 
 export function StayInclusions() {

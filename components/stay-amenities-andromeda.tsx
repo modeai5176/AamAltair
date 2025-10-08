@@ -2,14 +2,17 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 const amenities = [
-  "Spices & seasonings",
-  "Premium tea & coffee",
+  "Stargazing deck with reclining loungers",
+  "Yoga mats & meditation cushions",
+  "Herbal tea & infusion bar",
   "Luxury towels & linens",
-  "Private riverfront deck",
-  "Self-catering kitchen",
-  "Optional private chef",
+  "Hammock net by the river",
+  "Outdoor self-catering kitchen",
+  "Optional private chef (light, seasonal menus)",
   "Solar & wind power",
-  "Organic toiletries",
+  "Eco-friendly organic toiletries",
+  "Filtered drinking water",
+  "In-room fan & mosquito net",
 ];
 
 export function StayAmenities() {
@@ -39,21 +42,22 @@ export function StayAmenities() {
           {/* Farm-to-Table Section */}
           <div className="mt-12 space-y-6">
             <h3 className="text-xl font-serif font-medium text-primary">
-              Farm-to-Table Experience
+              Farm-to-Table, Wellness-Forward
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="md:col-span-2 space-y-4">
                 <p className="text-foreground/80 leading-relaxed">
-                  Experience the ultimate farm-to-table lifestyle at The
-                  Domestead. Our 150-acre mango orchard provides fresh, organic
-                  produce that you can literally hand-pick for your meals. Walk
-                  through the orchard in the morning, select your ingredients,
-                  and prepare them in your fully equipped outdoor kitchen.
+                  Designed for unhurried days and clear nights—start with a slow
+                  breakfast, pick herbs and seasonal fruit from the orchard, and
+                  prepare simple, nourishing meals in the outdoor kitchen.
+                  Evenings are for herbal infusions, starry skies, and stories
+                  by the river.
                 </p>
                 <p className="text-foreground/80 leading-relaxed">
-                  Whether you choose to cook for yourself or opt for our private
-                  chef service, every meal becomes a celebration of the land's
-                  abundance and the connection between nature and nourishment.
+                  Prefer to be hosted? An optional private chef can prepare
+                  lighter, wellness-focused menus—grilled vegetables, fresh
+                  salads, chapati, and seasonal fruit—letting you linger longer
+                  under the night sky.
                 </p>
               </div>
               <div className="space-y-3">
@@ -61,10 +65,10 @@ export function StayAmenities() {
                   Fresh Daily
                 </Badge>
                 <div className="text-sm text-foreground space-y-1">
-                  <div>• Organic mangoes</div>
-                  <div>• Seasonal vegetables</div>
-                  <div>• Fresh herbs</div>
-                  <div>• Local honey</div>
+                  <div>• Orchard mangoes (in season)</div>
+                  <div>• Seasonal vegetables & herbs</div>
+                  <div>• Lemongrass, mint & hibiscus infusions</div>
+                  <div>• Local honey & condiments</div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,12 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Calendar, Volume2, Waves, Wifi, ShoppingCart } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Clock,
+  Calendar,
+  Volume2,
+  Waves,
+  Wifi,
+  ShoppingCart,
+} from "lucide-react";
 
 // Icon mapping object
 const iconMap = {
@@ -9,7 +16,7 @@ const iconMap = {
   Waves,
   Wifi,
   ShoppingCart,
-}
+};
 
 const rules = [
   {
@@ -24,25 +31,25 @@ const rules = [
   },
   {
     iconName: "Volume2",
-    title: "Quiet Hours",
-    description: "No loud music after 10 PM • Respect nature's peace",
+    title: "Quiet hours",
+    description: "After 10 PM keep noise low • Wildlife corridor nearby",
   },
   {
     iconName: "Waves",
-    title: "River Safety",
-    description: "No swimming in the river • Enjoy from the deck",
+    title: "River safety",
+    description: "No swimming • Children must be supervised at all times",
   },
   {
     iconName: "Wifi",
     title: "Connectivity",
-    description: "Wi-Fi at main house • Patchy phone reception",
+    description: "Wi‑Fi at main house • Mobile reception varies by network",
   },
   {
     iconName: "ShoppingCart",
     title: "Supplies",
-    description: "Nearest supermarket 40 min (Kibwezi)",
+    description: "Nearest town Kibwezi (~40 min) • Stock up en route",
   },
-]
+];
 
 export function StayRules() {
   return (
@@ -50,13 +57,18 @@ export function StayRules() {
       <div className="max-w-4xl mx-auto px-6">
         <div className="space-y-8">
           <div className="space-y-2">
-            <p className="text-sm font-medium text-accent tracking-wide uppercase">Important Info</p>
-            <h2 className="text-2xl md:text-3xl font-serif font-medium text-primary">House Rules & Notes</h2>
+            <p className="text-sm font-medium text-accent tracking-wide uppercase">
+              Important Info
+            </p>
+            <h2 className="text-2xl md:text-3xl font-serif font-medium text-primary">
+              House Rules & Notes
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rules.map((rule) => {
-              const IconComponent = iconMap[rule.iconName as keyof typeof iconMap]
+              const IconComponent =
+                iconMap[rule.iconName as keyof typeof iconMap];
               return (
                 <Card key={rule.title} className="bg-background border-border">
                   <CardContent className="p-6 space-y-4">
@@ -64,26 +76,46 @@ export function StayRules() {
                       <IconComponent className="w-6 h-6 text-accent" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="font-serif text-lg font-semibold text-primary">{rule.title}</h3>
-                      <p className="text-sm text-foreground/80 leading-relaxed">{rule.description}</p>
+                      <h3 className="font-serif text-lg font-semibold text-primary">
+                        {rule.title}
+                      </h3>
+                      <p className="text-sm text-foreground/80 leading-relaxed">
+                        {rule.description}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
-              )
+              );
             })}
           </div>
 
           <div className="mt-8 p-6 bg-accent/5 rounded-2xl border border-accent/20">
             <div className="space-y-3">
-              <h3 className="font-serif text-lg font-semibold text-primary">Pet Policy</h3>
+              <h3 className="font-serif text-lg font-semibold text-primary">
+                Pet Policy
+              </h3>
               <p className="text-sm text-foreground/80">
-                Pets are welcome but must be kept on leash at all times. Please note that we have 2 friendly resident
-                dogs on the property. Let us know about your pets when booking.
+                Pets are welcome but must be kept on leash at all times. We have
+                friendly resident dogs on the property— please introduce yours
+                on arrival. Let us know about your pets when booking.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 p-6 bg-accent/5 rounded-2xl border border-accent/20">
+            <div className="space-y-3">
+              <h3 className="font-serif text-lg font-semibold text-primary">
+                Sustainability
+              </h3>
+              <p className="text-sm text-foreground/80">
+                We operate on solar & wind power—help us conserve energy and
+                water. Kindly separate recyclables in the bins provided and
+                avoid single-use plastics when possible.
               </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

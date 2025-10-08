@@ -31,23 +31,24 @@ const rules = [
   },
   {
     iconName: "Volume2",
-    title: "Quiet Hours",
-    description: "No loud music after 10 PM • Respect nature's peace",
+    title: "Dark-sky & quiet hours",
+    description: "After 9 PM keep lights dim & noise low for stargazing",
   },
   {
     iconName: "Waves",
-    title: "River Safety",
-    description: "No swimming in the river • Enjoy from the deck",
+    title: "River safety",
+    description:
+      "No swimming • Children supervised at all times • Slippery when wet",
   },
   {
     iconName: "Wifi",
     title: "Connectivity",
-    description: "Wi-Fi at main house • Patchy phone reception",
+    description: "Wi‑Fi at main house • Mobile reception varies by network",
   },
   {
     iconName: "ShoppingCart",
     title: "Supplies",
-    description: "Nearest supermarket 40 min (Kibwezi)",
+    description: "Nearest town Kibwezi (~40 min) • Stock up en route",
   },
 ];
 
@@ -95,9 +96,22 @@ export function StayRules() {
                 Pet Policy
               </h3>
               <p className="text-sm text-foreground/80">
-                Pets are welcome but must be kept on leash at all times. Please
-                note that we have 2 friendly resident dogs on the property. Let
-                us know about your pets when booking.
+                Pets are welcome but must be kept on leash at all times. We have
+                friendly resident dogs on the property— please introduce yours
+                on arrival. Let us know about your pets when booking.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 p-6 bg-accent/5 rounded-2xl border border-accent/20">
+            <div className="space-y-3">
+              <h3 className="font-serif text-lg font-semibold text-primary">
+                Sustainability
+              </h3>
+              <p className="text-sm text-foreground/80">
+                We operate on solar & wind power—help us conserve energy and
+                water. Kindly separate recyclables in the bins provided and
+                avoid single-use plastics when possible.
               </p>
             </div>
           </div>
