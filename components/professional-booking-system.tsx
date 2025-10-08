@@ -197,7 +197,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                       Luxury dome with river views
                     </p>
                     <div className="text-2xl font-bold text-primary">
-                      $180
+                      KSh 180
                       <span className="text-sm font-normal text-muted-foreground">
                         /night
                       </span>
@@ -226,7 +226,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                       Intimate dome by the water
                     </p>
                     <div className="text-2xl font-bold text-primary">
-                      $150
+                      KSh 150
                       <span className="text-sm font-normal text-muted-foreground">
                         /night
                       </span>
@@ -255,7 +255,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                       Intimate dome by the water
                     </p>
                     <div className="text-2xl font-bold text-primary">
-                      $170
+                      KSh 170
                       <span className="text-sm font-normal text-muted-foreground">
                         /night
                       </span>
