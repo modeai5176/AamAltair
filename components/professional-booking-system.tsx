@@ -60,6 +60,8 @@ export function ProfessionalBookingSystem() {
     guests: 2,
     addOns: [] as string[],
     contactMethod: "",
+    board: "" as "bb" | "hb" | "",
+    additionalAdult: { bb: false, hb: false },
     personalInfo: {
       name: "",
       email: "",
@@ -69,13 +71,23 @@ export function ProfessionalBookingSystem() {
     },
   });
 
+  const PRICES = {
+    domestead: { bb: 13000, hb: 18000 },
+    andromeda: { bb: 10000, hb: 16000 },
+    hercules: { bb: 13000, hb: 18000 },
+    additional: { bb: 2500, hb: 5000 },
+  } as const;
+
   const calculateTotal = () => {
-    const basePrice =
-      bookingData.property === "domestead"
-        ? 180
-        : bookingData.property === "andromeda"
-        ? 170
-        : 150;
+    const propertyKey = (bookingData.property || "") as keyof typeof PRICES;
+    const boardKey = (bookingData.board || "bb") as "bb" | "hb";
+    const basePerNight =
+      propertyKey &&
+      PRICES[propertyKey as "domestead" | "andromeda" | "hercules"]
+        ? PRICES[propertyKey as "domestead" | "andromeda" | "hercules"][
+            boardKey
+          ]
+        : 0;
     const nights =
       bookingData.checkIn && bookingData.checkOut
         ? Math.ceil(
@@ -84,11 +96,16 @@ export function ProfessionalBookingSystem() {
               (1000 * 60 * 60 * 24)
           )
         : 1;
+    const additionalAdults = Math.max(0, (bookingData.guests || 0) - 2);
+    const additionalPerNight =
+      additionalAdults *
+      ((bookingData.additionalAdult?.bb ? PRICES.additional.bb : 0) +
+        (bookingData.additionalAdult?.hb ? PRICES.additional.hb : 0));
     const addOnTotal = bookingData.addOns.reduce((total, addOnId) => {
       const addOn = addOns.find((a) => a.id === addOnId);
       return total + (addOn ? addOn.price : 0);
     }, 0);
-    return basePrice * nights + addOnTotal;
+    return basePerNight * nights + additionalPerNight * nights + addOnTotal;
   };
 
   const handleAddOnToggle = (addOnId: string) => {
@@ -115,12 +132,13 @@ Property: ${getPropertyLabel(bookingData.property)}
 Check-in: ${bookingData.checkIn}
 Check-out: ${bookingData.checkOut}
 Guests: ${bookingData.guests}
+Board: ${bookingData.board === "hb" ? "Half Board" : "Bed & Breakfast"}
 Add-ons: ${
       bookingData.addOns
         .map((id) => addOns.find((a) => a.id === id)?.name)
         .join(", ") || "None"
     }
-Total: $${total}
+Total: KSh ${total}
 
 Contact Information:
 Name: ${bookingData.personalInfo.name}
@@ -265,6 +283,134 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
               </Card>
             </div>
 
+            {/* Board Selection and Pricing */}
+            {bookingData.property && (
+              <div className="mt-4">
+                <h4 className="text-lg font-semibold mb-3">
+                  Your Stay, Your Way
+                </h4>
+                <div className="grid grid-cols-1 gap-4">
+                  <Card
+                    className={`cursor-pointer transition-all rounded-lg ${
+                      bookingData.board === "bb"
+                        ? "ring-2 ring-primary border-primary"
+                        : "border-border"
+                    }`}
+                    onClick={() =>
+                      setBookingData((prev) => ({ ...prev, board: "bb" }))
+                    }
+                  >
+                    <CardContent className="p-4">
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-lg font-semibold text-primary">
+                          Bed & Breakfast
+                        </h5>
+                        <div className="text-2xl font-bold text-primary">
+                          KSh{" "}
+                          {bookingData.property === "andromeda" ? 10000 : 13000}
+                          <span className="text-sm font-normal text-muted-foreground">
+                            {" "}
+                            /night (2 pax)
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card
+                    className={`cursor-pointer transition-all rounded-lg ${
+                      bookingData.board === "hb"
+                        ? "ring-2 ring-primary border-primary"
+                        : "border-border"
+                    }`}
+                    onClick={() =>
+                      setBookingData((prev) => ({ ...prev, board: "hb" }))
+                    }
+                  >
+                    <CardContent className="p-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h5 className="font-serif text-lg font-semibold text-primary">
+                            Half Board
+                          </h5>
+                          {bookingData.property === "andromeda" && (
+                            <Badge className="bg-accent/20 text-accent border-accent text-xs px-2 py-0.5">
+                              Intro offer
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="text-2xl font-bold text-primary">
+                          KSh{" "}
+                          {bookingData.property === "andromeda" ? 16000 : 18000}
+                          <span className="text-sm font-normal text-muted-foreground">
+                            {" "}
+                            /night (2 pax)
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="rounded-lg border-border">
+                    <CardContent className="p-6">
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-lg font-semibold text-primary">
+                          Additional Adult
+                        </h5>
+                        <div className="text-sm text-muted-foreground">
+                          Applied per extra adult (above 2 guests)
+                        </div>
+                        <div className="space-y-3 pt-2">
+                          <label className="flex items-center justify-between cursor-pointer">
+                            <span className="text-sm">B&B</span>
+                            <div className="flex items-center gap-3">
+                              <span className="text-lg font-semibold text-primary">
+                                KSh 2,500
+                              </span>
+                              <Checkbox
+                                id="addl-bb"
+                                checked={bookingData.additionalAdult.bb}
+                                onCheckedChange={() =>
+                                  setBookingData((prev) => ({
+                                    ...prev,
+                                    additionalAdult: {
+                                      ...prev.additionalAdult,
+                                      bb: !prev.additionalAdult.bb,
+                                    },
+                                  }))
+                                }
+                              />
+                            </div>
+                          </label>
+                          <label className="flex items-center justify-between cursor-pointer">
+                            <span className="text-sm">Half Board</span>
+                            <div className="flex items-center gap-3">
+                              <span className="text-lg font-semibold text-primary">
+                                KSh 5,000
+                              </span>
+                              <Checkbox
+                                id="addl-hb"
+                                checked={bookingData.additionalAdult.hb}
+                                onCheckedChange={() =>
+                                  setBookingData((prev) => ({
+                                    ...prev,
+                                    additionalAdult: {
+                                      ...prev.additionalAdult,
+                                      hb: !prev.additionalAdult.hb,
+                                    },
+                                  }))
+                                }
+                              />
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            )}
+
             {/* Date Selection */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
@@ -324,7 +470,11 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
               disabled={
                 !bookingData.property ||
                 !bookingData.checkIn ||
-                !bookingData.checkOut
+                !bookingData.checkOut ||
+                !bookingData.board ||
+                (Math.max(0, (bookingData.guests || 0) - 2) > 0 &&
+                  !bookingData.additionalAdult.bb &&
+                  !bookingData.additionalAdult.hb)
               }
               className="w-full"
               style={{
@@ -365,7 +515,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                             {addOn.name}
                           </Label>
                           <span className="font-semibold text-primary">
-                            ${addOn.price}
+                            KSh {addOn.price * 100}
                           </span>
                         </div>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -520,7 +670,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                         const addOn = addOns.find((a) => a.id === id);
                         return (
                           <div key={id} className="text-sm">
-                            {addOn?.name} (+${addOn?.price})
+                            {addOn?.name} (+KSh {addOn ? addOn.price * 100 : 0})
                           </div>
                         );
                       })}
@@ -530,7 +680,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                 <div className="border-t pt-4">
                   <div className="flex justify-between text-lg font-semibold">
                     <span>Total:</span>
-                    <span className="text-primary">${calculateTotal()}</span>
+                    <span className="text-primary">KSh {calculateTotal()}</span>
                   </div>
                 </div>
               </CardContent>
