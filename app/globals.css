@@ -153,16 +153,33 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Force wide booking modal */
-[data-radix-dialog-content] {
-  width: 95vw !important;
-  max-width: 800px !important;
-  min-width: 320px !important;
+/* Mobile booking modal - Fixed height with scroll */
+@media (max-width: 1023px) {
+  [data-radix-dialog-content] {
+    width: 95vw !important;
+    max-width: 800px !important;
+    min-width: 320px !important;
+    height: 72vh !important;
+    max-height: 72vh !important;
+    overflow: hidden !important;
+    margin-top: 1rem !important;
+    margin-bottom: 2rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }
 
+/* Desktop booking modal - Auto height, no constraints */
 @media (min-width: 1024px) {
   [data-radix-dialog-content] {
     width: 80vw !important;
     min-width: 600px !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: block !important;
+    flex-direction: unset !important;
   }
 }
