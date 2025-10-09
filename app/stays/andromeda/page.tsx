@@ -129,8 +129,8 @@ export default function AndromedaPage() {
         </div>
       </section>
       <StayRules />
-      <BookingWidget />
-      <RelatedExperiences />
+      <BookingWidget domeName="Andromeda" />
+      {/* <RelatedExperiences /> */}
       <Footer />
     </main>
   );

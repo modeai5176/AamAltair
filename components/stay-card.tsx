@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { BookingWidget } from "@/components/booking-widget";
 
 interface StayCardProps {
   title: string;
@@ -164,20 +165,22 @@ export function StayCard({
                 {!comingSoon && <ArrowRight className="ml-2 h-4 w-4" />}
               </Link>
             </Button>
-            <Button
-              variant="outline"
-              className="border-accent text-accent hover:bg-accent/10 font-semibold px-7 py-4 rounded-full flex-1 bg-transparent"
-              disabled={comingSoon}
-              style={{
-                fontFamily:
-                  'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
-                fontWeight: 400,
-                letterSpacing: "0.01em",
-                lineHeight: 1.45,
-              }}
-            >
-              {comingSoon ? "Notify Me" : `Book ${title}`}
-            </Button>
+            <Link href={href}>
+              <Button
+                variant="outline"
+                className="border-accent text-accent hover:bg-accent/10 font-semibold px-7 py-4 rounded-full flex-1 bg-transparent"
+                disabled={comingSoon}
+                style={{
+                  fontFamily:
+                    'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                  fontWeight: 400,
+                  letterSpacing: "0.01em",
+                  lineHeight: 1.45,
+                }}
+              >
+                {comingSoon ? "Notify Me" : `Book ${title}`}
+              </Button>
+            </Link>
           </div>
         </CardContent>
       </div>

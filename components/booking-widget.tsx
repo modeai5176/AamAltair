@@ -9,8 +9,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, Users, MessageCircle, Mail } from "lucide-react";
 
-export function BookingWidget() {
+interface BookingWidgetProps {
+  domeName?: string;
+}
+
+export function BookingWidget({
+  domeName = "The Domestead",
+}: BookingWidgetProps) {
   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
     checkIn: "",
     checkOut: "",
     adults: 2,
@@ -19,6 +28,11 @@ export function BookingWidget() {
     preferences: "",
     agreeToRules: false,
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const addOns = [
     { id: "pickup", name: "Pickup from Kibwezi SGR", price: "$20" },
@@ -34,6 +48,108 @@ export function BookingWidget() {
         ? [...prev.addOns, addOnId]
         : prev.addOns.filter((id) => id !== addOnId),
     }));
+  };
+
+  const handleFormSubmit = async () => {
+    if (!formData.agreeToRules) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          domeName,
+          checkIn: formData.checkIn,
+          checkOut: formData.checkOut,
+          guests: formData.adults + formData.children,
+          addOns: formData.addOns,
+          preferences: formData.preferences,
+          agreeToRules: formData.agreeToRules,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        // Reset form after successful submission
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          checkIn: "",
+          checkOut: "",
+          adults: 2,
+          children: 0,
+          addOns: [],
+          preferences: "",
+          agreeToRules: false,
+        });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting booking request:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleWhatsAppSubmit = () => {
+    const message = `Booking Request for ${domeName} at Aam Altair:
+
+Check-in: ${formData.checkIn}
+Check-out: ${formData.checkOut}
+Guests: ${formData.adults + formData.children} (${formData.adults} adults, ${
+      formData.children
+    } children)
+
+Add-ons: ${formData.addOns.length > 0 ? formData.addOns.join(", ") : "None"}
+
+Special Requests:
+${formData.preferences || "None"}
+
+Please confirm availability and provide pricing information.`;
+
+    const whatsappUrl = `https://wa.me/254700000000?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const handleEmailSubmit = () => {
+    const subject = `Booking Request for ${domeName} at Aam Altair`;
+    const body = `Dear Aam Altair Team,
+
+I would like to make a booking request for ${domeName}.
+
+Booking Details:
+- Check-in: ${formData.checkIn}
+- Check-out: ${formData.checkOut}
+- Guests: ${formData.adults + formData.children} (${formData.adults} adults, ${
+      formData.children
+    } children)
+
+Add-ons: ${formData.addOns.length > 0 ? formData.addOns.join(", ") : "None"}
+
+Special Requests:
+${formData.preferences || "None"}
+
+Please confirm availability and provide pricing information.
+
+Thank you!`;
+
+    const emailUrl = `mailto:bookings@aamaltair.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    window.open(emailUrl, "_blank");
   };
 
   return (
@@ -52,7 +168,7 @@ export function BookingWidget() {
           <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="font-serif text-xl text-primary">
-                Book The Domestead
+                Book {domeName}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -104,6 +220,76 @@ export function BookingWidget() {
                     <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   </div>
                 </div>
+              </div>
+
+              {/* Personal Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="name"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Full Name *
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        name: e.target.value,
+                      }))
+                    }
+                    placeholder="Your full name"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Email Address *
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
+                    }
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Phone Number
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        phone: e.target.value,
+                      }))
+                    }
+                    placeholder="+254 700 000 000"
+                  />
+                </div>
+                <div></div>
               </div>
 
               {/* Guest Selection */}
@@ -233,11 +419,36 @@ export function BookingWidget() {
                 </Label>
               </div>
 
+              {/* Status Messages */}
+              {submitStatus === "success" && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-green-800 text-sm">
+                    ✅ Booking request submitted successfully! We'll get back to
+                    you within 24 hours.
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-800 text-sm">
+                    ❌ There was an error submitting your request. Please try
+                    again or contact us directly.
+                  </p>
+                </div>
+              )}
+
               {/* Booking Actions */}
               <div className="space-y-4 pt-4 border-t border-border">
                 <Button
                   className="w-full bg-primary text-primary-foreground hover:bg-accent py-3 rounded-full text-lg"
-                  disabled={!formData.agreeToRules}
+                  disabled={
+                    !formData.agreeToRules ||
+                    isSubmitting ||
+                    !formData.name ||
+                    !formData.email
+                  }
+                  onClick={handleFormSubmit}
                   style={{
                     fontFamily:
                       'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
@@ -246,13 +457,14 @@ export function BookingWidget() {
                     lineHeight: 1.45,
                   }}
                 >
-                  Continue to Request
+                  {isSubmitting ? "Submitting..." : "Submit Booking Request"}
                 </Button>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Button
                     variant="outline"
                     className="border-accent text-accent hover:bg-accent/10 py-3 rounded-full bg-transparent"
+                    onClick={handleWhatsAppSubmit}
                     style={{
                       fontFamily:
                         'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
@@ -267,6 +479,7 @@ export function BookingWidget() {
                   <Button
                     variant="outline"
                     className="border-accent text-accent hover:bg-accent/10 py-3 rounded-full bg-transparent"
+                    onClick={handleEmailSubmit}
                     style={{
                       fontFamily:
                         'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',

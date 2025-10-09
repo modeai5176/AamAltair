@@ -120,8 +120,8 @@ export default function HeraclesPage() {
         </div>
       </section>
       <StayRules />
-      <BookingWidget />
-      <RelatedExperiences />
+      <BookingWidget domeName="Hercules" />
+      {/* <RelatedExperiences /> */}
       <Footer />
     </main>
   );

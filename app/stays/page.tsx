@@ -44,6 +44,7 @@ export default function StaysPage() {
                 "Private riverfront deck",
               ]}
               href="/stays/the-domestead"
+              href="/stays/the-domestead"
               featured
             />
 
@@ -72,6 +73,7 @@ export default function StaysPage() {
                 "Mezzanine floor for your stargazing experience",
               ]}
               href="/stays/hercules"
+              href="/stays/hercules"
               featured
             />
 
@@ -99,6 +101,7 @@ export default function StaysPage() {
                 "Farm to table meals",
                 "Mezzanine floor for your stargazing experience",
               ]}
+              href="/stays/andromeda"
               href="/stays/andromeda"
               featured
             />
