@@ -122,8 +122,8 @@ export default function TheDomesteadPage() {
         </div>
       </section>
       <StayRules />
-      <BookingWidget />
-      <RelatedExperiences />
+      <BookingWidget domeName="The Domestead" />
+      {/* <RelatedExperiences /> */}
       <Footer />
     </main>
   );
