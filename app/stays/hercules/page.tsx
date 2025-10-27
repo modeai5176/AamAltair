@@ -16,9 +16,9 @@ export default function HeraclesPage() {
       <StayDetailHero
         title="Hercules"
         images={[
-          "/second-luxury-property-kenya-retreat.jpg",
-          "/mango-orchard-kenya-landscape.jpg",
-          "/riverfront-deck-sunset-kenya.jpg",
+          "/second-luxury-property-kenya-retreat.webp",
+          "/mango-orchard-kenya-landscape.webp",
+          "/riverfront-deck-sunset-kenya.webp",
         ]}
       />
       <StayOverview />

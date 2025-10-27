@@ -1,5 +1,5 @@
-import { Check, Plus } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { Check, Plus } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const included = [
   "Luxury accommodation",
@@ -9,16 +9,16 @@ const included = [
   "Solar power",
   "Organic toiletries",
   "Parking",
-]
+];
 
 const addOns = [
   { name: "Private Chef", price: "Quote on request" },
   { name: "Bush Breakfasts", price: "KSh 2,500 pp" },
   { name: "Celebration Packages", price: "Quote on request" },
-  { name: "Pickup from SGR", price: "$20 per ride" },
+  { name: "Pickup from SGR", price: "KES 4,000 / trip (2–4 pax)" },
   { name: "Sundowner Picnic", price: "KSh 5,000 pp" },
   { name: "Mango Tasting", price: "KSh 3,000 pp" },
-]
+];
 
 export function StayInclusions() {
   return (
@@ -28,8 +28,12 @@ export function StayInclusions() {
           {/* What's Included */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <p className="text-sm font-medium text-accent tracking-wide uppercase">Included</p>
-              <h2 className="text-2xl font-serif font-medium text-primary">What's Included</h2>
+              <p className="text-sm font-medium text-accent tracking-wide uppercase">
+                Included
+              </p>
+              <h2 className="text-2xl font-serif font-medium text-primary">
+                What's Included
+              </h2>
             </div>
 
             <Card className="bg-card border-border">
@@ -51,22 +55,31 @@ export function StayInclusions() {
           {/* Add-Ons */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <p className="text-sm font-medium text-accent tracking-wide uppercase">Optional</p>
-              <h2 className="text-2xl font-serif font-medium text-primary">Add-On Experiences</h2>
+              <p className="text-sm font-medium text-accent tracking-wide uppercase">
+                Optional
+              </p>
+              <h2 className="text-2xl font-serif font-medium text-primary">
+                Add-On Experiences
+              </h2>
             </div>
 
             <Card className="bg-card border-border">
               <CardContent className="p-6">
                 <div className="space-y-4">
                   {addOns.map((addon) => (
-                    <div key={addon.name} className="flex items-center justify-between">
+                    <div
+                      key={addon.name}
+                      className="flex items-center justify-between"
+                    >
                       <div className="flex items-center space-x-3">
                         <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
                           <Plus className="w-3 h-3 text-accent" />
                         </div>
                         <span className="text-foreground">{addon.name}</span>
                       </div>
-                      <span className="text-sm text-accent font-medium">{addon.price}</span>
+                      <span className="text-sm text-accent font-medium">
+                        {addon.price}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -76,5 +89,5 @@ export function StayInclusions() {
         </div>
       </div>
     </section>
-  )
+  );
 }

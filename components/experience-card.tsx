@@ -103,13 +103,15 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
             <BookOpen className="w-4 h-4 text-accent" />
             <span className="text-foreground/80">{experience.schedule}</span>
           </div>
-          <div className="flex items-center space-x-2">
-            {/* Changed Dollarsign to KSh */}
-            <span className="text-[0.75rem] font-medium text-accent leading-none">
-              KSh
-            </span>
-            <span className="text-foreground/80">{experience.price}</span>
-          </div>
+          {experience.title !== "Tsavo West / Tsavo East Game Drive" && (
+            <div className="flex items-center space-x-2">
+              {/* Changed Dollarsign to KSh */}
+              <span className="text-[0.75rem] font-medium text-accent leading-none">
+                KSh
+              </span>
+              <span className="text-foreground/80">{experience.price}</span>
+            </div>
+          )}
         </div>
 
         {/* Expanded Description */}

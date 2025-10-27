@@ -20,7 +20,7 @@ const addOns = [
     price: "KSh 1,500 /setup",
   },
   { name: "Celebration setups", price: "Quote on request" },
-  { name: "Pickup from SGR (Kibwezi)", price: "$20 per ride" },
+  { name: "Pickup from SGR (Kibwezi)", price: "KES 4,000 / trip (2–4 pax)" },
   { name: "Orchard mango tasting (in season)", price: "KSh 3,000 pp" },
 ];
 

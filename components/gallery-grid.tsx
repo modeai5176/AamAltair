@@ -1,82 +1,140 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const galleryImages = [
+  // Carousel Images
   {
-    src: "/luxury-dome-accommodation-riverfront-kenya.jpg",
+    src: "/carousel/Dome2.webp",
+    alt: "Beautiful dome accommodation at Aam Altair",
+    category: "Interiors",
+  },
+  {
+    src: "/carousel/Indoor.webp",
+    alt: "Cozy indoor living space",
+    category: "Interiors",
+  },
+  {
+    src: "/carousel/Interior4.webp",
+    alt: "Elegant interior design",
+    category: "Interiors",
+  },
+  {
+    src: "/carousel/InteriorBest.webp",
+    alt: "Luxurious interior details",
+    category: "Interiors",
+  },
+  {
+    src: "/carousel/OutdoorDay2.webp",
+    alt: "Sunny outdoor living area",
+    category: "Day",
+  },
+  {
+    src: "/carousel/OutdoorChillingArea2.webp",
+    alt: "Relaxing outdoor chilling area",
+    category: "Day",
+  },
+  {
+    src: "/carousel/OutdoorChillingArea3.webp",
+    alt: "Peaceful outdoor space for relaxation",
+    category: "Day",
+  },
+  {
+    src: "/carousel/pan.webp",
+    alt: "Panoramic view of the property",
+    category: "River",
+  },
+  {
+    src: "/carousel/side.webp",
+    alt: "Side view of the accommodation",
+    category: "Interiors",
+  },
+  {
+    src: "/carousel/top.webp",
+    alt: "Aerial top view of the property",
+    category: "River",
+  },
+  // Other existing images
+  {
+    src: "/luxury-dome-accommodation-riverfront-kenya.webp",
     alt: "The Domestead luxury dome accommodation",
     category: "Interiors",
   },
   {
-    src: "/dome-accommodation-with-river-view-kenya-luxury-re.jpg",
+    src: "/dome-accommodation-with-river-view-kenya-luxury-re.webp",
     alt: "River view from The Domestead",
     category: "River",
   },
   {
-    src: "/luxury-dome-interior-kenya-retreat.jpg",
+    src: "/luxury-dome-interior-kenya-retreat.webp",
     alt: "Interior design of The Domestead",
     category: "Interiors",
   },
   {
-    src: "/riverfront-deck-sunset-kenya.jpg",
+    src: "/riverfront-deck-sunset-kenya.webp",
     alt: "Sunset from the riverfront deck",
     category: "Day",
   },
   {
-    src: "/mango-orchard-kenya-landscape.jpg",
+    src: "/mango-orchard-kenya-landscape.webp",
     alt: "Mango orchard landscape",
     category: "Orchard",
   },
   {
-    src: "/night-sky-milky-way-kenya.jpg",
+    src: "/night-sky-milky-way-kenya.webp",
     alt: "Milky Way over Aam Altair",
     category: "Night Sky",
   },
   {
-    src: "/river-galana-kenya-nature.jpg",
+    src: "/river-galana-kenya-nature.webp",
     alt: "River Galana flowing through the property",
     category: "River",
   },
   {
-    src: "/outdoor-kitchen-kenya-retreat.jpg",
+    src: "/outdoor-kitchen-kenya-retreat.webp",
     alt: "Outdoor kitchen and dining area",
     category: "Interiors",
   },
-]
+];
 
-const categories = ["All", "Day", "Night Sky", "River", "Orchard", "Interiors"]
+const categories = ["All", "Day", "Night Sky", "River", "Orchard", "Interiors"];
 
 export function GalleryGrid() {
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [lightboxImage, setLightboxImage] = useState<number | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [lightboxImage, setLightboxImage] = useState<number | null>(null);
 
   const filteredImages =
-    selectedCategory === "All" ? galleryImages : galleryImages.filter((img) => img.category === selectedCategory)
+    selectedCategory === "All"
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === selectedCategory);
 
   const openLightbox = (index: number) => {
-    const actualIndex = galleryImages.findIndex((img) => img.src === filteredImages[index].src)
-    setLightboxImage(actualIndex)
-  }
+    const actualIndex = galleryImages.findIndex(
+      (img) => img.src === filteredImages[index].src
+    );
+    setLightboxImage(actualIndex);
+  };
 
-  const closeLightbox = () => setLightboxImage(null)
+  const closeLightbox = () => setLightboxImage(null);
 
   const nextImage = () => {
     if (lightboxImage !== null) {
-      setLightboxImage((lightboxImage + 1) % galleryImages.length)
+      setLightboxImage((lightboxImage + 1) % galleryImages.length);
     }
-  }
+  };
 
   const prevImage = () => {
     if (lightboxImage !== null) {
-      setLightboxImage((lightboxImage - 1 + galleryImages.length) % galleryImages.length)
+      setLightboxImage(
+        (lightboxImage - 1 + galleryImages.length) % galleryImages.length
+      );
     }
-  }
+  };
 
   return (
     <section className="pb-20">
@@ -118,7 +176,9 @@ export function GalleryGrid() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Badge className="bg-accent/20 text-accent border-accent">{image.category}</Badge>
+                  <Badge className="bg-accent/20 text-accent border-accent">
+                    {image.category}
+                  </Badge>
                 </div>
               </div>
             </div>
@@ -172,7 +232,9 @@ export function GalleryGrid() {
                 {/* Image Info */}
                 <div className="absolute bottom-4 left-4 right-4 text-center">
                   <div className="bg-background/20 backdrop-blur-sm rounded-lg p-4">
-                    <p className="text-primary font-medium">{galleryImages[lightboxImage].alt}</p>
+                    <p className="text-primary font-medium">
+                      {galleryImages[lightboxImage].alt}
+                    </p>
                     <Badge className="bg-accent/20 text-accent border-accent mt-2">
                       {galleryImages[lightboxImage].category}
                     </Badge>
@@ -191,5 +253,5 @@ export function GalleryGrid() {
         </Dialog>
       </div>
     </section>
-  )
+  );
 }
