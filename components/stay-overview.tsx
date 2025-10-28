@@ -18,19 +18,22 @@ export function StayOverview() {
 
             <div className="prose prose-lg max-w-none">
               <p className="text-foreground/80 leading-relaxed">
-                The Domestead offers an unparalleled retreat experience where
-                luxury meets nature. Nestled along the banks of the River
-                Galana, this unique dome accommodation provides a perfect
-                sanctuary for those seeking to disconnect from the modern world
-                and reconnect with the natural rhythms of life.
+                Named after the ladle-like element of Ursa Major, Big Dipper
+                offers the perfect blend of comfort, space and luxury. Sleeping
+                up to 5 pax, so whether it is a romantic getaway or a family
+                vacation, Big Dipper will provide the peaceful escape you
+                desire. We designed this space with you in mind, where you can
+                truly recharge and reconnect amidst the beauty of untouched
+                nature, while retreating to a space for your utmost comfort and
+                tranquility.
               </p>
 
               <p className="text-foreground/80 leading-relaxed">
                 Wake up to the gentle sounds of flowing water and the sight of
-                our 150-acre mango orchard stretching to the horizon. The
-                Domestead combines modern comfort with sustainable living,
-                powered entirely by solar and wind energy while maintaining the
-                highest standards of luxury and comfort.
+                our 150-acre mango orchard stretching to the horizon. The Big
+                Dipper combines modern comfort with sustainable living, powered
+                entirely by solar and wind energy while maintaining the highest
+                standards of luxury and comfort.
               </p>
             </div>
           </div>
@@ -75,7 +78,7 @@ export function StayOverview() {
                       Optional
                     </Badge>
                     <span className="text-sm text-foreground">
-                      +2 guests on request
+                      +1 guests on request
                     </span>
                   </div>
                 </div>

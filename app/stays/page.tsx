@@ -24,26 +24,25 @@ export default function StaysPage() {
 
           {/* Stays Grid */}
           <div className="space-y-16">
-            {/* The Domestead */}
+            {/* The Big Dipper */}
             <StayCard
-              title="The Domestead"
+              title="The Big Dipper"
               description="Nestled by the River Galana, The Domestead offers a perfect blend of luxury and nature. Wake up to the sound of flowing water and the sight of mango trees stretching to the horizon."
               images={[
-                "/luxury-dome-accommodation-riverfront-kenya.jpg",
-                "/dome-accommodation-with-river-view-kenya-luxury-re.jpg",
-                "/luxury-dome-interior-kenya-retreat.jpg",
+                "/carousel/OutdoorDay2.webp",
+                "/luxury-dome-accommodation-riverfront-kenya.webp",
+                "/luxury-dome-interior-kenya-retreat.webp",
               ]}
               badges={["Sleeps 4 (+2)", "Riverfront", "Self-catering or Chef"]}
               features={[
                 "Downstairs: 1 King bed",
                 "Upstairs: 1 Japanese King",
-                "Optional +2 on request",
+                "Optional +1 on request",
                 "Ensuite bathrooms",
                 "Living area & Kitchenette",
                 "Outdoor kitchen & deck",
                 "Private riverfront deck",
               ]}
-              href="/stays/the-domestead"
               href="/stays/the-domestead"
               featured
             />
@@ -53,9 +52,9 @@ export default function StaysPage() {
               title="Hercules"
               description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
               images={[
-                "/second-luxury-property-kenya-retreat.jpg",
-                "/mango-orchard-kenya-landscape.jpg",
-                "/riverfront-deck-sunset-kenya.jpg",
+                "/carousel/InteriorBest.webp",
+                "/second-luxury-property-kenya-retreat.webp",
+                "/riverfront-deck-sunset-kenya.webp",
               ]}
               badges={[
                 "Mezzanine floor",
@@ -63,16 +62,14 @@ export default function StaysPage() {
                 "Farm to table meals",
               ]}
               features={[
-                "2 King sized beds",
+                "1 King sized beds",
                 "Capacity 5 pax",
-                "1 shared bathroom",
                 "Riverfront deck",
                 "Private outdoor area",
                 "Kitchenette + coffee bar",
                 "Farm to table meals",
                 "Mezzanine floor for your stargazing experience",
               ]}
-              href="/stays/hercules"
               href="/stays/hercules"
               featured
             />
@@ -82,9 +79,9 @@ export default function StaysPage() {
               title="Andromeda"
               description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
               images={[
-                "/second-luxury-property-kenya-retreat.jpg",
-                "/outdoor-kitchen-kenya-retreat.jpg",
-                "/nature-experiences-mango-orchard-kenya.jpg",
+                "/carousel/Indoor.webp",
+                "/outdoor-kitchen-kenya-retreat.webp",
+                "/nature-experiences-mango-orchard-kenya.webp",
               ]}
               badges={[
                 "Mezzanine floor",
@@ -92,7 +89,7 @@ export default function StaysPage() {
                 "Farm to table meals",
               ]}
               features={[
-                "2 King sized beds",
+                "1 King sized bed",
                 "1 shared bathroom",
                 "4 pax capacity",
                 "Riverfront deck",
@@ -101,7 +98,6 @@ export default function StaysPage() {
                 "Farm to table meals",
                 "Mezzanine floor for your stargazing experience",
               ]}
-              href="/stays/andromeda"
               href="/stays/andromeda"
               featured
             />

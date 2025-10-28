@@ -22,7 +22,8 @@ export function AboutSection() {
             Featured Stays
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Discover our unique accommodations, each offering a distinct experience in the heart of nature
+            Discover our unique accommodations, each offering a distinct
+            experience in the heart of nature
           </p>
         </div>
 
@@ -34,7 +35,7 @@ export function AboutSection() {
             aria-label="View The Domestead"
           >
             <Image
-              src="/luxury-dome-accommodation-riverfront-kenya.jpg"
+              src="/carousel/OutdoorDay2.webp"
               alt="The Domestead"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -48,7 +49,7 @@ export function AboutSection() {
                 Featured
               </Badge>
               <h3 className="text-xl font-serif font-medium text-primary">
-                The Domestead
+                The Big Dipper
               </h3>
             </div>
           </Link>
@@ -59,7 +60,7 @@ export function AboutSection() {
             aria-label="View Hercules"
           >
             <Image
-              src="/second-luxury-property-kenya-retreat.jpg"
+              src="/carousel/InteriorBest.webp"
               alt="Hercules"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -83,7 +84,7 @@ export function AboutSection() {
             aria-label="View Andromeda"
           >
             <Image
-              src="/outdoor-kitchen-kenya-retreat.jpg"
+              src="/carousel/Indoor.webp"
               alt="Andromeda"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -109,7 +110,7 @@ export function AboutSection() {
               Partnership with Nature
             </p>
             <h2 className="text-3xl font-serif font-medium text-primary text-balance">
-              Aam Altair: The Domestead
+              Aam Altair: The Big Dipper
             </h2>
           </div>
         </div>
@@ -140,18 +141,18 @@ export function AboutSection() {
                 Partnership with Nature
               </p>
               <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary text-balance">
-                Aam Altair: The Domestead
+                Aam Altair: The Big Dipper
               </h2>
             </div>
 
             <p className="text-lg text-foreground/90 leading-relaxed text-pretty">
-              Nestled by Emily den Boesterd deep in the unique islands of
-              Chyogoon Valley, Woodland Retreat offers the perfect blend of
-              rustic charm and modern comfort. Our mission is to provide a
-              peaceful escape where you can truly recharge and reconnect amidst
-              the beauty of untouched nature. Enjoy the vibrant city life just
-              steps away, while retreating to a space designed for your utmost
-              comfort and tranquility.
+              Nestled in the tranquil hills of Tsavo, where ancient baobab trees
+              rise and the River Galana sings through the valley. Move at
+              nature’s pace, wake to golden light and birdsong, wander through
+              orchards, and end your day under the stars. Every dome is a cozy
+              sanctuary — crafted by local hands, powered by sun and wind, and
+              surrounded by the wild beauty of the land. Come find your balance
+              where luxury meets simplicity and nature leads the way.
             </p>
 
             {/* Amenities */}

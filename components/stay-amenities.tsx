@@ -46,8 +46,8 @@ export function StayAmenities() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="md:col-span-2 space-y-4">
                 <p className="text-foreground/80 leading-relaxed">
-                  Experience the ultimate farm-to-table lifestyle at The
-                  Domestead. Our 150-acre mango orchard provides fresh, organic
+                  Experience the ultimate farm-to-table lifestyle at The Big
+                  Dipper. Our 150-acre mango orchard provides fresh, organic
                   produce that you can literally hand-pick for your meals. Walk
                   through the orchard in the morning, select your ingredients,
                   and prepare them in your fully equipped outdoor kitchen.

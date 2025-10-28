@@ -55,7 +55,7 @@ export function StayOverview() {
                       Downstairs
                     </Badge>
                     <span className="text-sm text-foreground">
-                      2 King sized beds
+                      1 King sized bed
                     </span>
                   </div>
                   <div className="flex items-center space-x-3 justify-start">
@@ -66,10 +66,10 @@ export function StayOverview() {
                       Upstairs
                     </Badge>
                     <span className="text-sm text-foreground">
-                      4 pax (extra bed on request)
+                      1 King Sized Bed
                     </span>
                   </div>
-                  <div className="flex items-center space-x-3 justify-start">
+                  {/* <div className="flex items-center space-x-3 justify-start">
                     <Badge
                       variant="outline"
                       className="border-accent/50 text-accent"
@@ -79,7 +79,7 @@ export function StayOverview() {
                     <span className="text-sm text-foreground">
                       1 shared bathroom
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

@@ -3,11 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 // import SpotlightCard from "@/components/SpotlightCard"; // Temporarily disabled: spotlight effect removed
 
 const amenities = [
-  "Stargazing deck with reclining loungers",
-  "Yoga mats & meditation cushions",
+  "Stargazing deck",
   "Herbal tea & infusion bar",
   "Luxury towels & linens",
-  "Hammock net by the river",
   "Outdoor self-catering kitchen",
   "Optional private chef (light, seasonal menus)",
   "Solar & wind power",

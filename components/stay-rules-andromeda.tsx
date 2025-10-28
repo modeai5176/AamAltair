@@ -96,9 +96,8 @@ export function StayRules() {
                 Pet Policy
               </h3>
               <p className="text-sm text-foreground/80">
-                Pets are welcome but must be kept on leash at all times. We have
-                friendly resident dogs on the property— please introduce yours
-                on arrival. Let us know about your pets when booking.
+                We allow pets on the property however any animals will remain
+                the responsibility of the guests at all times.
               </p>
             </div>
           </div>

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const galleryImages = [
   {
@@ -17,6 +17,18 @@ const galleryImages = [
   {
     src: "/carousel/Interior4.webp",
     alt: "Elegant interior design of the dome",
+  },
+  {
+    src: "/carousel/side.webp",
+    alt: "River Side View",
+  },
+  {
+    src: "/carousel/pan.webp",
+    alt: "Panorama View",
+  },
+  {
+    src: "/carousel/top.webp",
+    alt: "Top View of the Dome",
   },
   {
     src: "/carousel/InteriorBest.webp",
@@ -34,46 +46,51 @@ const galleryImages = [
     src: "/carousel/OutdoorDay2.webp",
     alt: "Beautiful outdoor day view of the retreat",
   },
-]
+];
 
 export function GalleryStrip() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [imagesLoaded, setImagesLoaded] = useState(false)
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set())
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     // Preload first 3 images
-    const preloadImages = galleryImages.slice(0, 3)
+    const preloadImages = galleryImages.slice(0, 3);
     preloadImages.forEach((image, index) => {
-      const img = new window.Image()
+      const img = new window.Image();
       img.onload = () => {
-        setLoadedImages(prev => new Set([...prev, index]))
-      }
-      img.src = image.src
-    })
-  }, [])
+        setLoadedImages((prev) => new Set([...prev, index]));
+      };
+      img.src = image.src;
+    });
+  }, []);
 
   useEffect(() => {
     if (loadedImages.size >= 3) {
-      setImagesLoaded(true)
+      setImagesLoaded(true);
     }
-  }, [loadedImages])
+  }, [loadedImages]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % galleryImages.length)
-  }
+    setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+  };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
-  }
+    setCurrentIndex(
+      (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
+    );
+  };
 
   return (
     <section className="py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary mb-4">A Visual Journey</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary mb-4">
+            A Visual Journey
+          </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Discover the beauty that awaits you at Aam Altair through our gallery of moments.
+            Discover the beauty that awaits you at Aam Altair through our
+            gallery of moments.
           </p>
         </div>
 
@@ -85,7 +102,9 @@ export function GalleryStrip() {
                 <div className="flex items-center justify-center h-full">
                   <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
-                    <p className="text-foreground/60 text-sm">Loading gallery...</p>
+                    <p className="text-foreground/60 text-sm">
+                      Loading gallery...
+                    </p>
                   </div>
                 </div>
               </div>
@@ -93,7 +112,11 @@ export function GalleryStrip() {
           )}
 
           {/* Main Gallery */}
-          <div className={`relative overflow-hidden rounded-2xl transition-opacity duration-500 ${imagesLoaded ? 'opacity-100' : 'opacity-0 absolute inset-0'}`}>
+          <div
+            className={`relative overflow-hidden rounded-2xl transition-opacity duration-500 ${
+              imagesLoaded ? "opacity-100" : "opacity-0 absolute inset-0"
+            }`}
+          >
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -142,7 +165,9 @@ export function GalleryStrip() {
               <button
                 key={index}
                 className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                  index === currentIndex ? "bg-accent" : "bg-muted-foreground/30"
+                  index === currentIndex
+                    ? "bg-accent"
+                    : "bg-muted-foreground/30"
                 }`}
                 onClick={() => setCurrentIndex(index)}
               />
@@ -151,5 +176,5 @@ export function GalleryStrip() {
         </div>
       </div>
     </section>
-  )
+  );
 }

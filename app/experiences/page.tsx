@@ -15,7 +15,7 @@ const experiences = [
     schedule: "Start 6:00 AM",
     price: "Included",
     bookingRequired: true,
-    image: "/riverfront-deck-sunset-kenya.jpg",
+    image: "/sunrise.webp",
   },
   {
     iconName: "TreePine",
@@ -28,7 +28,7 @@ const experiences = [
     schedule: "7:30–9:00 AM",
     price: "Included",
     bookingRequired: true,
-    image: "/mango-orchard-kenya-landscape.jpg",
+    image: "/mango-orchard-kenya-landscape.webp",
   },
   {
     iconName: "Wine",
@@ -41,7 +41,7 @@ const experiences = [
     schedule: "5:30–7:00 PM",
     price: "5,000 pp",
     bookingRequired: true,
-    image: "/riverfront-deck-sunset-kenya.jpg",
+    image: "/sundowner.webp",
   },
   {
     iconName: "Apple",
@@ -54,7 +54,7 @@ const experiences = [
     schedule: "Flexible timing",
     price: "3,000 pp",
     bookingRequired: true,
-    image: "/mango-orchard-kenya-landscape.jpg",
+    image: "/mango-orchard.webp",
   },
   // Duplicated cards (you can update contents later)
   {
@@ -75,13 +75,13 @@ const experiences = [
     title: "Indigenous African Silk Farm Tour",
     description: "Gonometa Silkworm Farm",
     longDescription:
-      "Discover the secrets of our 150-acre mango orchard with our knowledgeable guides. Learn about the different mango varieties we cultivate, sustainable farming practices, and the history of the land. This immersive tour includes tastings of seasonal fruits and insights into our partnership with nature.",
+      "Explore Kenya’s first cruelty-free silk farm, where silk from the African Gonometa moth is sustainably cultivated.",
     duration: "1.5 hrs",
     bestTime: "Year-round",
     schedule: "7:30–9:00 AM",
     price: "Included",
     bookingRequired: true,
-    image: "/mango-orchard-kenya-landscape.jpg",
+    image: "/mango-orchard-kenya-landscape.webp",
   },
   {
     iconName: "Wine",
@@ -92,9 +92,9 @@ const experiences = [
     duration: "1.5 hrs",
     bestTime: "Dry season",
     schedule: "5:30–7:00 PM",
-    price: "5,000 pp",
+    price: "Contact for pricing",
     bookingRequired: true,
-    image: "/river-galana-kenya-nature.jpg",
+    image: "/river-galana-kenya-nature.webp",
   },
 ];
 

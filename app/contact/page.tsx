@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact-form";
 import { ContactInfo } from "@/components/contact-info";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProfessionalBookingSystem } from "@/components/professional-booking-system";
+import { LocationMap } from "@/components/location-map";
 import { FAQSection } from "@/components/faq-section";
 import { NatureCTA } from "@/components/nature-cta";
 
@@ -53,6 +54,9 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+
+      {/* Location Map Section */}
+      <LocationMap />
 
       {/* FAQ Section */}
       <FAQSection />

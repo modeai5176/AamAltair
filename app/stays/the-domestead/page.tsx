@@ -14,13 +14,13 @@ export default function TheDomesteadPage() {
     <main className="min-h-screen">
       <Navigation />
       <StayDetailHero
-        title="The Domestead"
+        title="The Big Dipper"
         images={[
-          "/luxury-dome-accommodation-riverfront-kenya.jpg",
-          "/dome-accommodation-with-river-view-kenya-luxury-re.jpg",
-          "/luxury-dome-interior-kenya-retreat.jpg",
-          "/riverfront-deck-sunset-kenya.jpg",
-          "/outdoor-kitchen-kenya-retreat.jpg",
+          "/luxury-dome-accommodation-riverfront-kenya.webp",
+          "/dome-accommodation-with-river-view-kenya-luxury-re.webp",
+          "/luxury-dome-interior-kenya-retreat.webp",
+          "/riverfront-deck-sunset-kenya.webp",
+          "/outdoor-kitchen-kenya-retreat.webp",
         ]}
       />
       <StayOverview />
@@ -122,7 +122,7 @@ export default function TheDomesteadPage() {
         </div>
       </section>
       <StayRules />
-      <BookingWidget domeName="The Domestead" />
+      <BookingWidget domeName="The Big Dipper" />
       {/* <RelatedExperiences /> */}
       <Footer />
     </main>

@@ -55,7 +55,7 @@ export function StayOverview() {
                       Downstairs
                     </Badge>
                     <span className="text-sm text-foreground">
-                      2 King sized beds
+                      1 King sized bed
                     </span>
                   </div>
                   <div className="flex items-center space-x-3 justify-start">
@@ -66,7 +66,7 @@ export function StayOverview() {
                       Upstairs
                     </Badge>
                     <span className="text-sm text-foreground">
-                      5 pax (extra bed on request)
+                      1 King Sized Bed
                     </span>
                   </div>
                   <div className="flex items-center space-x-3 justify-start">
@@ -77,7 +77,7 @@ export function StayOverview() {
                       Optional
                     </Badge>
                     <span className="text-sm text-foreground">
-                      1 shared bathroom
+                      One extra bed on request
                     </span>
                   </div>
                 </div>
@@ -90,11 +90,11 @@ export function StayOverview() {
                 <div className="space-y-2 text-sm text-foreground text-center md:text-left w-fit mx-auto md:w-auto md:mx-0">
                   <div className="flex items-start gap-2 justify-start">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-1" />
-                    <span>Riverfront deck</span>
+                    <span>Ensuite bathroom</span>
                   </div>
                   <div className="flex items-start gap-2 justify-start">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-1" />
-                    <span>Private outdoor area</span>
+                    <span>Riverfront deck</span>
                   </div>
                   <div className="flex items-start gap-2 justify-start">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 mt-1" />
