@@ -326,10 +326,10 @@ export function GettingHereSection() {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3">
                     <Button
                       variant="outline"
-                      className="border-accent text-accent hover:bg-accent/10 rounded-full"
+                      className="border-accent text-accent hover:bg-accent/10 rounded-full h-9 px-4 text-sm md:h-auto md:px-6 md:text-base"
                       style={{
                         fontFamily:
                           'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
@@ -338,12 +338,12 @@ export function GettingHereSection() {
                         lineHeight: 1.45,
                       }}
                     >
-                      <NavigationIcon className="w-4 h-4 mr-2" />
+                      <NavigationIcon className="w-3.5 h-3.5 mr-1.5 md:w-4 md:h-4 md:mr-2" />
                       Open route in Maps
                     </Button>
                     <Button
                       variant="outline"
-                      className="border-border text-foreground hover:bg-accent/10 rounded-full"
+                      className="border-border text-foreground hover:bg-accent/10 rounded-full h-9 px-4 text-sm md:h-auto md:px-6 md:text-base"
                       style={{
                         fontFamily:
                           'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
@@ -352,7 +352,7 @@ export function GettingHereSection() {
                         lineHeight: 1.45,
                       }}
                     >
-                      <ExternalLinkIcon className="w-4 h-4 mr-2" />
+                      <ExternalLinkIcon className="w-3.5 h-3.5 mr-1.5 md:w-4 md:h-4 md:mr-2" />
                       Copy itinerary
                     </Button>
                   </div>

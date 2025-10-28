@@ -220,7 +220,17 @@ export default function AboutPage() {
                 key={index}
                 className="flex flex-col md:flex-row gap-8 items-center"
               >
-                <div className="md:w-1/3">
+                {/* Mobile: Images above, Desktop: Images on right */}
+                <div className="w-full md:w-2/3 md:order-2">
+                  <TimelineImage
+                    images={item.images}
+                    alt={`${item.title} - ${item.year}`}
+                    year={item.year}
+                  />
+                </div>
+
+                {/* Mobile: Text below images, Desktop: Text on left */}
+                <div className="w-full md:w-1/3 md:order-1">
                   <div className="flex items-center gap-4 mb-4">
                     <Calendar className="w-6 h-6 text-accent" />
                     <span className="text-2xl font-serif font-medium text-accent">
@@ -233,13 +243,6 @@ export default function AboutPage() {
                   <p className="text-foreground/80 leading-relaxed">
                     {item.description}
                   </p>
-                </div>
-                <div className="md:w-2/3">
-                  <TimelineImage
-                    images={item.images}
-                    alt={`${item.title} - ${item.year}`}
-                    year={item.year}
-                  />
                 </div>
               </div>
             ))}

@@ -81,7 +81,7 @@ export function StayInclusions() {
                         </div>
                         <span className="text-foreground">{addon.name}</span>
                       </div>
-                      <span className="text-sm text-accent font-medium">
+                      <span className="text-sm text-accent font-medium text-right mr-2 sm:text-right sm:mr-0">
                         {addon.price}
                       </span>
                     </div>
