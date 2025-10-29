@@ -27,7 +27,7 @@ export default function StaysPage() {
             {/* The Big Dipper */}
             <StayCard
               title="The Big Dipper"
-              description="Nestled by the River Galana, The Domestead offers a perfect blend of luxury and nature. Wake up to the sound of flowing water and the sight of mango trees stretching to the horizon."
+              description="In the serene hills of Tsavo, where baobabs rise and the Galana River flows — wake to light, wander through orchards, and rest under the stars. Handcrafted domes powered by sun and wind blend luxury with nature."
               images={[
                 "/carousel/OutdoorDay2.webp",
                 "/luxury-dome-accommodation-riverfront-kenya.webp",

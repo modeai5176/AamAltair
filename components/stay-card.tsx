@@ -147,10 +147,10 @@ export function StayCard({
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-10">
+          <div className="flex flex-col gap-3 sm:flex-row sm:gap-2 sm:justify-start pt-10">
             <Button
               asChild
-              className="bg-primary text-primary-foreground hover:bg-accent font-semibold px-7 py-4 rounded-full flex-1"
+              className="w-full sm:w-auto py-3 sm:py-2 rounded-full font-medium bg-primary text-primary-foreground hover:bg-accent font-semibold px-7 sm:px-7 sm:flex-1"
               disabled={comingSoon}
               style={{
                 fontFamily:
@@ -168,7 +168,7 @@ export function StayCard({
             <Link href={href}>
               <Button
                 variant="outline"
-                className="border-accent text-accent hover:bg-accent/10 font-semibold px-7 py-4 rounded-full flex-1 bg-transparent"
+                className="w-full sm:w-auto py-3 sm:py-2 rounded-full font-medium border-accent text-accent hover:bg-accent/10 font-semibold px-7 sm:px-7 sm:flex-1 bg-transparent"
                 disabled={comingSoon}
                 style={{
                   fontFamily:

@@ -62,7 +62,7 @@ export function TimelineImage({ images, alt, year }: TimelineImageProps) {
       />
 
       {/* Navigation Arrows */}
-      <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute inset-0 flex items-center justify-between px-2 opacity-30 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
         <Button
           variant="ghost"
           size="icon"
