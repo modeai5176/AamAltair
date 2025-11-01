@@ -3,10 +3,10 @@ import { Footer } from "@/components/footer";
 import { NatureCTA } from "@/components/nature-cta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, Leaf, Award, MapPin, Calendar } from "lucide-react";
+import { Heart, Users, Leaf, Award, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { TimelineImage } from "@/components/timeline-image";
+import { Timeline } from "@/components/about/timeline";
 
 const values = [
   {
@@ -209,44 +209,12 @@ export default function AboutPage() {
             <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
               Ours is a story of passion, resilience, and hope. What began as a
               humble dream—with hard work, a clear vision, and a love for the
-              land—has grown into our own little piece of heaven. Now, we’re
+              land—has grown into our own little piece of heaven. Now, we're
               opening our gates to share it with you.
             </p>
           </div>
 
-          <div className="space-y-12">
-            {timeline.map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col md:flex-row gap-8 items-center"
-              >
-                {/* Mobile: Images above, Desktop: Images on right */}
-                <div className="w-full md:w-2/3 md:order-2">
-                  <TimelineImage
-                    images={item.images}
-                    alt={`${item.title} - ${item.year}`}
-                    year={item.year}
-                  />
-                </div>
-
-                {/* Mobile: Text below images, Desktop: Text on left */}
-                <div className="w-full md:w-1/3 md:order-1">
-                  <div className="flex items-center gap-4 mb-4">
-                    <Calendar className="w-6 h-6 text-accent" />
-                    <span className="text-2xl font-serif font-medium text-accent">
-                      {item.year}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-serif font-medium text-primary mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Timeline items={timeline} />
         </div>
       </section>
 
