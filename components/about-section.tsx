@@ -110,7 +110,7 @@ export function AboutSection() {
               A Partnership with Nature
             </p>
             <h2 className="text-3xl font-serif font-medium text-primary text-balance">
-              Aam Altair: The Big Dipper
+              Aam Altair: The Introduction
             </h2>
           </div>
         </div>
@@ -141,7 +141,7 @@ export function AboutSection() {
                 Partnership with Nature
               </p>
               <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary text-balance">
-                Aam Altair: The Big Dipper
+                Aam Altair: The Introduction
               </h2>
             </div>
 
