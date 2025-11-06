@@ -118,7 +118,7 @@ ${formData.preferences || "None"}
 
 Please confirm availability and provide pricing information.`;
 
-    const whatsappUrl = `https://wa.me/254700000000?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/254716862882?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");

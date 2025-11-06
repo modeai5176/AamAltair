@@ -75,13 +75,13 @@ export function Footer() {
               </p>
               <div className="flex space-x-4 pt-2">
                 <a
-                  href="https://wa.me/254700000000"
+                  href="https://wa.me/254716862882"
                   className="text-accent hover:text-primary transition-colors"
                 >
                   <MessageCircle size={20} />
                 </a>
                 <a
-                  href="mailto:hello@aamaltair.com"
+                  href="mailto:theaamaltair@gmail.com"
                   className="text-accent hover:text-primary transition-colors"
                 >
                   <Mail size={20} />

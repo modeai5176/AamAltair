@@ -48,7 +48,7 @@ export function ContactInfo() {
                 }}
               >
                 <a
-                  href="https://wa.me/254700000000"
+                  href="https://wa.me/254716862882"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -88,7 +88,7 @@ export function ContactInfo() {
                   lineHeight: 1.45,
                 }}
               >
-                <a href="mailto:hello@aamaltair.com">Email</a>
+                <a href="mailto:theaamaltair@gmail.com">Email</a>
               </Button>
             </div>
           </CardContent>

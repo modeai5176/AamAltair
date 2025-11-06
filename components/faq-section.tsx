@@ -1,5 +1,10 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Card, CardContent } from "@/components/ui/card"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card, CardContent } from "@/components/ui/card";
 
 const faqs = [
   {
@@ -62,15 +67,19 @@ const faqs = [
     answer:
       "Our property is home to various bird species and occasionally visits from small wildlife. The solar electric fence keeps larger animals at bay while allowing you to enjoy nature safely. Our resident dogs also help deter unwanted wildlife.",
   },
-]
+];
 
 export function FAQSection() {
   return (
     <section className="pb-20">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary mb-4">FAQ</h2>
-          <p className="text-foreground/80 text-lg">Frequently Asked Questions</p>
+          <h2 className="text-3xl md:text-4xl font-serif font-medium text-primary mb-4">
+            FAQ
+          </h2>
+          <p className="text-foreground/80 text-lg">
+            Frequently Asked Questions
+          </p>
         </div>
         <Accordion type="single" collapsible className="space-y-2">
           {faqs.map((faq, index) => (
@@ -80,7 +89,9 @@ export function FAQSection() {
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-1">
-                  <p className="text-foreground/80 leading-relaxed text-sm">{faq.answer}</p>
+                  <p className="text-foreground/80 leading-relaxed text-sm">
+                    {faq.answer}
+                  </p>
                 </AccordionContent>
               </AccordionItem>
             </Card>
@@ -90,20 +101,23 @@ export function FAQSection() {
         {/* Contact for More Questions */}
         <Card className="mt-8 bg-accent/5 border-accent/20">
           <CardContent className="p-6 text-center space-y-3">
-            <h3 className="text-lg font-serif font-medium text-primary">Still Have Questions?</h3>
+            <h3 className="text-lg font-serif font-medium text-primary">
+              Still Have Questions?
+            </h3>
             <p className="text-foreground/80 max-w-2xl mx-auto text-sm">
-              Can't find the answer you're looking for? Our team is here to help. Contact us via WhatsApp for the
-              fastest response, or send us an email for detailed inquiries.
+              Can't find the answer you're looking for? Our team is here to
+              help. Contact us via WhatsApp for the fastest response, or send us
+              an email for detailed inquiries.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center">
               <a
-                href="https://wa.me/254700000000"
+                href="https://wa.me/254716862882"
                 className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground hover:bg-accent font-medium rounded-full transition-colors text-sm"
               >
                 WhatsApp Us
               </a>
               <a
-                href="mailto:hello@aamaltair.com"
+                href="mailto:theaamaltair@gmail.com"
                 className="inline-flex items-center justify-center px-4 py-2 border border-accent text-accent hover:bg-accent/10 font-medium rounded-full transition-colors text-sm"
               >
                 Email Us
@@ -113,5 +127,5 @@ export function FAQSection() {
         </Card>
       </div>
     </section>
-  )
+  );
 }

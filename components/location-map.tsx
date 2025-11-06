@@ -21,7 +21,7 @@ export function LocationMap() {
           <div className="order-2 lg:order-1">
             <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5!2d37.5!3d-2.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMzAnMDAuMCJTIDM3wrAzMCcwMC4wIkU!5e0!3m2!1sen!2ske!4v1234567890123!5m2!1sen!2ske"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5!2d38.157471!3d-2.332978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMTknNTguNyJTIDM4wrAwOScyNi45IkU!5e0!3m2!1sen!2ske!4v1234567890123!5m2!1sen!2ske"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -75,7 +75,7 @@ export function LocationMap() {
                       Airport
                     </p>
                     <p>
-                      <strong>Coordinates:</strong> 2°30'S, 37°30'E
+                      <strong>Coordinates:</strong> 2°19'59"S, 38°09'27"E
                     </p>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export function LocationMap() {
             <div className="pt-6 border-t border-border">
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://maps.google.com/?q=Tsavo+East+National+Park,+Kenya"
+                  href="https://maps.google.com/?q=-2.332978,38.157471"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-medium"
