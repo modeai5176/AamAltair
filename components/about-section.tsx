@@ -107,7 +107,7 @@ export function AboutSection() {
         <div className="lg:hidden mb-8 mt-12">
           <div className="text-center space-y-2">
             <p className="text-sm font-medium text-accent tracking-wide uppercase">
-              Partnership with Nature
+              A Partnership with Nature
             </p>
             <h2 className="text-3xl font-serif font-medium text-primary text-balance">
               Aam Altair: The Big Dipper

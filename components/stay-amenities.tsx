@@ -50,7 +50,9 @@ export function StayAmenities() {
                   Dipper. Our 150-acre mango orchard provides fresh, organic
                   produce that you can literally hand-pick for your meals. Walk
                   through the orchard in the morning, select your ingredients,
-                  and prepare them in your fully equipped outdoor kitchen.
+                  and prepare them in your fully equipped outdoor kitchen or
+                  have our chef prepare your meal while you lay back and enjoy
+                  the experience.
                 </p>
                 <p className="text-foreground/80 leading-relaxed">
                   Whether you choose to cook for yourself or opt for our private
