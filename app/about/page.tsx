@@ -123,7 +123,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 text-balance">
-                Aam Altair: The Big Dipper
+                Aam Altair: The Introduction
               </h1>
               <p className="text-xl text-foreground/80 mb-8 text-pretty leading-relaxed">
                 Nestled in the tranquil hills of Tsavo, where ancient baobab

@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     images: ["/aamaltair_logo.webp"],
   },
   icons: {
-    icon: "/aamaltair_logo.webp",
+    icon: "/favicon.ico",
     shortcut: "/aamaltair_logo.webp",
     apple: "/aamaltair_logo.webp",
   },
