@@ -10,114 +10,98 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 const galleryImages = [
   // Carousel Images
   {
-    src: "/carousel/Dome2.webp",
+    src: "/carousel/Dome2.avif",
     alt: "Beautiful dome accommodation at Aam Altair",
     category: "Interiors",
   },
   {
-    src: "/carousel/Indoor.webp",
+    src: "/carousel/Indoor.avif",
     alt: "Cozy indoor living space",
     category: "Interiors",
   },
   {
-    src: "/carousel/Interior4.webp",
-    alt: "Elegant interior design",
-    category: "Interiors",
-  },
-  {
-    src: "/carousel/InteriorBest.webp",
+    src: "/carousel/InteriorBest.avif",
     alt: "Luxurious interior details",
     category: "Interiors",
   },
   {
-    src: "/carousel/OutdoorDay2.webp",
+    src: "/carousel/OutdoorDay2.avif",
     alt: "Sunny outdoor living area",
     category: "Day",
   },
   {
-    src: "/carousel/OutdoorChillingArea2.webp",
+    src: "/carousel/OutdoorChillingArea2.avif",
     alt: "Relaxing outdoor chilling area",
     category: "Day",
   },
   {
-    src: "/carousel/OutdoorChillingArea3.webp",
+    src: "/carousel/OutdoorChillingArea3.avif",
     alt: "Peaceful outdoor space for relaxation",
     category: "Day",
   },
   {
-    src: "/carousel/pan.webp",
+    src: "/carousel/pan.avif",
     alt: "Panoramic view of the property",
     category: "River",
   },
   {
-    src: "/carousel/side.webp",
+    src: "/carousel/side.avif",
     alt: "Side view of the accommodation",
     category: "Interiors",
   },
   {
-    src: "/carousel/top.webp",
+    src: "/carousel/top.avif",
     alt: "Aerial top view of the property",
     category: "River",
   },
   // Other existing images
   {
-    src: "/luxury-dome-accommodation-riverfront-kenya.webp",
+    src: "/luxury-dome-accommodation-riverfront-kenya.avif",
     alt: "The Domestead luxury dome accommodation",
     category: "Interiors",
   },
   {
-    src: "/dome-accommodation-with-river-view-kenya-luxury-re.webp",
+    src: "/dome-accommodation-with-river-view-kenya-luxury-re.avif",
     alt: "River view from The Domestead",
     category: "River",
   },
   {
-    src: "/luxury-dome-interior-kenya-retreat.webp",
+    src: "/luxury-dome-interior-kenya-retreat.avif",
     alt: "Interior design of The Domestead",
     category: "Interiors",
   },
   {
-    src: "/riverfront-deck-sunset-kenya.webp",
+    src: "/riverfront-deck-sunset-kenya.avif",
     alt: "Sunset from the riverfront deck",
     category: "Day",
   },
   {
-    src: "/mango-orchard-kenya-landscape.webp",
+    src: "/mango-orchard-kenya-landscape.avif",
     alt: "Mango orchard landscape",
     category: "Orchard",
   },
   {
-    src: "/night-sky-milky-way-kenya.webp",
+    src: "/night-sky-milky-way-kenya.avif",
     alt: "Milky Way over Aam Altair",
     category: "Night Sky",
   },
   {
-    src: "/river-galana-kenya-nature.webp",
+    src: "/river-galana-kenya-nature.avif",
     alt: "River Galana flowing through the property",
     category: "River",
   },
   {
-    src: "/outdoor-kitchen-kenya-retreat.webp",
+    src: "/outdoor-kitchen-kenya-retreat.avif",
     alt: "Outdoor kitchen and dining area",
     category: "Interiors",
   },
 ];
 
-const categories = ["All", "Day", "Night Sky", "River", "Orchard", "Interiors"];
-
 export function GalleryGrid() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightboxImage, setLightboxImage] = useState<number | null>(null);
 
-  const filteredImages =
-    selectedCategory === "All"
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === selectedCategory);
-
   const openLightbox = (index: number) => {
-    const actualIndex = galleryImages.findIndex(
-      (img) => img.src === filteredImages[index].src
-    );
-    setLightboxImage(actualIndex);
+    setLightboxImage(index);
   };
 
   const closeLightbox = () => setLightboxImage(null);
@@ -139,28 +123,9 @@ export function GalleryGrid() {
   return (
     <section className="pb-20">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(category)}
-              className={`rounded-full ${
-                selectedCategory === category
-                  ? "bg-primary text-primary-foreground hover:bg-accent"
-                  : "border-accent/50 text-accent hover:bg-accent/10"
-              }`}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
         {/* Masonry Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {filteredImages.map((image, index) => (
+          {galleryImages.map((image, index) => (
             <div
               key={image.src}
               className="break-inside-avoid cursor-pointer group"
@@ -173,6 +138,9 @@ export function GalleryGrid() {
                   width={400}
                   height={600}
                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -226,6 +194,9 @@ export function GalleryGrid() {
                     width={1200}
                     height={800}
                     className="max-w-full max-h-full object-contain"
+                    quality={90}
+                    priority={false}
+                    loading="eager"
                   />
                 </div>
 

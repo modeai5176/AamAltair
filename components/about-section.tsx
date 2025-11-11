@@ -35,13 +35,14 @@ export function AboutSection() {
             aria-label="View The Domestead"
           >
             <Image
-              src="/carousel/OutdoorDay2.webp"
+              src="/carousel/OutdoorDay2.avif"
               alt="The Domestead"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               priority
               quality={85}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
@@ -60,12 +61,13 @@ export function AboutSection() {
             aria-label="View Hercules"
           >
             <Image
-              src="/carousel/InteriorBest.webp"
+              src="/carousel/InteriorBest.avif"
               alt="Hercules"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               quality={85}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
@@ -84,12 +86,13 @@ export function AboutSection() {
             aria-label="View Andromeda"
           >
             <Image
-              src="/carousel/Indoor.webp"
+              src="/carousel/Indoor.avif"
               alt="Andromeda"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               quality={85}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             <div className="absolute bottom-6 left-6">
@@ -122,13 +125,14 @@ export function AboutSection() {
             <Link href="/about" aria-label="Read the full Aam Altair story">
               <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
                 <Image
-                  src="/carousel/Dome2.webp"
+                  src="/carousel/Dome2.avif"
                   alt="Aam Altair: The Domestead"
                   fill
                   className="object-cover"
                   priority
                   quality={85}
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  loading="eager"
                 />
               </div>
             </Link>

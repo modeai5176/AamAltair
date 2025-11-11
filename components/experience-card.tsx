@@ -53,6 +53,9 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
             alt={experience.title}
             fill
             className="object-cover transition-transform duration-500 hover:scale-105"
+            loading="lazy"
+            quality={85}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
 

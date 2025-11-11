@@ -7,43 +7,43 @@ import { Button } from "@/components/ui/button";
 
 const galleryImages = [
   {
-    src: "/carousel/Dome2.webp",
+    src: "/carousel/Dome2.avif",
     alt: "Luxury dome accommodation with river view",
   },
   {
-    src: "/carousel/Indoor.webp",
+    src: "/carousel/Indoor.avif",
     alt: "Interior of luxury dome retreat",
   },
   {
-    src: "/carousel/Interior4.webp",
+    src: "/carousel/Interior4.avif",
     alt: "Elegant interior design of the dome",
   },
   {
-    src: "/carousel/side.webp",
+    src: "/carousel/side.avif",
     alt: "River Side View",
   },
   {
-    src: "/carousel/pan.webp",
+    src: "/carousel/pan.avif",
     alt: "Panorama View",
   },
   {
-    src: "/carousel/top.webp",
+    src: "/carousel/top.avif",
     alt: "Top View of the Dome",
   },
   {
-    src: "/carousel/InteriorBest.webp",
+    src: "/carousel/InteriorBest.avif",
     alt: "Premium interior view of the accommodation",
   },
   {
-    src: "/carousel/OutdoorChillingArea2.webp",
+    src: "/carousel/OutdoorChillingArea2.avif",
     alt: "Outdoor relaxation area with stunning views",
   },
   {
-    src: "/carousel/OutdoorChillingArea3.webp",
+    src: "/carousel/OutdoorChillingArea3.avif",
     alt: "Peaceful outdoor chilling area",
   },
   {
-    src: "/carousel/OutdoorDay2.webp",
+    src: "/carousel/OutdoorDay2.avif",
     alt: "Beautiful outdoor day view of the retreat",
   },
 ];
@@ -129,9 +129,10 @@ export function GalleryStrip() {
                       alt={image.alt}
                       fill
                       className="object-cover"
-                      priority={index <= 2}
+                      priority={index === 0}
                       quality={85}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                      loading={index === 0 ? undefined : "lazy"}
                       placeholder="blur"
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />

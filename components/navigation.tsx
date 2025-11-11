@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -18,6 +18,8 @@ const navItems = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const scrollPositionRef = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,30 +29,32 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open and store scroll position
+  // Close dropdown when clicking outside (mobile only)
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Only handle on mobile viewports
+      if (window.innerWidth > 768) return;
+      
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        isMobileMenuOpen
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
     if (isMobileMenuOpen) {
-      // Store current scroll position
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-    } else {
-      // Restore scroll position
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      // Small delay to avoid immediate close on open
+      setTimeout(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("touchstart", handleClickOutside);
+      }, 10);
     }
 
     return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [isMobileMenuOpen]);
 
@@ -74,6 +78,9 @@ export function Navigation() {
                   fill
                   className="object-contain"
                   priority
+                  quality={90}
+                  sizes="128px"
+                  loading="eager"
                 />
               </div>
             </Link>
@@ -96,7 +103,7 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Right Section - CTA Button */}
+          {/* Right Section - CTA Button (Desktop) / Mobile Dropdown Trigger */}
           <div className="hidden lg:block">
             <Link href="/contact">
               <Button
@@ -114,72 +121,63 @@ export function Navigation() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          {/* Mobile Dropdown Trigger - Extreme Right */}
+          <div className="lg:hidden relative z-50" ref={dropdownRef}>
             <button
-              className="p-3 text-foreground hover:text-primary hover:bg-accent/10 rounded-full transition-all duration-200"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50">
-            {/* Dark Overlay */}
-            <div
-              className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ease-in-out ${
-                isMobileMenuOpen ? "opacity-100" : "opacity-0"
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-
-            {/* Menu Panel */}
-            <div
-              className={`absolute right-0 top-0 h-full w-4/5 border-l border-accent-2/50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-                isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-              }`}
-              style={{
-                background: "#0d0e10",
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsMobileMenuOpen(!isMobileMenuOpen);
               }}
+              className="flex items-center justify-center p-2 text-accent hover:text-primary transition-all duration-200"
+              aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
-              <div className="flex flex-col h-full">
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-accent-2/30">
-                  <h2 className="text-xl font-semibold text-foreground">
-                    Menu
-                  </h2>
-                  <button
-                    className="p-2 text-foreground hover:text-primary hover:bg-accent/10 rounded-full transition-all duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
+              <ChevronDown
+                size={20}
+                className={`text-accent transition-transform duration-300 ${
+                  isMobileMenuOpen ? "rotate-180" : "rotate-0"
+                }`}
+              />
+            </button>
 
-                {/* Navigation Items */}
-                <div className="flex-1 px-6 py-4 space-y-2">
+            {/* Mobile Dropdown Menu */}
+            {isMobileMenuOpen && (
+              <div
+                className="absolute top-full right-0 mt-2 w-64 max-w-[calc(100vw-3rem)] rounded-[12px] overflow-hidden z-[60]"
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, 0.9)",
+                  backdropFilter: "blur(6px)",
+                  WebkitBackdropFilter: "blur(6px)",
+                  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",
+                  border: "1px solid rgba(200, 179, 122, 0.2)",
+                  animation: "dropdownFadeIn 0.25s ease-out",
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="py-2">
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-4 py-3 text-lg font-medium text-foreground hover:text-primary hover:bg-accent/10 rounded-lg transition-all duration-200"
                       onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-3 text-base font-medium text-[#f5e6cc] hover:text-primary hover:bg-accent/10 transition-all duration-200 active:bg-accent/20"
+                      style={{
+                        fontFamily:
+                          'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+                      }}
                     >
                       {item.name}
                     </Link>
                   ))}
-
-                  {/* Book Now Button - Centered below Contact */}
-                  <div className="pt-4">
+                  
+                  {/* Book Now Button */}
+                  <div className="px-4 pt-2 pb-3 mt-2 border-t border-accent/20">
                     <Link
                       href="/contact"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       <Button
-                        className="w-full bg-primary text-primary-foreground hover:bg-accent font-medium py-3 rounded-full text-base"
+                        className="w-full bg-primary text-primary-foreground hover:brightness-110 active:brightness-95 font-medium py-3 rounded-full text-base transition-all duration-200"
                         style={{
                           fontFamily:
                             'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
@@ -194,9 +192,10 @@ export function Navigation() {
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
-        )}
+
+        </div>
       </div>
     </nav>
   );

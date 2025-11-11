@@ -41,7 +41,7 @@ const timeline = [
     title: "The Seed is Planted",
     description:
       "A seed is planted in the minds of a certain Mr Bhupendra & Mr Mukesh Patel. They come from a long lineage of farmers, where father and forefather toiled & lived off the land. The soil beckons and the call is too irresistible. Both friends long to return to the land, and thus the story begins.",
-    images: ["/experience/2008.webp"],
+    images: ["/experience/2008.avif"],
   },
   {
     year: "2011",
@@ -49,9 +49,9 @@ const timeline = [
     description:
       "Mr Mukesh and Mr Bhupendra Patel buy a quiet little farm in Kibwezi. There is no electricity, network or running water, and the land is overrun by weeds. There is only one old house, beautiful red soil, open skies stretching far beyond the horizon, and a kind of peace that's hard to find.",
     images: [
-      "/experience/2011 11.webp",
-      "/experience/2011 2.webp",
-      "/experience/2011 3.webp",
+      "/experience/2011 11.avif",
+      "/experience/2011 2.avif",
+      "/experience/2011 3.avif",
     ],
   },
   {
@@ -59,56 +59,56 @@ const timeline = [
     title: "The Vision Takes Shape",
     description:
       "A goal of 6400 mangoes is set, but the vision seems bigger than reality. Unsuccessful attempts are made to bring electricity to the farm. Exasperated, the 2 farmers turn to renewable energy. Their first attempt is hydroelectric but the water wheel never quite works as expected. Despite the difficulties there is a magic in working the soil.",
-    images: ["/experience/2012 1.webp"],
+    images: ["/experience/2012 1.avif"],
   },
   {
     year: "2015",
     title: "Life's Constant Change",
     description:
       "Life reminds us that change is the only constant. In a flash Bhupendra Bhai passes away and returns to the to the soil he so loved. Yet, the vision they shared still lives on, now bigger than both of them. A vision rooted in the land, in the sunlight, in every corner of the farm they have built together.",
-    images: ["/experience/2015.webp"],
+    images: ["/experience/2015.avif"],
   },
   {
     year: "2016",
     title: "Renewable Energy Focus",
     description:
       "Mukesh intensifies his focus on renewable energy, installing his first solar powered electric system. The hot Kibwezi sun becomes a major asset. Encouraged, he also adds wind turbines to harness the powerful breeze of the river. He lays down these systems by hand, learning, testing, building. This is no longer just a farm; it is a passion project, and he pours into it.",
-    images: ["/experience/2016.webp"],
+    images: ["/experience/2016.avif"],
   },
   {
     year: "2017",
     title: "The Water Tank",
     description:
       "Renewable energy becomes one of the CSFs in running this farm; the river runs nearby but getting water to the crops using fuel proves too expensive. Thus the water tank is erected—using the natural terrain and gravity to water the entire farm. To this day the tank is the farm's most recognizable landmark, visible from kilometers out.",
-    images: ["/experience/2017.webp"],
+    images: ["/experience/2017.avif"],
   },
   {
     year: "2018",
     title: "Nature's Power",
     description:
       "In an instant, nature once again leaves us humbled by her power. Heavy rains become devastating floods, sweeping away our home, drowning the fields in sand and water, and killing hundreds of mature mango trees and other crops. Only the water tank withstands the brunt of the floods, acting as refuge to all who would have otherwise been trapped.",
-    images: ["/experience/2018 1.webp", "/experience/2018 2.webp"],
+    images: ["/experience/2018 1.avif", "/experience/2018 2.avif"],
   },
   {
     year: "2020",
     title: "Building Stronger",
     description:
       'Undeterred, Mukesh decides to build exactly where the old house stood. "Just stronger this time," he says. A new house is built straight into the bedrock, with all the determination to stand strong against all odds. Starting from the ground up - quite literally, he builds bit by bit to where it stands today. Quite different from the initial farmhouse that nature claimed, but with a story of its own to tell.',
-    images: ["/experience/2020 1.webp"],
+    images: ["/experience/2020 1.avif"],
   },
   {
     year: "2022",
     title: "Bambhaji Dham",
     description:
       "The house is christened 'Bambhaji Dham' as it hosts the first celebrations in the family, a testament to starting again. Inspired by the architecture of earthen manyattas, dome houses are erected to welcome friends and family to our home; with a vision of offering them to the community someday.",
-    images: ["/experience/2022 1.webp", "/experience/2022 2.webp"],
+    images: ["/experience/2022 1.avif", "/experience/2022 2.avif"],
   },
   {
     year: "2025",
     title: "The Dream Realized",
     description:
       "What began as a vision to share this way of life has become reality. We now open the Domestead to guests, inviting them to experience Tsavo's quiet tranquility. With 6,000 mango trees flourishing, our dream is taking root and we now hold space for the community to join in partnership with nature.",
-    images: ["/experience/2025 1.webp", "/experience/2025 2.webp"],
+    images: ["/experience/2025 1.avif", "/experience/2025 2.avif"],
   },
 ];
 
@@ -153,10 +153,14 @@ export default function AboutPage() {
             </div>
             <div className="order-1 md:order-2 aspect-[4/3] relative rounded-2xl overflow-hidden">
               <Image
-                src="/carousel/Dome2.webp"
+                src="/carousel/Dome2.avif"
                 alt="Aam Altair: The Domestead - luxury dome accommodation"
                 fill
                 className="object-cover"
+                priority
+                quality={85}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                loading="eager"
               />
             </div>
           </div>
@@ -276,10 +280,13 @@ export default function AboutPage() {
 
             <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
               <Image
-                src="/rivergalana.webp"
+                src="/rivergalana.avif"
                 alt="River Galana flowing through our property"
                 fill
                 className="object-cover"
+                loading="lazy"
+                quality={85}
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>

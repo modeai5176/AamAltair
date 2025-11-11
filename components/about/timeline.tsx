@@ -21,13 +21,12 @@ export function Timeline({ items }: TimelineProps) {
       <div className="relative">
         {items.map((item, index) => {
           const isEven = index % 2 === 0;
-          const itemNumber = index + 1;
           const isLast = index === items.length - 1;
 
           return (
             <div
               key={index}
-              className="relative mb-24 md:mb-32 last:mb-0 group"
+              className="relative mb-28 md:mb-36 last:mb-0 group"
             >
               {/* Desktop: Connecting Line Segment (from center of current marker to center of next) */}
               {!isLast && (
@@ -37,10 +36,10 @@ export function Timeline({ items }: TimelineProps) {
               {/* Container for desktop layout */}
               <div className="relative flex flex-col md:flex-row items-start md:items-center min-h-[10rem] md:min-h-[12rem]">
                 {/* Desktop: Left Side - Images for Even items, Text for Odd items */}
-                <div className="hidden md:block w-[calc(50%-2.5rem)] pr-8 mb-0">
+                <div className="hidden md:block w-[calc(50%-2.5rem)] pr-8 mb-0 flex items-center">
                   {isEven ? (
                     /* Even items: Images on left */
-                    <div className="text-right">
+                    <div className="text-right w-full">
                       <TimelineImage
                         images={item.images}
                         alt={`${item.title} - ${item.year}`}
@@ -49,23 +48,15 @@ export function Timeline({ items }: TimelineProps) {
                     </div>
                   ) : (
                     /* Odd items: Text on left */
-                    <div className="text-right">
-                      <div className="bg-gray-900/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-300">
-                        {/* Year Badge */}
-                        <div className="flex items-center gap-2 mb-4 justify-end">
-                          <Calendar className="w-5 h-5 text-accent" />
-                          <span className="text-2xl font-serif font-medium text-accent">
-                            {item.year}
-                          </span>
-                        </div>
-
+                    <div className="text-right w-full">
+                      <div className="bg-gray-900/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-5 md:p-7 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-300">
                         {/* Title */}
                         <h3 className="text-2xl md:text-3xl font-serif font-medium text-primary mb-3">
                           {item.title}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-foreground/80 leading-relaxed mb-6">
+                        <p className="text-foreground/80 leading-relaxed mb-0">
                           {item.description}
                         </p>
                       </div>
@@ -81,16 +72,16 @@ export function Timeline({ items }: TimelineProps) {
                     
                     {/* Main circle */}
                     <div className="relative w-full h-full rounded-full bg-gradient-to-br from-accent/90 to-accent/70 border-2 border-accent/50 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                      {/* Number */}
-                      <span className="relative text-xl md:text-2xl font-serif font-medium text-accent-foreground">
-                        {itemNumber}
+                      {/* Year */}
+                      <span className="relative text-lg md:text-xl font-serif font-medium text-accent-foreground">
+                        {item.year}
                       </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Desktop: Right Side - Text for Even items, Images for Odd items / Mobile: All content */}
-                <div className="w-full md:w-[calc(50%-2.5rem)] md:ml-auto md:pl-8">
+                <div className="w-full md:w-[calc(50%-2.5rem)] md:ml-auto md:pl-8 md:flex md:items-center">
                   {/* Mobile: Milestone Marker */}
                   <div className="md:hidden relative w-full flex justify-center mb-6">
                     <div className="relative w-16 h-16 flex items-center justify-center">
@@ -104,24 +95,16 @@ export function Timeline({ items }: TimelineProps) {
                       
                       {/* Main circle */}
                       <div className="relative w-full h-full rounded-full bg-gradient-to-br from-accent/90 to-accent/70 border-2 border-accent/50 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                        {/* Number */}
-                        <span className="relative text-xl font-serif font-medium text-accent-foreground">
-                          {itemNumber}
+                        {/* Year */}
+                        <span className="relative text-lg font-serif font-medium text-accent-foreground">
+                          {item.year}
                         </span>
                       </div>
                     </div>
                   </div>
 
                   {/* Mobile: Show content after marker */}
-                  <div className="md:hidden bg-gray-900/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-300">
-                    {/* Year Badge */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <Calendar className="w-5 h-5 text-accent" />
-                      <span className="text-2xl font-serif font-medium text-accent">
-                        {item.year}
-                      </span>
-                    </div>
-
+                  <div className="md:hidden bg-gray-900/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-5 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-300">
                     {/* Title */}
                     <h3 className="text-2xl font-serif font-medium text-primary mb-3">
                       {item.title}
@@ -144,23 +127,15 @@ export function Timeline({ items }: TimelineProps) {
 
                   {/* Desktop: Even items - Text on right */}
                   {isEven && (
-                    <div className="hidden md:block text-left">
-                      <div className="bg-gray-900/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-300">
-                        {/* Year Badge */}
-                        <div className="flex items-center gap-2 mb-4">
-                          <Calendar className="w-5 h-5 text-accent" />
-                          <span className="text-2xl font-serif font-medium text-accent">
-                            {item.year}
-                          </span>
-                        </div>
-
+                    <div className="hidden md:block text-left w-full">
+                      <div className="bg-gray-900/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-5 md:p-7 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-300">
                         {/* Title */}
                         <h3 className="text-2xl md:text-3xl font-serif font-medium text-primary mb-3">
                           {item.title}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-foreground/80 leading-relaxed mb-6">
+                        <p className="text-foreground/80 leading-relaxed mb-0">
                           {item.description}
                         </p>
                       </div>
@@ -169,7 +144,7 @@ export function Timeline({ items }: TimelineProps) {
 
                   {/* Desktop: Odd items - Images on right */}
                   {!isEven && (
-                    <div className="hidden md:block text-left">
+                    <div className="hidden md:block text-left w-full">
                       <TimelineImage
                         images={item.images}
                         alt={`${item.title} - ${item.year}`}

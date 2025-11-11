@@ -16,6 +16,9 @@ export function Footer() {
                   alt="Aam Altair Logo"
                   fill
                   className="object-contain"
+                  loading="lazy"
+                  quality={90}
+                  sizes="128px"
                 />
               </div>
             </div>
