@@ -54,14 +54,6 @@ const journeyData = {
           pickup_time: "1h",
         },
       },
-      {
-        label: "From Nairobi (Makindu)",
-        station_primary: {
-          name: "Makindu SGR",
-          rail_time: "4h",
-          pickup_time: "1.5h",
-        },
-      },
     ],
     cta: { label: "Add pickup", price: "$20/ride" },
   },
