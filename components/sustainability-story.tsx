@@ -173,6 +173,9 @@ export function SustainabilityStory() {
                   alt="Solar panels and wind turbine at Aam Altair"
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </div>
@@ -187,6 +190,9 @@ export function SustainabilityStory() {
                   alt="Local artisans crafting furniture"
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </div>
@@ -264,10 +270,13 @@ export function SustainabilityStory() {
             <div className="relative">
               <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
                 <Image
-                  src="/mango-orchard-kenya-landscape.webp"
+                  src="/mango-orchard-kenya-landscape.avif"
                   alt="Irrigation system in mango orchard"
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </div>

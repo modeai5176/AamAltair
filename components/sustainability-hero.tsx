@@ -5,11 +5,14 @@ export function SustainabilityHero() {
     <section className="relative h-screen flex items-center pt-header">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/mango-orchard-kenya-landscape.webp"
+          src="/mango-orchard-kenya-landscape.avif"
           alt="Sustainable mango orchard"
           fill
           className="object-cover"
           priority
+          quality={85}
+          sizes="100vw"
+          loading="eager"
         />
         <div className="absolute inset-0 hero-overlay" />
       </div>

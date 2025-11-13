@@ -53,6 +53,12 @@ const addOns = [
 
 export function ProfessionalBookingSystem() {
   const [step, setStep] = useState(1);
+  const [contactFormErrors, setContactFormErrors] = useState({
+    name: false,
+    email: false,
+    phone: false,
+    country: false,
+  });
 
   // Get today's date in YYYY-MM-DD format, ensuring it's always today
   const getToday = () => {
@@ -167,6 +173,23 @@ export function ProfessionalBookingSystem() {
     if (code === "hercules") return "Hercules";
     if (code === "andromeda") return "Andromeda";
     return code || "Unknown";
+  };
+
+  const validateContactForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[\d\s\-\+\(\)]{7,}$/; // At least 7 characters, allows digits, spaces, dashes, plus, parentheses
+
+    const emailValue = bookingData.personalInfo.email.trim();
+    const phoneValue = bookingData.personalInfo.phone.trim();
+
+    const errors = {
+      name: !bookingData.personalInfo.name.trim(),
+      email: !emailValue || !emailRegex.test(emailValue),
+      phone: !phoneValue || !phoneRegex.test(phoneValue),
+      country: !bookingData.personalInfo.country.trim(),
+    };
+    setContactFormErrors(errors);
+    return !Object.values(errors).some((error) => error);
   };
 
   const handleSubmit = () => {
@@ -718,69 +741,165 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Full Name</Label>
+                    <Label htmlFor="name">
+                      Full Name <span className="text-red-500">*</span>
+                    </Label>
                     <Input
                       id="name"
                       value={bookingData.personalInfo.name}
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setBookingData((prev) => ({
                           ...prev,
                           personalInfo: {
                             ...prev.personalInfo,
                             name: e.target.value,
                           },
-                        }))
+                        }));
+                        if (contactFormErrors.name && e.target.value.trim()) {
+                          setContactFormErrors((prev) => ({
+                            ...prev,
+                            name: false,
+                          }));
+                        }
+                      }}
+                      className={
+                        contactFormErrors.name
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                          : ""
                       }
                     />
+                    {contactFormErrors.name && (
+                      <p className="text-sm text-red-500">
+                        Full Name is required
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
+                    <Label htmlFor="email">
+                      Email Address <span className="text-red-500">*</span>
+                    </Label>
                     <Input
                       id="email"
                       type="email"
                       value={bookingData.personalInfo.email}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const emailValue = e.target.value;
                         setBookingData((prev) => ({
                           ...prev,
                           personalInfo: {
                             ...prev.personalInfo,
-                            email: e.target.value,
+                            email: emailValue,
                           },
-                        }))
+                        }));
+                        // Clear error if valid email format is entered
+                        if (contactFormErrors.email) {
+                          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                          if (
+                            emailValue.trim() &&
+                            emailRegex.test(emailValue.trim())
+                          ) {
+                            setContactFormErrors((prev) => ({
+                              ...prev,
+                              email: false,
+                            }));
+                          }
+                        }
+                      }}
+                      className={
+                        contactFormErrors.email
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                          : ""
                       }
                     />
+                    {contactFormErrors.email && (
+                      <p className="text-sm text-red-500">
+                        {!bookingData.personalInfo.email.trim()
+                          ? "Email Address is required"
+                          : "Please enter a valid email address"}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
+                    <Label htmlFor="phone">
+                      Phone Number <span className="text-red-500">*</span>
+                    </Label>
                     <Input
                       id="phone"
+                      type="tel"
                       value={bookingData.personalInfo.phone}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const phoneValue = e.target.value;
                         setBookingData((prev) => ({
                           ...prev,
                           personalInfo: {
                             ...prev.personalInfo,
-                            phone: e.target.value,
+                            phone: phoneValue,
                           },
-                        }))
+                        }));
+                        // Clear error if valid phone format is entered
+                        if (contactFormErrors.phone) {
+                          const phoneRegex = /^[\d\s\-\+\(\)]{7,}$/;
+                          if (
+                            phoneValue.trim() &&
+                            phoneRegex.test(phoneValue.trim())
+                          ) {
+                            setContactFormErrors((prev) => ({
+                              ...prev,
+                              phone: false,
+                            }));
+                          }
+                        }
+                      }}
+                      className={
+                        contactFormErrors.phone
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                          : ""
                       }
                     />
+                    {contactFormErrors.phone && (
+                      <p className="text-sm text-red-500">
+                        {!bookingData.personalInfo.phone.trim()
+                          ? "Phone Number is required"
+                          : "Please enter a valid phone number"}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="country">Country</Label>
+                    <Label htmlFor="country">
+                      Country <span className="text-red-500">*</span>
+                    </Label>
                     <Input
                       id="country"
                       value={bookingData.personalInfo.country}
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setBookingData((prev) => ({
                           ...prev,
                           personalInfo: {
                             ...prev.personalInfo,
                             country: e.target.value,
                           },
-                        }))
+                        }));
+                        if (
+                          contactFormErrors.country &&
+                          e.target.value.trim()
+                        ) {
+                          setContactFormErrors((prev) => ({
+                            ...prev,
+                            country: false,
+                          }));
+                        }
+                      }}
+                      className={
+                        contactFormErrors.country
+                          ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                          : ""
                       }
                     />
+                    {contactFormErrors.country && (
+                      <p className="text-sm text-red-500">
+                        Country is required
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -803,10 +922,29 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                 </div>
 
                 <div className="flex justify-between">
-                  <Button variant="outline" onClick={() => setStep(2)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setContactFormErrors({
+                        name: false,
+                        email: false,
+                        phone: false,
+                        country: false,
+                      });
+                      setStep(2);
+                    }}
+                  >
                     Back
                   </Button>
-                  <Button onClick={() => setStep(4)}>Review Booking</Button>
+                  <Button
+                    onClick={() => {
+                      if (validateContactForm()) {
+                        setStep(4);
+                      }
+                    }}
+                  >
+                    Review Booking
+                  </Button>
                 </div>
               </div>
             )}

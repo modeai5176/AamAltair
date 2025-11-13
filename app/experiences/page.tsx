@@ -15,7 +15,7 @@ const experiences = [
     schedule: "Start 6:00 AM",
     price: "Included",
     bookingRequired: true,
-    image: "/sunrise.webp",
+    image: "/sunrise.avif",
   },
   {
     iconName: "TreePine",
@@ -28,7 +28,7 @@ const experiences = [
     schedule: "7:30–9:00 AM",
     price: "Included",
     bookingRequired: true,
-    image: "/mango-orchard-kenya-landscape.webp",
+    image: "/mango-orchard-kenya-landscape.avif",
   },
   {
     iconName: "Wine",
@@ -41,7 +41,7 @@ const experiences = [
     schedule: "5:30–7:00 PM",
     price: "5,000 pp",
     bookingRequired: true,
-    image: "/sundowner.webp",
+    image: "/sundowner.avif",
   },
   {
     iconName: "Apple",
@@ -54,7 +54,7 @@ const experiences = [
     schedule: "Flexible timing",
     price: "3,000 pp",
     bookingRequired: true,
-    image: "/mango-orchard.webp",
+    image: "/mango-orchard.avif",
   },
   // Duplicated cards (you can update contents later)
   {
@@ -68,7 +68,7 @@ const experiences = [
     schedule: "Start 6:00 AM",
     price: "1500 pp",
     bookingRequired: true,
-    image: "/rivergalana.webp",
+    image: "/rivergalana.avif",
   },
   {
     iconName: "TreePine",
@@ -81,7 +81,7 @@ const experiences = [
     schedule: "7:30–9:00 AM",
     price: "Included",
     bookingRequired: true,
-    image: "/mango-orchard-kenya-landscape.webp",
+    image: "/mango-orchard-kenya-landscape.avif",
   },
   {
     iconName: "Wine",
@@ -94,7 +94,7 @@ const experiences = [
     schedule: "5:30–7:00 PM",
     price: "Contact for pricing",
     bookingRequired: true,
-    image: "/river-galana-kenya-nature.webp",
+    image: "/river-galana-kenya-nature.avif",
   },
 ];
 

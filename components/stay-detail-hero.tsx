@@ -30,7 +30,10 @@ export function StayDetailHero({ title, images }: StayDetailHeroProps) {
           alt={`${title} - Image ${currentImageIndex + 1}`}
           fill
           className="object-cover"
-          priority
+          priority={currentImageIndex === 0}
+          loading={currentImageIndex === 0 ? "eager" : "lazy"}
+          quality={85}
+          sizes="100vw"
         />
 
         {/* Overlay */}

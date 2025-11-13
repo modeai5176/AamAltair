@@ -36,7 +36,7 @@ export function TimelineImage({ images, alt, year }: TimelineImageProps) {
   // Single image - no slideshow needed
   if (images.length === 1) {
     return (
-      <div className="aspect-[16/9] relative rounded-xl overflow-hidden shadow-lg">
+      <div className="aspect-[16/9] relative rounded-[12px] overflow-hidden shadow-lg w-full">
         <Image
           src={images[0]}
           alt={alt}
@@ -44,6 +44,8 @@ export function TimelineImage({ images, alt, year }: TimelineImageProps) {
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 66vw"
           priority={false}
+          loading="lazy"
+          quality={85}
         />
       </div>
     );
@@ -51,7 +53,7 @@ export function TimelineImage({ images, alt, year }: TimelineImageProps) {
 
   // Multiple images - show slideshow
   return (
-    <div className="aspect-[16/9] relative rounded-xl overflow-hidden shadow-lg group">
+    <div className="aspect-[16/9] relative rounded-[12px] overflow-hidden shadow-lg group w-full">
       <Image
         src={images[currentIndex]}
         alt={`${alt} - Image ${currentIndex + 1}`}
@@ -59,6 +61,8 @@ export function TimelineImage({ images, alt, year }: TimelineImageProps) {
         className="object-cover transition-opacity duration-500"
         sizes="(max-width: 768px) 100vw, 66vw"
         priority={false}
+        loading={currentIndex === 0 ? "eager" : "lazy"}
+        quality={85}
       />
 
       {/* Navigation Arrows */}
