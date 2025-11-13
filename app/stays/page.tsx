@@ -28,11 +28,7 @@ export default function StaysPage() {
             <StayCard
               title="The Big Dipper"
               description="In the serene hills of Tsavo, where baobabs rise and the Galana River flows — wake to light, wander through orchards, and rest under the stars. Handcrafted domes powered by sun and wind blend luxury with nature."
-              images={[
-                "/carousel/OutdoorDay2.avif",
-                "/luxury-dome-accommodation-riverfront-kenya.avif",
-                "/luxury-dome-interior-kenya-retreat.avif",
-              ]}
+              images={["/carousel/OutdoorDay2.avif", "/interior_sofa.avif"]}
               badges={["Sleeps 4 (+2)", "Riverfront", "Self-catering or Chef"]}
               features={[
                 "Downstairs: 1 King bed",
@@ -51,11 +47,7 @@ export default function StaysPage() {
             <StayCard
               title="Hercules"
               description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
-              images={[
-                "/carousel/InteriorBest.avif",
-                "/second-luxury-property-kenya-retreat.avif",
-                "/riverfront-deck-sunset-kenya.avif",
-              ]}
+              images={["/carousel/InteriorBest.avif", "/night_outside.avif"]}
               badges={[
                 "Mezzanine floor",
                 "Riverfront deck",
@@ -80,8 +72,7 @@ export default function StaysPage() {
               description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
               images={[
                 "/carousel/Indoor.avif",
-                "/outdoor-kitchen-kenya-retreat.avif",
-                "/nature-experiences-mango-orchard-kenya.avif",
+                "/carousel/OutdoorChillingArea2.avif",
               ]}
               badges={[
                 "Mezzanine floor",

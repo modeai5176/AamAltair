@@ -55,26 +55,21 @@ const galleryImages = [
     category: "River",
   },
   // Other existing images
-  {
-    src: "/luxury-dome-accommodation-riverfront-kenya.avif",
-    alt: "The Domestead luxury dome accommodation",
-    category: "Interiors",
-  },
-  {
-    src: "/dome-accommodation-with-river-view-kenya-luxury-re.avif",
-    alt: "River view from The Domestead",
-    category: "River",
-  },
-  {
-    src: "/luxury-dome-interior-kenya-retreat.avif",
-    alt: "Interior design of The Domestead",
-    category: "Interiors",
-  },
-  {
-    src: "/riverfront-deck-sunset-kenya.avif",
-    alt: "Sunset from the riverfront deck",
-    category: "Day",
-  },
+  // {
+  //   src: "/dome-accommodation-with-river-view-kenya-luxury-re.avif",
+  //   alt: "River view from The Domestead",
+  //   category: "River",
+  // },
+  // {
+  //   src: "/luxury-dome-interior-kenya-retreat.avif",
+  //   alt: "Interior design of The Domestead",
+  //   category: "Interiors",
+  // },
+  // {
+  //   src: "/riverfront-deck-sunset-kenya.avif",
+  //   alt: "Sunset from the riverfront deck",
+  //   category: "Day",
+  // },
   {
     src: "/mango-orchard-kenya-landscape.avif",
     alt: "Mango orchard landscape",
@@ -91,10 +86,30 @@ const galleryImages = [
     category: "River",
   },
   {
-    src: "/outdoor-kitchen-kenya-retreat.avif",
-    alt: "Outdoor kitchen and dining area",
+    src: "/night-activities.avif",
+    alt: "Night activities at Aam Altair",
+    category: "Night",
+  },
+  {
+    src: "/night_fun.avif",
+    alt: "Evening entertainment and fun at Aam Altair",
+    category: "Night",
+  },
+  {
+    src: "/night_outside.avif",
+    alt: "Outdoor night scene at Aam Altair",
+    category: "Night",
+  },
+  {
+    src: "/interior_sofa.avif",
+    alt: "Comfortable interior sofa area",
     category: "Interiors",
   },
+  // {
+  //   src: "/outdoor-kitchen-kenya-retreat.avif",
+  //   alt: "Outdoor kitchen and dining area",
+  //   category: "Interiors",
+  // },
 ];
 
 export function GalleryGrid() {

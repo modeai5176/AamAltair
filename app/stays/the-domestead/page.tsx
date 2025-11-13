@@ -16,11 +16,9 @@ export default function TheDomesteadPage() {
       <StayDetailHero
         title="The Big Dipper"
         images={[
-          "/luxury-dome-accommodation-riverfront-kenya.avif",
-          "/dome-accommodation-with-river-view-kenya-luxury-re.avif",
-          "/luxury-dome-interior-kenya-retreat.avif",
-          "/riverfront-deck-sunset-kenya.avif",
-          "/outdoor-kitchen-kenya-retreat.avif",
+          "/carousel/OutdoorDay2.avif",
+          "/interior_sofa.avif",
+          "/night_outside.avif",
         ]}
       />
       <StayOverview />
