@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const included = [
   "Luxury accommodation",
   "Daily breakfast",
-  "Guided farm tour",
+  "Guided Orchard Walk",
   "Wi-Fi at main house",
   "Solar power",
   "Organic toiletries",
@@ -16,7 +16,7 @@ const addOns = [
   { name: "Bush Breakfasts", price: "KSh 2,500 pp" },
   { name: "Celebration Packages", price: "Quote on request" },
   { name: "Pickup from SGR", price: "KES 4,000 / trip (2–4 pax)" },
-  { name: "Sundowner Picnic", price: "KSh 5,000 pp" },
+  { name: "Sundowner Picnic", price: "KSh 3,500 pp" },
   { name: "Mango Tasting", price: "KSh 3,000 pp" },
 ];
 

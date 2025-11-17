@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
+import { Instagram, Facebook } from "lucide-react";
 
 const faqs = [
   {
@@ -122,6 +123,32 @@ export function FAQSection() {
               >
                 Email Us
               </a>
+            </div>
+            {/* Follow Us Section */}
+            <div className="pt-4 space-y-3">
+              <p className="text-sm font-medium text-foreground/70">
+                Follow Us
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                <a
+                  href="https://www.instagram.com/theaamaltair?igsh=MXhqcXN1dXlqdWtkZA=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 hover:scale-110 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 group"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="w-7 h-7 text-accent group-hover:scale-110 transition-transform duration-300" />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61583889752108"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/20 hover:scale-110 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 group"
+                  aria-label="Follow us on Facebook"
+                >
+                  <Facebook className="w-7 h-7 text-accent group-hover:scale-110 transition-transform duration-300" />
+                </a>
+              </div>
             </div>
           </CardContent>
         </Card>

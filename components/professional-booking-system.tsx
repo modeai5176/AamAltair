@@ -28,7 +28,7 @@ const addOns = [
   {
     id: "pickup",
     name: "Station Pickup Service",
-    price: 20,
+    price: 40,
     description: "From Kibwezi or Makindu SGR",
   },
   {
@@ -48,6 +48,42 @@ const addOns = [
     name: "Cultural Village Visit",
     price: 35,
     description: "Meet local artisans & craftspeople",
+  },
+  {
+    id: "sundowner",
+    name: "Sundowner Picnic",
+    price: 35,
+    description: "Evening picnic with sunset views",
+  },
+  {
+    id: "mango-tasting",
+    name: "Mango Tasting Menu",
+    price: 30,
+    description: "Curated mango tasting experience",
+  },
+  {
+    id: "sunrise-yoga",
+    name: "Sunrise Yoga",
+    price: 0,
+    description: "Morning yoga session at sunrise",
+  },
+  {
+    id: "orchard-tour",
+    name: "Guided Orchard Tour",
+    price: 0,
+    description: "Explore the mango orchard with a guide",
+  },
+  {
+    id: "silk-farm",
+    name: "Silk Farm Tour",
+    price: 0,
+    description: "Visit local silk production facility",
+  },
+  {
+    id: "waterfall-hike",
+    name: "Waterfall & Island Hike",
+    price: 15,
+    description: "Guided hike to waterfall and island",
   },
 ];
 
@@ -709,7 +745,9 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                                 {addOn.name}
                               </Label>
                               <span className="font-semibold text-primary">
-                                KSh {addOn.price * 100}
+                                {addOn.price === 0
+                                  ? "Included"
+                                  : `KSh ${addOn.price * 100}`}
                               </span>
                             </div>
                             <p className="text-sm text-muted-foreground mt-1">
@@ -981,8 +1019,10 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                             const addOn = addOns.find((a) => a.id === id);
                             return (
                               <div key={id} className="text-sm">
-                                {addOn?.name} (+KSh{" "}
-                                {addOn ? addOn.price * 100 : 0})
+                                {addOn?.name}{" "}
+                                {addOn && addOn.price === 0
+                                  ? "(Included)"
+                                  : `(+KSh ${addOn ? addOn.price * 100 : 0})`}
                               </div>
                             );
                           })}

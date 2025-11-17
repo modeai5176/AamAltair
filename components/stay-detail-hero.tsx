@@ -95,7 +95,7 @@ export function StayDetailHero({ title, images }: StayDetailHeroProps) {
               {title}
             </h2>
             <p className="text-sm text-muted-foreground">
-              Starting from KSh 15,000 per night
+              Starting from KSh 10,000 per night
             </p>
           </div>
           <Button

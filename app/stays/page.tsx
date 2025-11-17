@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StayCard } from "@/components/stay-card";
 import { NatureCTA } from "@/components/nature-cta";
+import { PromoFloatingCard } from "@/components/promo-floating-card";
 
 export default function StaysPage() {
   return (
@@ -11,6 +12,11 @@ export default function StaysPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-7xl mx-auto px-6">
+          {/* Promo Card at Top */}
+          <div className="mb-12">
+            <PromoFloatingCard alwaysVisible inline />
+          </div>
+
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 text-balance">
               Your Retreats in Tsavo
