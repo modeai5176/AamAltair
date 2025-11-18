@@ -17,7 +17,7 @@ const addOns = [
   { name: "Celebration Packages", price: "Quote on request" },
   { name: "Pickup from SGR", price: "KES 4,000 / trip (2–4 pax)" },
   { name: "Sundowner Picnic", price: "KSh 3,500 pp" },
-  { name: "Mango Tasting", price: "KSh 3,000 pp" },
+  { name: "Mango Tasting Menu", price: "KSh 3,000 pp" },
 ];
 
 export function StayInclusions() {

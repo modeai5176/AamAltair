@@ -29,7 +29,13 @@ const addOns = [
     id: "pickup",
     name: "Station Pickup Service",
     price: 40,
-    description: "From Kibwezi or Makindu SGR",
+    description: "From Kibwezi SGR",
+  },
+  {
+    id: "dropoff",
+    name: "Station Drop-off Service",
+    price: 40,
+    description: "To Kibwezi SGR station",
   },
   {
     id: "meals",
@@ -254,16 +260,14 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
 
     if (bookingData.contactMethod === "whatsapp") {
       window.open(
-        `https://wa.me/254700000000?text=${encodeURIComponent(message)}`,
+        `https://wa.me/254716862882?text=${encodeURIComponent(message)}`,
         "_blank"
       );
     } else if (bookingData.contactMethod === "email") {
-      window.open(
-        `mailto:bookings@aamaltair.com?subject=Booking Request&body=${encodeURIComponent(
-          message
-        )}`,
-        "_blank"
-      );
+      const subject = encodeURIComponent("Booking Request");
+      const body = encodeURIComponent(message);
+      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=bookings@aamaltair.com&su=${subject}&body=${body}`;
+      window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
     }
   };
 

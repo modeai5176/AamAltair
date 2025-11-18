@@ -16,6 +16,7 @@ export default function TheDomesteadPage() {
       <StayDetailHero
         title="The Big Dipper"
         images={[
+          "/carousel/big_dipper.avif",
           "/carousel/OutdoorDay2.avif",
           "/interior_sofa.avif",
           "/night_outside.avif",

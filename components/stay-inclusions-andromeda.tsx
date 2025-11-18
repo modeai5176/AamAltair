@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const included = [
   "Luxury accommodation (linen & towels)",
   "Daily light breakfast hamper",
-  "Guided Orchard & Riverside walk",
+  "Guided Mango Orchard walk",
   "Wi‑Fi at main house",
   "All-clean solar & wind power",
   "Eco toiletries & filtered water",

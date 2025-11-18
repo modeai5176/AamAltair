@@ -19,6 +19,7 @@ export default function HeraclesPage() {
           "/carousel/InteriorBest.avif",
           "/night_outside.avif",
           "/riverfront-deck-sunset-kenya.avif",
+          "/carousel/hercules_room.avif",
         ]}
       />
       <StayOverview />

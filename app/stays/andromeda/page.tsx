@@ -16,11 +16,11 @@ export default function AndromedaPage() {
       <StayDetailHero
         title="Andromeda"
         images={[
-          "/carousel/OutdoorChillingArea2.avif",
-          "/night-sky-milky-way-kenya.avif",
-          "/river-galana-kenya-nature.avif",
-          "/mango-orchard-kenya-landscape.avif",
+          "/carousel/andromeda_night.avif",
           "/carousel/Indoor.avif",
+          "/carousel/andromeda_top.avif",
+          "/carousel/OutdoorChillingArea2.avif",
+          "/river-galana-kenya-nature.avif",
         ]}
       />
       <StayOverview />

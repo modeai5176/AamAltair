@@ -16,6 +16,15 @@ interface BookingWidgetProps {
 export function BookingWidget({
   domeName = "The Domestead",
 }: BookingWidgetProps) {
+  const formatDate = (date: Date) => date.toISOString().split("T")[0];
+  const today = formatDate(new Date());
+  const getMinCheckoutDate = (checkInDate: string) => {
+    if (!checkInDate) return today;
+    const nextDay = new Date(checkInDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return formatDate(nextDay);
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,9 +44,9 @@ export function BookingWidget({
   >("idle");
 
   const addOns = [
-    { id: "pickup", name: "Pickup from Kibwezi SGR", price: "$20" },
+    { id: "pickup", name: "Pickup from Kibwezi SGR", price: "Ksh 4,000/ride" },
     { id: "chef", name: "Private Chef", price: "Quote" },
-    { id: "sundowner", name: "Sundowner Picnic", price: "KSh 5,000 pp" },
+    { id: "sundowner", name: "Sundowner Picnic", price: "KSh 3,500 pp" },
     { id: "tasting", name: "Mango Tasting", price: "KSh 3,000 pp" },
   ];
 
@@ -146,10 +155,10 @@ Please confirm availability and provide pricing information.
 
 Thank you!`;
 
-    const emailUrl = `mailto:bookings@aamaltair.com?subject=${encodeURIComponent(
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=bookings@aamaltair.com&su=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
-    window.open(emailUrl, "_blank");
+    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -186,11 +195,24 @@ Thank you!`;
                       id="checkin"
                       type="date"
                       value={formData.checkIn}
+                      min={today}
                       onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          checkIn: e.target.value,
-                        }))
+                        setFormData((prev) => {
+                          const nextCheckIn = e.target.value;
+                          if (!nextCheckIn) {
+                            return { ...prev, checkIn: "", checkOut: "" };
+                          }
+                          const minCheckout = getMinCheckoutDate(nextCheckIn);
+                          const adjustedCheckOut =
+                            prev.checkOut && prev.checkOut >= minCheckout
+                              ? prev.checkOut
+                              : minCheckout;
+                          return {
+                            ...prev,
+                            checkIn: nextCheckIn,
+                            checkOut: adjustedCheckOut,
+                          };
+                        })
                       }
                       className="pl-10"
                     />
@@ -209,11 +231,19 @@ Thank you!`;
                       id="checkout"
                       type="date"
                       value={formData.checkOut}
+                      min={getMinCheckoutDate(formData.checkIn)}
                       onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          checkOut: e.target.value,
-                        }))
+                        setFormData((prev) => {
+                          const nextCheckOut = e.target.value;
+                          const minCheckout = getMinCheckoutDate(prev.checkIn);
+                          return {
+                            ...prev,
+                            checkOut:
+                              nextCheckOut && nextCheckOut >= minCheckout
+                                ? nextCheckOut
+                                : minCheckout,
+                          };
+                        })
                       }
                       className="pl-10"
                     />
