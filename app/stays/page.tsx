@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StayCard } from "@/components/stay-card";
 import { NatureCTA } from "@/components/nature-cta";
+import { PromoFloatingCard } from "@/components/promo-floating-card";
 
 export default function StaysPage() {
   return (
@@ -11,6 +12,11 @@ export default function StaysPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-7xl mx-auto px-6">
+          {/* Promo Card at Top */}
+          <div className="mb-12">
+            <PromoFloatingCard alwaysVisible inline />
+          </div>
+
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 text-balance">
               Your Retreats in Tsavo
@@ -28,7 +34,11 @@ export default function StaysPage() {
             <StayCard
               title="The Big Dipper"
               description="In the serene hills of Tsavo, where baobabs rise and the Galana River flows — wake to light, wander through orchards, and rest under the stars. Handcrafted domes powered by sun and wind blend luxury with nature."
-              images={["/carousel/OutdoorDay2.avif", "/interior_sofa.avif"]}
+              images={[
+                "/carousel/big_dipper.avif",
+                "/carousel/OutdoorDay2.avif",
+                "/interior_sofa.avif",
+              ]}
               badges={["Sleeps 4 (+2)", "Riverfront", "Self-catering or Chef"]}
               features={[
                 "Downstairs: 1 King bed",
@@ -39,7 +49,7 @@ export default function StaysPage() {
                 "Outdoor kitchen & deck",
                 "Private riverfront deck",
               ]}
-              href="/stays/the-domestead"
+              href="/stays/the-big-dipper"
               featured
             />
 
@@ -47,7 +57,11 @@ export default function StaysPage() {
             <StayCard
               title="Hercules"
               description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
-              images={["/carousel/InteriorBest.avif", "/night_outside.avif"]}
+              images={[
+                "/carousel/InteriorBest.avif",
+                "/carousel/hercules.avif",
+                "/carousel/hercules_room.avif",
+              ]}
               badges={[
                 "Mezzanine floor",
                 "Riverfront deck",
@@ -71,8 +85,9 @@ export default function StaysPage() {
               title="Andromeda"
               description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
               images={[
+                "/carousel/andromeda_night.avif",
                 "/carousel/Indoor.avif",
-                "/carousel/OutdoorChillingArea2.avif",
+                "/carousel/andromeda_top.avif",
               ]}
               badges={[
                 "Mezzanine floor",

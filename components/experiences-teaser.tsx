@@ -38,7 +38,7 @@ const experiences = [
     duration: "1.5 hrs",
     season: "dry season",
     time: "5:30–7:00 PM",
-    price: "KSh 5,000 pp",
+    price: "KSh 3,500 pp",
   },
   {
     iconName: "Apple",

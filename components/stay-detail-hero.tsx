@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -12,29 +12,49 @@ interface StayDetailHeroProps {
 
 export function StayDetailHero({ title, images }: StayDetailHeroProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const totalImages = images.length;
+
+  useEffect(() => {
+    if (totalImages <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [totalImages]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
   return (
     <section className="relative pt-header">
       {/* Image Slider */}
       <div className="relative h-[70vh] overflow-hidden">
-        <Image
-          src={images[currentImageIndex] || "/placeholder.svg"}
-          alt={`${title} - Image ${currentImageIndex + 1}`}
-          fill
-          className="object-cover"
-          priority={currentImageIndex === 0}
-          loading={currentImageIndex === 0 ? "eager" : "lazy"}
-          quality={85}
-          sizes="100vw"
-        />
+        <div
+          className="flex h-full w-full transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+        >
+          {images.map((image, index) => (
+            <div key={`${image}-${index}`} className="relative h-full w-full flex-shrink-0">
+              <Image
+                src={image || "/placeholder.svg"}
+                alt={`${title} - Image ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                quality={85}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
@@ -95,7 +115,7 @@ export function StayDetailHero({ title, images }: StayDetailHeroProps) {
               {title}
             </h2>
             <p className="text-sm text-muted-foreground">
-              Starting from KSh 15,000 per night
+              Starting from KSh 10,000 per night
             </p>
           </div>
           <Button

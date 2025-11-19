@@ -6,12 +6,14 @@ import { ExperiencesTeaser } from "@/components/experiences-teaser";
 import { GalleryStrip } from "@/components/gallery-strip";
 import { GettingHereSection } from "@/components/getting-here-section";
 import { NatureCTA } from "@/components/nature-cta";
+import { PromoFloatingCard } from "@/components/promo-floating-card";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Navigation />
       <HeroSection />
+      <PromoFloatingCard />
       <AboutSection />
       <ExperiencesTeaser />
       <GalleryStrip />

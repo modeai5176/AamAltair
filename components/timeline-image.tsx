@@ -54,16 +54,28 @@ export function TimelineImage({ images, alt, year }: TimelineImageProps) {
   // Multiple images - show slideshow
   return (
     <div className="aspect-[16/9] relative rounded-[12px] overflow-hidden shadow-lg group w-full">
-      <Image
-        src={images[currentIndex]}
-        alt={`${alt} - Image ${currentIndex + 1}`}
-        fill
-        className="object-cover transition-opacity duration-500"
-        sizes="(max-width: 768px) 100vw, 66vw"
-        priority={false}
-        loading={currentIndex === 0 ? "eager" : "lazy"}
-        quality={85}
-      />
+      <div
+        className="flex h-full w-full transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+          <div
+            key={`${image}-${index}`}
+            className="relative h-full w-full flex-shrink-0"
+          >
+            <Image
+              src={image}
+              alt={`${alt} - Image ${index + 1}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 66vw"
+              priority={false}
+              loading={index === 0 ? "eager" : "lazy"}
+              quality={85}
+            />
+          </div>
+        ))}
+      </div>
 
       {/* Navigation Arrows */}
       <div className="absolute inset-0 flex items-center justify-between px-2 opacity-30 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">

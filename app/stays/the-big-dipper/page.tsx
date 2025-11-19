@@ -16,6 +16,7 @@ export default function TheDomesteadPage() {
       <StayDetailHero
         title="The Big Dipper"
         images={[
+          "/carousel/big_dipper.avif",
           "/carousel/OutdoorDay2.avif",
           "/interior_sofa.avif",
           "/night_outside.avif",
@@ -36,6 +37,9 @@ export default function TheDomesteadPage() {
                 Luxe Packages
               </h2>
             </div>
+            <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+              Limited time offer - Sundowner experience included
+            </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -78,6 +82,10 @@ export default function TheDomesteadPage() {
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent" />{" "}
                   Breakfast + dinner
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />{" "}
+                  Sundowner experience included
                 </li>
               </ul>
             </div>

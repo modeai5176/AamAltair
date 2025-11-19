@@ -76,6 +76,11 @@ const galleryImages = [
     category: "Orchard",
   },
   {
+    src: "/Gallery/night_dome.avif",
+    alt: "Dome accommodation at night",
+    category: "Night",
+  },
+  {
     src: "/night-sky-milky-way-kenya.avif",
     alt: "Milky Way over Aam Altair",
     category: "Night Sky",
@@ -104,6 +109,62 @@ const galleryImages = [
     src: "/interior_sofa.avif",
     alt: "Comfortable interior sofa area",
     category: "Interiors",
+  },
+  // Gallery folder images
+  {
+    src: "/Gallery/dome_view_left.avif",
+    alt: "Left view of the dome accommodation",
+    category: "Interiors",
+  },
+  {
+    src: "/Gallery/hut_view.avif",
+    alt: "Traditional hut view at Aam Altair",
+    category: "Accommodation",
+  },
+  {
+    src: "/Gallery/mango.avif",
+    alt: "Fresh mango from the orchard",
+    category: "Orchard",
+  },
+  {
+    src: "/Gallery/river.avif",
+    alt: "Scenic river view",
+    category: "River",
+  },
+  {
+    src: "/Gallery/river_view.avif",
+    alt: "Beautiful river view from Aam Altair",
+    category: "River",
+  },
+  {
+    src: "/Gallery/river_view_long.avif",
+    alt: "Extended panoramic river view",
+    category: "River",
+  },
+  {
+    src: "/Gallery/sky.avif",
+    alt: "Clear sky over Aam Altair",
+    category: "Day",
+  },
+  {
+    src: "/Gallery/spices.avif",
+    alt: "Local spices and flavors",
+    category: "Food",
+  },
+  {
+    src: "/Gallery/street_view.avif",
+    alt: "Street view of the surrounding area",
+    category: "Surroundings",
+  },
+  {
+    src: "/Gallery/sunset_river.avif",
+    alt: "Sunset over the river",
+    category: "River",
+  },
+  {
+    src: "/Gallery/tree_view.avif",
+    alt: "Lush tree view at Aam Altair",
+    category: "Nature",
   },
   // {
   //   src: "/outdoor-kitchen-kenya-retreat.avif",

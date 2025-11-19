@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,23 @@ interface BookingWidgetProps {
 export function BookingWidget({
   domeName = "The Domestead",
 }: BookingWidgetProps) {
+  const formatDate = (date: Date) => date.toISOString().split("T")[0];
+  const today = formatDate(new Date());
+  const getMinCheckoutDate = (checkInDate: string) => {
+    if (!checkInDate) return today;
+    const nextDay = new Date(checkInDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    return formatDate(nextDay);
+  };
+
+  const calculateNights = (checkIn: string, checkOut: string) => {
+    if (!checkIn || !checkOut) return 0;
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    const diffTime = checkOutDate.getTime() - checkInDate.getTime();
+    return diffTime > 0 ? Math.round(diffTime / (1000 * 60 * 60 * 24)) : 0;
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,19 +52,55 @@ export function BookingWidget({
   >("idle");
 
   const addOns = [
-    { id: "pickup", name: "Pickup from Kibwezi SGR", price: "$20" },
+    { id: "pickup", name: "Pickup from Kibwezi SGR", price: "Ksh 4,000/ride" },
     { id: "chef", name: "Private Chef", price: "Quote" },
-    { id: "sundowner", name: "Sundowner Picnic", price: "KSh 5,000 pp" },
+    { id: "sundowner", name: "Sundowner Picnic", price: "KSh 3,500 pp" },
     { id: "tasting", name: "Mango Tasting", price: "KSh 3,000 pp" },
   ];
+  const sundownerAddOnId = "sundowner";
+  const nights = calculateNights(formData.checkIn, formData.checkOut);
+  const isSundownerComplimentary = nights > 0 && nights % 3 === 0;
+
+  useEffect(() => {
+    setFormData((prev) => {
+      const hasSundowner = prev.addOns.includes(sundownerAddOnId);
+      if (isSundownerComplimentary && !hasSundowner) {
+        return { ...prev, addOns: [...prev.addOns, sundownerAddOnId] };
+      }
+      if (!isSundownerComplimentary && hasSundowner) {
+        return {
+          ...prev,
+          addOns: prev.addOns.filter((id) => id !== sundownerAddOnId),
+        };
+      }
+      return prev;
+    });
+  }, [isSundownerComplimentary]);
 
   const handleAddOnChange = (addOnId: string, checked: boolean) => {
+    if (isSundownerComplimentary && addOnId === sundownerAddOnId) {
+      return;
+    }
     setFormData((prev) => ({
       ...prev,
       addOns: checked
         ? [...prev.addOns, addOnId]
         : prev.addOns.filter((id) => id !== addOnId),
     }));
+  };
+
+  const formatAddOnSummary = () => {
+    if (formData.addOns.length === 0) return "None";
+    return formData.addOns
+      .map((id) => {
+        const addOn = addOns.find((item) => item.id === id);
+        if (!addOn) return id;
+        if (id === sundownerAddOnId && isSundownerComplimentary) {
+          return `${addOn.name} (Complimentary Offer)`;
+        }
+        return addOn.name;
+      })
+      .join(", ");
   };
 
   const handleFormSubmit = async () => {
@@ -111,7 +164,7 @@ Guests: ${formData.adults + formData.children} (${formData.adults} adults, ${
       formData.children
     } children)
 
-Add-ons: ${formData.addOns.length > 0 ? formData.addOns.join(", ") : "None"}
+Add-ons: ${formatAddOnSummary()}
 
 Special Requests:
 ${formData.preferences || "None"}
@@ -137,7 +190,7 @@ Booking Details:
       formData.children
     } children)
 
-Add-ons: ${formData.addOns.length > 0 ? formData.addOns.join(", ") : "None"}
+Add-ons: ${formatAddOnSummary()}
 
 Special Requests:
 ${formData.preferences || "None"}
@@ -146,10 +199,10 @@ Please confirm availability and provide pricing information.
 
 Thank you!`;
 
-    const emailUrl = `mailto:bookings@aamaltair.com?subject=${encodeURIComponent(
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=bookings@aamaltair.com&su=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
-    window.open(emailUrl, "_blank");
+    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -186,11 +239,24 @@ Thank you!`;
                       id="checkin"
                       type="date"
                       value={formData.checkIn}
+                      min={today}
                       onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          checkIn: e.target.value,
-                        }))
+                        setFormData((prev) => {
+                          const nextCheckIn = e.target.value;
+                          if (!nextCheckIn) {
+                            return { ...prev, checkIn: "", checkOut: "" };
+                          }
+                          const minCheckout = getMinCheckoutDate(nextCheckIn);
+                          const adjustedCheckOut =
+                            prev.checkOut && prev.checkOut >= minCheckout
+                              ? prev.checkOut
+                              : minCheckout;
+                          return {
+                            ...prev,
+                            checkIn: nextCheckIn,
+                            checkOut: adjustedCheckOut,
+                          };
+                        })
                       }
                       className="pl-10"
                     />
@@ -209,11 +275,19 @@ Thank you!`;
                       id="checkout"
                       type="date"
                       value={formData.checkOut}
+                      min={getMinCheckoutDate(formData.checkIn)}
                       onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          checkOut: e.target.value,
-                        }))
+                        setFormData((prev) => {
+                          const nextCheckOut = e.target.value;
+                          const minCheckout = getMinCheckoutDate(prev.checkIn);
+                          return {
+                            ...prev,
+                            checkOut:
+                              nextCheckOut && nextCheckOut >= minCheckout
+                                ? nextCheckOut
+                                : minCheckout,
+                          };
+                        })
                       }
                       className="pl-10"
                     />
@@ -351,12 +425,22 @@ Thank you!`;
                 <Label className="text-sm font-medium text-foreground">
                   Add-on Experiences
                 </Label>
+                {isSundownerComplimentary && (
+                  <div className="rounded-xl border border-accent/40 bg-accent/5 px-4 py-3 text-sm text-accent font-medium">
+                    Complimentary sundowner picnic added for your {nights}-night
+                    stay.
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {addOns.map((addOn) => (
                     <div key={addOn.id} className="flex items-center space-x-3">
                       <Checkbox
                         id={addOn.id}
                         checked={formData.addOns.includes(addOn.id)}
+                        disabled={
+                          isSundownerComplimentary &&
+                          addOn.id === sundownerAddOnId
+                        }
                         onCheckedChange={(checked) =>
                           handleAddOnChange(addOn.id, checked as boolean)
                         }
@@ -368,7 +452,10 @@ Thank you!`;
                         {addOn.name}
                       </Label>
                       <span className="text-sm text-accent font-medium">
-                        {addOn.price}
+                        {addOn.id === sundownerAddOnId &&
+                        isSundownerComplimentary
+                          ? "Complimentary Offer"
+                          : addOn.price}
                       </span>
                     </div>
                   ))}

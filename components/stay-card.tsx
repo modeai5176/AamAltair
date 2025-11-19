@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -31,13 +31,24 @@ export function StayCard({
   comingSoon = false,
 }: StayCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const totalImages = images.length;
+
+  useEffect(() => {
+    if (totalImages <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [totalImages]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
   return (
@@ -46,15 +57,24 @@ export function StayCard({
         {/* Image Gallery */}
         <div className="relative">
           <div className="aspect-[16/10] lg:aspect-[4/3] relative overflow-hidden">
-            <Image
-              src={images[currentImageIndex] || "/placeholder.svg"}
-              alt={`${title} - Image ${currentImageIndex + 1}`}
-              fill
-              className="object-cover transition-transform duration-500 hover:scale-105"
-              loading={currentImageIndex === 0 ? "eager" : "lazy"}
-              quality={85}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+            <div
+              className="flex h-full w-full transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+            >
+              {images.map((image, index) => (
+                <div key={image} className="relative h-full w-full flex-shrink-0">
+                  <Image
+                    src={image || "/placeholder.svg"}
+                    alt={`${title} - Image ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    quality={85}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
 
             {/* Image Navigation */}
             {images.length > 1 && (

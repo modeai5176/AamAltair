@@ -4,24 +4,24 @@ import { Card, CardContent } from "@/components/ui/card";
 const included = [
   "Luxury accommodation (linen & towels)",
   "Daily light breakfast hamper",
-  "Self-guided orchard & riverside walk",
+  "Guided Mango Orchard walk",
   "Wi‑Fi at main house",
   "All-clean solar & wind power",
   "Eco toiletries & filtered water",
   "Secure on-site parking",
-  "Yoga mats & meditation cushions",
+  "Guided Sunrise Yoga with Mats & Cushions",
 ];
 
 const addOns = [
   { name: "Private chef", price: "Quote on request" },
-  { name: "Guided sunrise yoga", price: "KSh 3,000 /session" },
   {
-    name: "Stargazing set",
+    name: "Stargazing Setup (Select Nights, New Moon Best)",
     price: "KSh 1,500 /setup",
   },
   { name: "Celebration setups", price: "Quote on request" },
+  { name: "Sundowner Picnic", price: "3,500 pp" },
   { name: "Pickup from SGR (Kibwezi)", price: "KES 4,000 / trip (2–4 pax)" },
-  { name: "Orchard mango tasting (in season)", price: "KSh 3,000 pp" },
+  { name: "Mango Tasting Menu (in season)", price: "KSh 3,000 pp" },
 ];
 
 export function StayInclusions() {

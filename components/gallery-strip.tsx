@@ -52,6 +52,7 @@ export function GalleryStrip() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const totalImages = galleryImages.length;
 
   useEffect(() => {
     // Preload first 3 images
@@ -71,14 +72,22 @@ export function GalleryStrip() {
     }
   }, [loadedImages]);
 
+  useEffect(() => {
+    if (!imagesLoaded || totalImages <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalImages);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [imagesLoaded, totalImages]);
+
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+    setCurrentIndex((prev) => (prev + 1) % totalImages);
   };
 
   const prevSlide = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
-    );
+    setCurrentIndex((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
   return (

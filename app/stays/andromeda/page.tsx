@@ -16,11 +16,11 @@ export default function AndromedaPage() {
       <StayDetailHero
         title="Andromeda"
         images={[
-          "/carousel/OutdoorChillingArea2.avif",
-          "/night-sky-milky-way-kenya.avif",
-          "/river-galana-kenya-nature.avif",
-          "/mango-orchard-kenya-landscape.avif",
+          "/carousel/andromeda_night.avif",
           "/carousel/Indoor.avif",
+          "/carousel/andromeda_top.avif",
+          "/carousel/OutdoorChillingArea2.avif",
+          "/river-galana-kenya-nature.avif",
         ]}
       />
       <StayOverview />
@@ -39,7 +39,7 @@ export default function AndromedaPage() {
               </h2>
             </div>
             <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-              Introductory offer • Sundowner included
+              Limited time offer - Sundowner experience included
             </span>
           </div>
 
@@ -74,7 +74,7 @@ export default function AndromedaPage() {
                 Half Board
               </h3>
               <p className="mt-3 text-4xl font-semibold text-primary">
-                KSh 16,000
+                KSh 15,000
               </p>
               <p className="text-sm text-foreground/70">
                 per night • 2 pax sharing

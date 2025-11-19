@@ -28,8 +28,14 @@ const addOns = [
   {
     id: "pickup",
     name: "Station Pickup Service",
-    price: 20,
-    description: "From Kibwezi or Makindu SGR",
+    price: 40,
+    description: "From Kibwezi SGR",
+  },
+  {
+    id: "dropoff",
+    name: "Station Drop-off Service",
+    price: 40,
+    description: "To Kibwezi SGR station",
   },
   {
     id: "meals",
@@ -49,7 +55,53 @@ const addOns = [
     price: 35,
     description: "Meet local artisans & craftspeople",
   },
+  {
+    id: "sundowner",
+    name: "Sundowner Picnic",
+    price: 35,
+    description: "Evening picnic with sunset views",
+  },
+  {
+    id: "mango-tasting",
+    name: "Mango Tasting Menu",
+    price: 30,
+    description: "Curated mango tasting experience",
+  },
+  {
+    id: "sunrise-yoga",
+    name: "Sunrise Yoga",
+    price: 0,
+    description: "Morning yoga session at sunrise",
+  },
+  {
+    id: "orchard-tour",
+    name: "Guided Orchard Tour",
+    price: 0,
+    description: "Explore the mango orchard with a guide",
+  },
+  {
+    id: "silk-farm",
+    name: "Silk Farm Tour",
+    price: 0,
+    description: "Visit local silk production facility",
+  },
+  {
+    id: "waterfall-hike",
+    name: "Waterfall & Island Hike",
+    price: 15,
+    description: "Guided hike to waterfall and island",
+  },
 ];
+
+const sundownerAddOnId = "sundowner";
+
+const calculateNights = (checkIn: string, checkOut: string) => {
+  if (!checkIn || !checkOut) return 0;
+  const start = new Date(checkIn);
+  const end = new Date(checkOut);
+  const diff = end.getTime() - start.getTime();
+  return diff > 0 ? Math.round(diff / (1000 * 60 * 60 * 24)) : 0;
+};
 
 export function ProfessionalBookingSystem() {
   const [step, setStep] = useState(1);
@@ -100,6 +152,9 @@ export function ProfessionalBookingSystem() {
     },
   });
 
+  const nights = calculateNights(bookingData.checkIn, bookingData.checkOut);
+  const isSundownerComplimentary = nights > 0 && nights % 3 === 0;
+
   // Validate dates on component mount and when today changes
   useEffect(() => {
     const currentToday = getToday();
@@ -122,9 +177,25 @@ export function ProfessionalBookingSystem() {
     });
   }, []);
 
+  useEffect(() => {
+    setBookingData((prev) => {
+      const hasSundowner = prev.addOns.includes(sundownerAddOnId);
+      if (isSundownerComplimentary && !hasSundowner) {
+        return { ...prev, addOns: [...prev.addOns, sundownerAddOnId] };
+      }
+      if (!isSundownerComplimentary && hasSundowner) {
+        return {
+          ...prev,
+          addOns: prev.addOns.filter((id) => id !== sundownerAddOnId),
+        };
+      }
+      return prev;
+    });
+  }, [isSundownerComplimentary]);
+
   const PRICES = {
     domestead: { bb: 13000, hb: 18000 },
-    andromeda: { bb: 10000, hb: 16000 },
+    andromeda: { bb: 10000, hb: 15000 },
     hercules: { bb: 13000, hb: 18000 },
     additional: { bb: 2500, hb: 5000 },
   } as const;
@@ -154,18 +225,40 @@ export function ProfessionalBookingSystem() {
         (bookingData.additionalAdult?.hb ? PRICES.additional.hb : 0));
     const addOnTotal = bookingData.addOns.reduce((total, addOnId) => {
       const addOn = addOns.find((a) => a.id === addOnId);
-      return total + (addOn ? addOn.price : 0);
+      if (!addOn) return total;
+      const addOnCost =
+        isSundownerComplimentary && addOnId === sundownerAddOnId
+          ? 0
+          : addOn.price;
+      return total + addOnCost;
     }, 0);
     return basePerNight * nights + additionalPerNight * nights + addOnTotal;
   };
 
   const handleAddOnToggle = (addOnId: string) => {
+    if (isSundownerComplimentary && addOnId === sundownerAddOnId) {
+      return;
+    }
     setBookingData((prev) => ({
       ...prev,
       addOns: prev.addOns.includes(addOnId)
         ? prev.addOns.filter((id) => id !== addOnId)
         : [...prev.addOns, addOnId],
     }));
+  };
+
+  const formatAddOnList = () => {
+    if (bookingData.addOns.length === 0) return "None";
+    return bookingData.addOns
+      .map((id) => {
+        const addOn = addOns.find((a) => a.id === id);
+        if (!addOn) return id;
+        if (id === sundownerAddOnId && isSundownerComplimentary) {
+          return `${addOn.name} (Complimentary Offer)`;
+        }
+        return addOn.name;
+      })
+      .join(", ");
   };
 
   const getPropertyLabel = (code: string) => {
@@ -201,11 +294,7 @@ Check-in: ${bookingData.checkIn}
 Check-out: ${bookingData.checkOut}
 Guests: ${bookingData.guests}
 Board: ${bookingData.board === "hb" ? "Half Board" : "Bed & Breakfast"}
-Add-ons: ${
-      bookingData.addOns
-        .map((id) => addOns.find((a) => a.id === id)?.name)
-        .join(", ") || "None"
-    }
+Add-ons: ${formatAddOnList()}
 Total: KSh ${total}
 
 Contact Information:
@@ -218,16 +307,14 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
 
     if (bookingData.contactMethod === "whatsapp") {
       window.open(
-        `https://wa.me/254700000000?text=${encodeURIComponent(message)}`,
+        `https://wa.me/254716862882?text=${encodeURIComponent(message)}`,
         "_blank"
       );
     } else if (bookingData.contactMethod === "email") {
-      window.open(
-        `mailto:bookings@aamaltair.com?subject=Booking Request&body=${encodeURIComponent(
-          message
-        )}`,
-        "_blank"
-      );
+      const subject = encodeURIComponent("Booking Request");
+      const body = encodeURIComponent(message);
+      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=bookings@aamaltair.com&su=${subject}&body=${body}`;
+      window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -419,7 +506,7 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                             <div className="text-lg font-bold text-primary">
                               KSh{" "}
                               {bookingData.property === "andromeda"
-                                ? 16000
+                                ? 15000
                                 : 18000}
                               <span className="text-xs font-normal text-muted-foreground">
                                 {" "}
@@ -690,6 +777,13 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                   Enhance Your Experience
                 </h3>
 
+                {isSundownerComplimentary && (
+                  <div className="rounded-xl border border-accent/40 bg-accent/5 px-4 py-3 text-sm text-accent font-medium">
+                    Complimentary sundowner picnic added for your {nights}-night
+                    stay.
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {addOns.map((addOn) => (
                     <Card key={addOn.id} className="cursor-pointer">
@@ -698,6 +792,10 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                           <Checkbox
                             id={addOn.id}
                             checked={bookingData.addOns.includes(addOn.id)}
+                            disabled={
+                              isSundownerComplimentary &&
+                              addOn.id === sundownerAddOnId
+                            }
                             onCheckedChange={() => handleAddOnToggle(addOn.id)}
                           />
                           <div className="flex-1">
@@ -709,7 +807,12 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                                 {addOn.name}
                               </Label>
                               <span className="font-semibold text-primary">
-                                KSh {addOn.price * 100}
+                                {addOn.id === sundownerAddOnId &&
+                                isSundownerComplimentary
+                                  ? "Complimentary Offer"
+                                  : addOn.price === 0
+                                  ? "Included"
+                                  : `KSh ${addOn.price * 100}`}
                               </span>
                             </div>
                             <p className="text-sm text-muted-foreground mt-1">
@@ -973,22 +1076,34 @@ Special Requests: ${bookingData.personalInfo.specialRequests || "None"}`;
                       <span>Guests:</span>
                       <span className="font-medium">{bookingData.guests}</span>
                     </div>
-                    {bookingData.addOns.length > 0 && (
+                    {(() => {
+                      const visibleAddOns = bookingData.addOns.filter(
+                        (id) =>
+                          !(
+                            isSundownerComplimentary &&
+                            id === sundownerAddOnId
+                          )
+                      );
+                      if (visibleAddOns.length === 0) return null;
+                      return (
                       <div className="flex justify-between">
                         <span>Add-ons:</span>
                         <div className="text-right">
-                          {bookingData.addOns.map((id) => {
+                            {visibleAddOns.map((id) => {
                             const addOn = addOns.find((a) => a.id === id);
                             return (
                               <div key={id} className="text-sm">
-                                {addOn?.name} (+KSh{" "}
-                                {addOn ? addOn.price * 100 : 0})
+                                {addOn?.name}{" "}
+                                {addOn && addOn.price === 0
+                                  ? "(Included)"
+                                  : `(+KSh ${addOn ? addOn.price * 100 : 0})`}
                               </div>
                             );
                           })}
                         </div>
                       </div>
-                    )}
+                      );
+                    })()}
                     <div className="border-t pt-4">
                       <div className="flex justify-between text-lg font-semibold">
                         <span>Total:</span>

@@ -40,22 +40,17 @@ const journeyData = {
           rail_time: "3.5h",
           pickup_time: "1h",
         },
-        station_alt: {
-          name: "Makindu SGR",
-          rail_time: "4h",
-          pickup_time: "1.5h",
-        },
       },
       {
         label: "From Mombasa",
         station_primary: {
           name: "Kibwezi SGR",
-          rail_time: "2h",
+          rail_time: "4.5h",
           pickup_time: "1h",
         },
       },
     ],
-    cta: { label: "Add pickup", price: "$20/ride" },
+    cta: { label: "Add pickup", price: "Ksh 4,000/ride" },
   },
   drive: {
     route: { origin: "Nairobi", destination: "Aam Altair", time: "~6h" },
@@ -268,7 +263,7 @@ export function GettingHereSection() {
                           {journeyData.train.cta.price}
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          per ride
+                          upto 4 pax
                         </div>
                       </div>
                       <div className="flex items-center space-x-3">
