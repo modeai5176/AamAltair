@@ -18,6 +18,14 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Send } from "lucide-react";
 
+const calculateNights = (checkIn: string, checkOut: string) => {
+  if (!checkIn || !checkOut) return 0;
+  const start = new Date(checkIn);
+  const end = new Date(checkOut);
+  const diff = end.getTime() - start.getTime();
+  return diff > 0 ? Math.round(diff / (1000 * 60 * 60 * 24)) : 0;
+};
+
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -32,6 +40,11 @@ export function ContactForm() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const nights = calculateNights(formData.checkIn, formData.checkOut);
+  const isBookingInquiry = formData.inquiryType === "booking";
+  const isSundownerComplimentary =
+    isBookingInquiry && nights > 0 && nights % 3 === 0;
+  const complimentaryAddOns = isSundownerComplimentary ? ["sundowner"] : [];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +64,7 @@ export function ContactForm() {
           checkIn: formData.checkIn,
           checkOut: formData.checkOut,
           guests: formData.guests,
-          addOns: [],
+          addOns: complimentaryAddOns,
           preferences: formData.message,
           agreeToRules: true,
         }),
@@ -189,11 +202,17 @@ export function ContactForm() {
           </div>
 
           {/* Booking Details (conditional) */}
-          {formData.inquiryType === "booking" && (
+          {isBookingInquiry && (
             <div className="space-y-4 p-4 bg-accent/5 rounded-lg border border-accent/20">
               <h3 className="font-serif text-lg font-semibold text-primary">
                 Booking Details
               </h3>
+              {isSundownerComplimentary && (
+                <p className="text-sm text-accent font-medium">
+                  Complimentary sundowner picnic added for your {nights}-night
+                  stay.
+                </p>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
                   <Label

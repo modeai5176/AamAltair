@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -31,13 +31,24 @@ export function StayCard({
   comingSoon = false,
 }: StayCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const totalImages = images.length;
+
+  useEffect(() => {
+    if (totalImages <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [totalImages]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
   return (

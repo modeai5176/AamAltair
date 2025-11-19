@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,14 @@ export function BookingWidget({
     const nextDay = new Date(checkInDate);
     nextDay.setDate(nextDay.getDate() + 1);
     return formatDate(nextDay);
+  };
+
+  const calculateNights = (checkIn: string, checkOut: string) => {
+    if (!checkIn || !checkOut) return 0;
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+    const diffTime = checkOutDate.getTime() - checkInDate.getTime();
+    return diffTime > 0 ? Math.round(diffTime / (1000 * 60 * 60 * 24)) : 0;
   };
 
   const [formData, setFormData] = useState({
@@ -49,14 +57,50 @@ export function BookingWidget({
     { id: "sundowner", name: "Sundowner Picnic", price: "KSh 3,500 pp" },
     { id: "tasting", name: "Mango Tasting", price: "KSh 3,000 pp" },
   ];
+  const sundownerAddOnId = "sundowner";
+  const nights = calculateNights(formData.checkIn, formData.checkOut);
+  const isSundownerComplimentary = nights > 0 && nights % 3 === 0;
+
+  useEffect(() => {
+    setFormData((prev) => {
+      const hasSundowner = prev.addOns.includes(sundownerAddOnId);
+      if (isSundownerComplimentary && !hasSundowner) {
+        return { ...prev, addOns: [...prev.addOns, sundownerAddOnId] };
+      }
+      if (!isSundownerComplimentary && hasSundowner) {
+        return {
+          ...prev,
+          addOns: prev.addOns.filter((id) => id !== sundownerAddOnId),
+        };
+      }
+      return prev;
+    });
+  }, [isSundownerComplimentary]);
 
   const handleAddOnChange = (addOnId: string, checked: boolean) => {
+    if (isSundownerComplimentary && addOnId === sundownerAddOnId) {
+      return;
+    }
     setFormData((prev) => ({
       ...prev,
       addOns: checked
         ? [...prev.addOns, addOnId]
         : prev.addOns.filter((id) => id !== addOnId),
     }));
+  };
+
+  const formatAddOnSummary = () => {
+    if (formData.addOns.length === 0) return "None";
+    return formData.addOns
+      .map((id) => {
+        const addOn = addOns.find((item) => item.id === id);
+        if (!addOn) return id;
+        if (id === sundownerAddOnId && isSundownerComplimentary) {
+          return `${addOn.name} (Complimentary Offer)`;
+        }
+        return addOn.name;
+      })
+      .join(", ");
   };
 
   const handleFormSubmit = async () => {
@@ -120,7 +164,7 @@ Guests: ${formData.adults + formData.children} (${formData.adults} adults, ${
       formData.children
     } children)
 
-Add-ons: ${formData.addOns.length > 0 ? formData.addOns.join(", ") : "None"}
+Add-ons: ${formatAddOnSummary()}
 
 Special Requests:
 ${formData.preferences || "None"}
@@ -146,7 +190,7 @@ Booking Details:
       formData.children
     } children)
 
-Add-ons: ${formData.addOns.length > 0 ? formData.addOns.join(", ") : "None"}
+Add-ons: ${formatAddOnSummary()}
 
 Special Requests:
 ${formData.preferences || "None"}
@@ -381,12 +425,22 @@ Thank you!`;
                 <Label className="text-sm font-medium text-foreground">
                   Add-on Experiences
                 </Label>
+                {isSundownerComplimentary && (
+                  <div className="rounded-xl border border-accent/40 bg-accent/5 px-4 py-3 text-sm text-accent font-medium">
+                    Complimentary sundowner picnic added for your {nights}-night
+                    stay.
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {addOns.map((addOn) => (
                     <div key={addOn.id} className="flex items-center space-x-3">
                       <Checkbox
                         id={addOn.id}
                         checked={formData.addOns.includes(addOn.id)}
+                        disabled={
+                          isSundownerComplimentary &&
+                          addOn.id === sundownerAddOnId
+                        }
                         onCheckedChange={(checked) =>
                           handleAddOnChange(addOn.id, checked as boolean)
                         }
@@ -398,7 +452,10 @@ Thank you!`;
                         {addOn.name}
                       </Label>
                       <span className="text-sm text-accent font-medium">
-                        {addOn.price}
+                        {addOn.id === sundownerAddOnId &&
+                        isSundownerComplimentary
+                          ? "Complimentary Offer"
+                          : addOn.price}
                       </span>
                     </div>
                   ))}

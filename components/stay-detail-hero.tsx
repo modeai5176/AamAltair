@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -12,13 +12,24 @@ interface StayDetailHeroProps {
 
 export function StayDetailHero({ title, images }: StayDetailHeroProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const totalImages = images.length;
+
+  useEffect(() => {
+    if (totalImages <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [totalImages]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
   };
 
   return (
