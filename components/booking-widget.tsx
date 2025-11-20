@@ -206,7 +206,7 @@ Thank you!`;
   };
 
   return (
-    <section className="py-16 md:py-24">
+    <section id="booking-widget" className="py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-6">
         <div className="space-y-8">
           <div className="text-center space-y-2">
