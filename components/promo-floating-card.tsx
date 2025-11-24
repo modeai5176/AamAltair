@@ -7,9 +7,15 @@ interface PromoFloatingCardProps {
   inline?: boolean;
 }
 
-export function PromoFloatingCard({ alwaysVisible = false, inline = false }: PromoFloatingCardProps) {
+export function PromoFloatingCard({
+  alwaysVisible = false,
+  inline = false,
+}: PromoFloatingCardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
+
+  // NEW: State for mobile toggle
+  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
 
   // If alwaysVisible, show it after a short delay for slide-in effect
   useEffect(() => {
@@ -31,7 +37,7 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
       // Hero section is h-screen, so check if scroll is past viewport height
       const scrollPosition = window.scrollY || window.pageYOffset;
       const viewportHeight = window.innerHeight;
-      
+
       if (scrollPosition > viewportHeight * 0.8) {
         // User has scrolled past 80% of hero section
         if (!hasScrolledPastHero) {
@@ -43,6 +49,7 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
         if (hasScrolledPastHero) {
           setHasScrolledPastHero(false);
           setIsVisible(false);
+          setIsMobileExpanded(false); // Auto-close mobile card on scroll up
         }
       }
     };
@@ -56,21 +63,35 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
 
   // Removed dismiss functionality - card always shows
 
+  // MODIFIED: Removed 'hidden lg:block' to allow mobile rendering.
+  // Added pointer-events-none to container so the empty space doesn't block clicks.
   const containerClasses = inline
     ? "relative w-full flex justify-center z-40 mb-8"
-    : "hidden lg:block fixed bottom-6 right-4 md:right-6 z-40";
+    : "fixed bottom-6 right-4 md:right-6 z-40 flex flex-col items-end pointer-events-none";
 
+  // MODIFIED: Logic to handle Mobile vs Desktop states separately
+  // Mobile: Controlled by isMobileExpanded
+  // Desktop (lg): Controlled by isVisible/alwaysVisible (Original Logic)
   const cardClasses = inline
     ? `relative max-w-2xl w-full rounded-xl overflow-hidden transition-all duration-500 ease-out ${
-        (alwaysVisible || isVisible)
+        alwaysVisible || isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 -translate-y-4 pointer-events-none"
       }`
-    : `relative max-w-sm w-80 rounded-2xl overflow-hidden backdrop-blur-xl shadow-2xl transition-all duration-700 ease-out ${
-        (alwaysVisible || isVisible)
-          ? "opacity-100 translate-x-0 translate-y-0 scale-100"
-          : "opacity-0 translate-x-[120%] translate-y-0 scale-95 pointer-events-none"
-      }`;
+    : `relative max-w-sm w-80 rounded-2xl overflow-hidden backdrop-blur-xl shadow-2xl transition-all duration-700 ease-out 
+       /* MOBILE STATE */
+       ${
+         isMobileExpanded
+           ? "opacity-100 translate-y-0 scale-100 pointer-events-auto block mb-0"
+           : "opacity-0 translate-y-4 scale-95 pointer-events-none hidden"
+       }
+       /* DESKTOP STATE (Overrides Mobile) */
+       lg:block lg:mb-0
+       ${
+         alwaysVisible || isVisible
+           ? "lg:opacity-100 lg:translate-x-0 lg:translate-y-0 lg:scale-100 lg:pointer-events-auto"
+           : "lg:opacity-0 lg:translate-x-[120%] lg:translate-y-0 lg:scale-95 lg:pointer-events-none"
+       }`;
 
   // Inline version - clean and minimal
   if (inline) {
@@ -145,6 +166,32 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
   // Fixed version - original design
   return (
     <div className={containerClasses}>
+      {/* ------------------------------------------------------------------ */}
+      {/* NEW: Mobile "Bubble" Trigger                                       */}
+      {/* Hidden on LG (Desktop), Visible when card is NOT expanded on Mobile */}
+      {/* ------------------------------------------------------------------ */}
+      <button
+        onClick={() => setIsMobileExpanded(true)}
+        className={`lg:hidden group relative h-14 w-14 rounded-full flex items-center justify-center transition-all duration-500 shadow-2xl pointer-events-auto ${
+          !isMobileExpanded ? "scale-100 opacity-100" : "scale-0 opacity-0"
+        }`}
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 1) 100%)",
+          border: "1px solid rgba(214, 185, 140, 0.3)",
+          boxShadow:
+            "0 10px 25px rgba(0,0,0,0.5), 0 0 15px rgba(214, 185, 140, 0.2)",
+        }}
+      >
+        {/* Glowing Rings */}
+        <div className="absolute inset-0 rounded-full border border-[#d6b98c] animate-ping opacity-30 duration-1000" />
+        <div className="absolute inset-0 rounded-full bg-[#d6b98c]/10 animate-pulse" />
+        <span className="text-xl relative z-10">✨</span>
+      </button>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Main Card                                                          */}
+      {/* ------------------------------------------------------------------ */}
       <div
         className={cardClasses}
         style={{
@@ -155,6 +202,30 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
             "0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(214, 185, 140, 0.1), 0 0 60px rgba(214, 185, 140, 0.15)",
         }}
       >
+        {/* NEW: Mobile Close Button (Hidden on Desktop) */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsMobileExpanded(false);
+          }}
+          className="lg:hidden absolute top-3 right-3 p-1.5 rounded-full bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-colors z-20 pointer-events-auto"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
         {/* Animated gradient border effect */}
         <div
           className="absolute inset-0 rounded-2xl opacity-50"
@@ -165,7 +236,7 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
             animation: "shimmer 3s ease-in-out infinite",
           }}
         />
-        
+
         {/* Content */}
         <div className="relative px-5 py-4 md:px-6 md:py-5">
           {/* Badge */}
@@ -238,4 +309,3 @@ export function PromoFloatingCard({ alwaysVisible = false, inline = false }: Pro
     </div>
   );
 }
-

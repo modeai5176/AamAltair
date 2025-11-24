@@ -184,13 +184,13 @@ export function AboutSection() {
           {/* Mobile: Content below image */}
           <div className="lg:hidden space-y-6 mt-8">
             <p className="text-lg text-foreground/90 leading-relaxed text-pretty">
-              Nestled by Emily den Boesterd deep in the unique islands of
-              Chyogoon Valley, Woodland Retreat offers the perfect blend of
-              rustic charm and modern comfort. Our mission is to provide a
-              peaceful escape where you can truly recharge and reconnect amidst
-              the beauty of untouched nature. Enjoy the vibrant city life just
-              steps away, while retreating to a space designed for your utmost
-              comfort and tranquility.
+              Nestled in the tranquil hills of Tsavo, where ancient baobab trees
+              rise and the River Galana sings through the valley. Move at
+              nature’s pace, wake to golden light and birdsong, wander through
+              orchards, and end your day under the stars. Every dome is a cozy
+              sanctuary — crafted by local hands, powered by sun and wind, and
+              surrounded by the wild beauty of the land. Come find your balance
+              where luxury meets simplicity and nature leads the way.
             </p>
 
             {/* Amenities */}
