@@ -83,7 +83,7 @@ export default function StaysPage() {
             {/* Third Property */}
             <StayCard
               title="Andromeda"
-              description="Named after the legendary Heracles, Hercules offers a serene riverside escape where nature meets comfort. Unwind on a private deck, reconnect with your inner calm, and end your day in quiet luxury."
+              description="Andromeda Domestead — Our most compact unit, inspired by our closest galactic neighbour. Designed for small groups, it offers a cozy stay while maintaining a refined, luxurious experience."
               images={[
                 "/carousel/andromeda_night.avif",
                 "/carousel/Indoor.avif",
