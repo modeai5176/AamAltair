@@ -30,13 +30,13 @@ export function AboutSection() {
         {/* Three-tile strip */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
           <Link
-            href="/stays/the-domestead"
+            href="/stays/the-big-dipper"
             className="group relative overflow-hidden rounded-2xl bg-card h-64 cursor-pointer"
-            aria-label="View The Domestead"
+            aria-label="View The Big Dipper"
           >
             <Image
               src="/carousel/OutdoorDay2.avif"
-              alt="The Domestead"
+              alt="The Big Dipper"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               priority
@@ -126,7 +126,7 @@ export function AboutSection() {
               <div className="aspect-[4/3] relative overflow-hidden rounded-2xl">
                 <Image
                   src="/carousel/Dome2.avif"
-                  alt="Aam Altair: The Domestead"
+                  alt="Aam Altair: The Big Dipper"
                   fill
                   className="object-cover"
                   priority
