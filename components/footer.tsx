@@ -52,6 +52,12 @@ export function Footer() {
                 Gallery
               </Link>
               <Link
+                href="/farm"
+                className="text-sm text-foreground hover:text-primary transition-colors block"
+              >
+                Farm
+              </Link>
+              <Link
                 href="/about"
                 className="text-sm text-foreground hover:text-primary transition-colors block"
               >

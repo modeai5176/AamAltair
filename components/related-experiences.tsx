@@ -99,7 +99,7 @@ export function RelatedExperiences() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full border-accent/50 text-accent hover:bg-accent/10 rounded-full bg-transparent"
+                      className="w-full border-accent/50 text-accent hover:bg-accent hover:text-accent-foreground rounded-full bg-transparent"
                     >
                       Add to Booking
                     </Button>

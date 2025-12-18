@@ -112,7 +112,7 @@ export function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-accent text-accent hover:bg-accent/10 px-8 py-4 rounded-full"
+                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-4 rounded-full"
                 style={{
                   fontFamily:
                     'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',

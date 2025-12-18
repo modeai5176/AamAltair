@@ -119,7 +119,7 @@ export function FAQSection() {
               </a>
               <a
                 href="mailto:theaamaltair@gmail.com"
-                className="inline-flex items-center justify-center px-4 py-2 border border-accent text-accent hover:bg-accent/10 font-medium rounded-full transition-colors text-sm"
+                className="inline-flex items-center justify-center px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-accent-foreground font-medium rounded-full transition-colors text-sm"
               >
                 Email Us
               </a>

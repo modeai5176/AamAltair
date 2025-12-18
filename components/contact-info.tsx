@@ -78,7 +78,7 @@ export function ContactInfo() {
               </div>
               <Button
                 variant="outline"
-                className="border-accent text-accent hover:bg-accent/10 rounded-full bg-transparent"
+                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-full bg-transparent"
                 asChild
                 style={{
                   fontFamily:

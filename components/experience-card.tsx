@@ -134,7 +134,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
             variant="outline"
             size="lg"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="border-accent/50 text-accent hover:bg-accent/10 rounded-full py-4 px-15"
+            className="border-accent/50 text-accent hover:bg-accent hover:text-accent-foreground rounded-full py-4 px-15"
             style={{
               fontFamily:
                 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',

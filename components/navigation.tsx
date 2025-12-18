@@ -12,6 +12,7 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Experiences", href: "/experiences" },
   { name: "Gallery", href: "/gallery" },
+  { name: "Farm", href: "/farm" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -62,9 +63,16 @@ export function Navigation() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-elevated/90 backdrop-blur-md border-b border-border"
+          ? "bg-background border-b border-accent-2/30"
           : "bg-transparent"
       }`}
+      style={
+        isScrolled
+          ? {
+              backgroundColor: "#0d0e10",
+            }
+          : {}
+      }
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">

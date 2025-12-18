@@ -24,7 +24,7 @@ export function BookingCTA() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-accent text-accent hover:bg-accent/10 font-semibold px-6 py-4 rounded-full bg-transparent"
+                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-6 py-4 rounded-full bg-transparent"
                 style={{
                   fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
                   fontWeight: 400,
@@ -38,7 +38,7 @@ export function BookingCTA() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-accent text-accent hover:bg-accent/10 font-semibold px-6 py-4 rounded-full bg-transparent"
+                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-6 py-4 rounded-full bg-transparent"
                 style={{
                   fontFamily: 'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
                   fontWeight: 400,
