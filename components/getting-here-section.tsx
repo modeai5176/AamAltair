@@ -316,7 +316,7 @@ export function GettingHereSection() {
                   <div className="flex flex-col md:flex-row gap-3">
                     <Button
                       variant="outline"
-                      className="border-accent text-accent hover:bg-accent/10 rounded-full h-9 px-4 text-sm md:h-auto md:px-6 md:text-base"
+                      className="border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-full h-9 px-4 text-sm md:h-auto md:px-6 md:text-base"
                       style={{
                         fontFamily:
                           'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',

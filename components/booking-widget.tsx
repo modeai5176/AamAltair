@@ -550,7 +550,7 @@ Thank you!`;
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Button
                     variant="outline"
-                    className="border-accent text-accent hover:bg-accent/10 py-3 rounded-full bg-transparent"
+                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground py-3 rounded-full bg-transparent"
                     onClick={handleWhatsAppSubmit}
                     style={{
                       fontFamily:
@@ -565,7 +565,7 @@ Thank you!`;
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-accent text-accent hover:bg-accent/10 py-3 rounded-full bg-transparent"
+                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground py-3 rounded-full bg-transparent"
                     onClick={handleEmailSubmit}
                     style={{
                       fontFamily:

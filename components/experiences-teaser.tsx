@@ -123,7 +123,7 @@ export function ExperiencesTeaser() {
             <Button
               variant="outline"
               size="lg"
-              className="border-accent text-accent hover:bg-accent/10 font-semibold px-8 py-3 rounded-full bg-transparent"
+              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-8 py-3 rounded-full bg-transparent"
               style={{
                 fontFamily:
                   'Inter, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif',

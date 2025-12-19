@@ -191,7 +191,7 @@ export function StayCard({
             <Link href={href}>
               <Button
                 variant="outline"
-                className="w-full sm:w-auto py-3 sm:py-2 rounded-full font-medium border-accent text-accent hover:bg-accent/10 font-semibold px-7 sm:px-7 sm:flex-1 bg-transparent"
+                className="w-full sm:w-auto py-3 sm:py-2 rounded-full font-medium border-accent text-accent hover:bg-accent hover:text-accent-foreground font-semibold px-7 sm:px-7 sm:flex-1 bg-transparent"
                 disabled={comingSoon}
                 style={{
                   fontFamily:
